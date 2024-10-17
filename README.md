@@ -1,7 +1,7 @@
 # Crowd-Sourced-Travel-Planner
 
 ## Description
-Welcome!! This is app aims to allow users to plan their trips by adding expereinces from previous travelers and locals. 
+Welcome!! This app aims to allow users to plan their trips by adding experiences from previous travelers and locals. 
 
 ## Work Qaulity and Guidelines
 *Tests:* Unit tests should be implemented for all backend features. Testing should be a combination of Unit Tests (testing framework to be determined) and manual tests. 
@@ -21,3 +21,13 @@ If any member chooses to use a graphical user interface (GUI) to interact with G
 
 ## Local Setup and Startup
  
+**Flask - Backend
+- Make sure that flask is installed: ```pip install Flask```
+- Run Flask by typing the command ```python main.py```
+
+**React - Frontend
+- Open src/App.js in the frontend/ directory 
+- Run the React app ```npm start```
+
+**Optional - Build React for Production
+- Inside the frontend/ directory, run: ```npm run build```
