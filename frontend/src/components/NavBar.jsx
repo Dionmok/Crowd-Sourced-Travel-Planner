@@ -27,7 +27,7 @@ export default function NavBar() {
             <Link>
               <button>My Trips</button>
             </Link>
-            <Link>
+            <Link to='/myexperiences'>
               <button>My Experiences</button>
             </Link>
           </div>
