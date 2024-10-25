@@ -22,12 +22,18 @@ If any member chooses to use a graphical user interface (GUI) to interact with G
 ## Local Setup and Startup
  
 **Flask - Backend
-- Make sure that flask is installed: ```pip install Flask```
-- Run Flask by typing the command ```python main.py```
+- Set up Virtual Enviornemnt: 
+1. Install virtual enviornment: ```sudo apt install python3.10-venv```
+2. Activate it: 
+    ```python3 -m venv venv```
+    ```source venv/bin/activate```
+3. Install packages:```pip install -r requirements.txt```
+4. Run Flask: ```python3 app.py``` 
 
 **React - Frontend
 - Open src/App.js in the frontend/ directory 
-- Run the React app ```npm start```
+- Install Packages  ```npm install``
+- Run the React app in Developement mode```npm run dev```
 
 **Optional - Build React for Production
 - Inside the frontend/ directory, run: ```npm run build```
