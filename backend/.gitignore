@@ -1,5 +1,5 @@
 # Ignore virtual environment files
-env/
+venv/
 
 # Ignore the .env file containing sensitive information
 .env
