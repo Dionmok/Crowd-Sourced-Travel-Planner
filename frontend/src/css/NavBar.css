@@ -1,0 +1,46 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    gap: 2em;
+    background-color: rgba(255, 166, 0, 0.315);
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  nav div {
+    display: flex;
+    gap: 2em;
+    height: 4em;
+    align-items: center;
+  }
+  
+  nav button {
+    cursor: pointer;
+    height: 3em;
+    width: 12em;
+    background-color: rgb(255, 165, 0);
+    border: none;
+    transition: background-color 0.1s linear;
+    font-weight: bold;
+  }
+  
+  nav button:hover {
+    background-color: rgb(223, 145, 0);
+    transition: background-color 0.1s linear;
+  }
+  
+  nav span {
+    cursor: pointer;
+    text-wrap: nowrap;
+    transition: opacity 0.1s linear;
+    font-weight: bold;
+  }
+  
+  nav span:hover {
+    opacity: 60%;
+    transition: opacity 0.1s linear;
+  }

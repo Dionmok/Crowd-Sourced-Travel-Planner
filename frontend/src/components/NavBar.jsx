@@ -1,4 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import '../css/NavBar.css'; 
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function NavBar() {
             <Link>
               <button>My Trips</button>
             </Link>
-            <Link>
+            <Link to='/myExperiences'>
               <button>My Experiences</button>
             </Link>
           </div>
