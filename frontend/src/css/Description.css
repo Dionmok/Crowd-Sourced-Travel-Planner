@@ -1,0 +1,10 @@
+.description-default textarea{
+  width: 100%;
+  max-width: 400px;
+  height: 150px;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: none;
+  box-sizing: border-box;
+}
