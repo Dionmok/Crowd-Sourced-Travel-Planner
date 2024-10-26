@@ -21,6 +21,7 @@ function App() {
         <Route path="/myTrips" element={<MyTrips />} />
         <Route path="/individualTrip" element={<IndividualTrip />} />
         <Route path="/editTrip" element={<EditTrip />} />
+        <Route path="/createTrip" element={<CreateTrip />} />
       </Routes>
     </>
   );

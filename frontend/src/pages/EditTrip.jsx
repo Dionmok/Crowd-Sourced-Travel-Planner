@@ -6,6 +6,9 @@ export default function EditTrip() {
     <>
       <NavBar />
       <h1>Edit Trip Page</h1>
+      <ButtonLink varient="button-add" buttonName="Save" routeTo="/individualTrip" />
+      <ButtonLink varient="button-delete" buttonName="Delete" routeTo="/myTrips" />
+      <ButtonLink varient="button-back" buttonName="Cancel" routeTo="/individualTrip" />
 
     </>
   );
