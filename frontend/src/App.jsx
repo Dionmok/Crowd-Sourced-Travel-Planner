@@ -7,6 +7,8 @@ import MyExperiences from "./pages/MyExperiences";
 import CreateExperience from "./pages/CreateExperience";
 import MyTrips from "./pages/MyTrips";
 import CreateTrip from "./pages/CreateTrip";
+import IndividualTrip from "./pages/IndividualTrip";
+import EditTrip from "./pages/EditTrip";
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
         <Route path="/myExperiences" element={<MyExperiences />} />
         <Route path="/createExperience" element={<CreateExperience />} />
         <Route path="/myTrips" element={<MyTrips />} />
-        <Route path="/createTrip" element={<CreateTrip />} />
+        <Route path="/individualTrip" element={<IndividualTrip />} />
+        <Route path="/editTrip" element={<EditTrip />} />
       </Routes>
     </>
   );
