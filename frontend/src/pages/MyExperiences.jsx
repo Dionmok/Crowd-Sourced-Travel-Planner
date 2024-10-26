@@ -6,7 +6,7 @@ export default function MyExperiences() {
     <>
       <NavBar />
       <h1>My Experiences page</h1>
-      <ButtonLink buttonName="+ Experience" routeTo="/createExperience" />
+      <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />
 
     </>
   );
