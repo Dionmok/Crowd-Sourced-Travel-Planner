@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MyExperiences from "./pages/MyExperiences";
 import CreateExperience from "./pages/CreateExperience";
+import MyTrips from "./pages/MyTrips";
+import CreateTrip from "./pages/CreateTrip";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/myExperiences" element={<MyExperiences />} />
         <Route path="/createExperience" element={<CreateExperience />} />
+        <Route path="/myTrips" element={<MyTrips />} />
+        <Route path="/createTrip" element={<CreateTrip />} />
       </Routes>
     </>
   );
