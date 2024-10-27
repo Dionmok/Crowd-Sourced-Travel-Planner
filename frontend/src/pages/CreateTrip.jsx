@@ -19,6 +19,7 @@ export default function CreateTrip() {
         <Description maxChars='60' varient="description-title" placeholder="e.g., College Gap Year: Europe 2020"/>
       </div>
       <div>
+        <h2>Enter Start Date (MM/DD/YYYY)</h2>
         <StartDate />
       </div>
     </>
