@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import '../css/Description.css'; 
 
-export default function Descrtiption({ maxChars, varient}){
+export default function Descrtiption({ maxChars, varient, placeholder}){
     const [text, setText] = useState("");
 
 
@@ -18,7 +18,7 @@ return(
         value={text}
         onChange={handleChange}
         rows="4"
-        placeholder="Enter your description here..."
+        placeholder={placeholder}
         maxLength={maxChars}
         />
     <div className="charCounter">
