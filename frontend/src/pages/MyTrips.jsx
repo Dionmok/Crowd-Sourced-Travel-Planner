@@ -6,7 +6,7 @@ export default function MyTrips() {
     <>
       <NavBar />
       <h1>My Trips page</h1>
-      <ButtonLink buttonName="+ Trip" routeTo="/createTrip" />
+      <ButtonLink varient="button-add" buttonName="+ Trip" routeTo="/createTrip" />
 
     </>
   );
