@@ -5,13 +5,9 @@ export default function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  function mockLogin() {
-    localStorage.setItem("token", "test");
-  }
-
   function logout() {
     localStorage.removeItem("token");
-    navigate(location.pathname);
+    navigate("/");
   }
 
   return (
@@ -33,7 +29,7 @@ export default function NavBar() {
             </Link>
           </div>
           <div>
-            <Link>
+            <Link to="/">
               <span>
                 Welcome, {"<"}Username{">"}
               </span>
@@ -52,11 +48,7 @@ export default function NavBar() {
             </Link>
           </div>
           <div>
-            <Link
-              to="/login"
-              state={{ from: location.pathname }}
-              onClick={mockLogin}
-            >
+            <Link to="/login" state={{ from: location.pathname }}>
               <span>Login</span>
             </Link>
             <Link to="/createAccount">

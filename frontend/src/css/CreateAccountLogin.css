@@ -25,6 +25,10 @@
   justify-content: center;
 }
 
+.createAccountLoginContainer .loginForm {
+  grid-template-columns: 1fr;
+}
+
 .formInputsContainer {
   display: flex;
   flex-direction: column;
