@@ -10,11 +10,13 @@ import CreateTrip from "./pages/CreateTrip";
 import IndividualTrip from "./pages/IndividualTrip";
 import EditTrip from "./pages/EditTrip";
 import CreateAccount from "./pages/CreateAccount";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
     <>
       <Routes>
+        <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/myExperiences" element={<MyExperiences />} />
