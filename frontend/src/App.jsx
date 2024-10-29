@@ -1,5 +1,5 @@
-import "./Reset.css";
-import "./App.css";
+import "./css/Reset.css";
+import "./css/App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -9,6 +9,7 @@ import MyTrips from "./pages/MyTrips";
 import CreateTrip from "./pages/CreateTrip";
 import IndividualTrip from "./pages/IndividualTrip";
 import EditTrip from "./pages/EditTrip";
+import CreateAccount from "./pages/CreateAccount";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/individualTrip" element={<IndividualTrip />} />
         <Route path="/editTrip" element={<EditTrip />} />
         <Route path="/createTrip" element={<CreateTrip />} />
+        <Route path="/createAccount" element={<CreateAccount />} />
       </Routes>
     </>
   );

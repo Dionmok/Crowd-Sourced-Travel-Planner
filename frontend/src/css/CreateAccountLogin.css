@@ -1,0 +1,99 @@
+/* CSS for both Create Account and Login pages */
+.createAccountLoginPage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.createAccountLoginContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-self: end;
+  align-items: center;
+  gap: 2em;
+  padding-top: 8em;
+  width: 45em;
+  background-color: orange;
+}
+
+.createAccountLoginContainer form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1.5em;
+  align-items: center;
+  justify-content: center;
+}
+
+.formInputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.createAccountLoginContainer input {
+  width: 20em;
+  border: none;
+  outline: none;
+  border-radius: 0.75em;
+  padding: 0.75em 0.5em;
+}
+
+.createAccountLoginContainer button {
+  grid-column: 1/3;
+  width: 10em;
+  justify-self: center;
+  border: none;
+  padding: 1em 2em;
+  background-color: greenyellow;
+  transition: background-color 0.1s linear;
+}
+
+.createAccountLoginContainer button:hover {
+  cursor: pointer;
+  background-color: rgb(154, 230, 41);
+  transition: background-color 0.1s linear;
+}
+
+.createAccountLoginContainer h1 {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.createAccountLoginContainer h2 {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.createAccountLoginContainer a {
+  color: blue;
+  text-decoration: none;
+  transition: opacity 0.1s linear;
+}
+
+.createAccountLoginContainer a:hover {
+  opacity: 50%;
+  transition: opacity 0.1s linear;
+}
+
+.criteriaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.criteria {
+  display: flex;
+  flex-direction: column;
+}
+
+.errors {
+  grid-column: 1/3;
+  color: rgb(219, 0, 0);
+}
