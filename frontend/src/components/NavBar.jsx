@@ -1,17 +1,13 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import '../css/NavBar.css'; 
+import "../css/NavBar.css";
 
 export default function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  function mockLogin() {
-    localStorage.setItem("token", "test");
-  }
-
   function logout() {
     localStorage.removeItem("token");
-    navigate(location.pathname);
+    navigate("/");
   }
 
   return (
@@ -25,15 +21,15 @@ export default function NavBar() {
             <Link>
               <button>Feed</button>
             </Link>
-            <Link to='/myTrips'>
+            <Link to="/myTrips">
               <button>My Trips</button>
             </Link>
-            <Link to='/myExperiences'>
+            <Link to="/myExperiences">
               <button>My Experiences</button>
             </Link>
           </div>
           <div>
-            <Link>
+            <Link to="/">
               <span>
                 Welcome, {"<"}Username{">"}
               </span>
@@ -52,10 +48,10 @@ export default function NavBar() {
             </Link>
           </div>
           <div>
-            <Link to="/login" onClick={mockLogin}>
+            <Link to="/login" state={{ from: location.pathname }}>
               <span>Login</span>
             </Link>
-            <Link>
+            <Link to="/createAccount">
               <span>Create Account</span>
             </Link>
           </div>
