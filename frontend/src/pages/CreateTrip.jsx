@@ -13,6 +13,8 @@ export default function CreateTrip() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
+  const navigate = useNavigate()
+
   const handleSuccess = (message) => {
     setSuccess(message);
     setError(null);
