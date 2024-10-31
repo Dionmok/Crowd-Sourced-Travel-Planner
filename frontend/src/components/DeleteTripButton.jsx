@@ -35,7 +35,7 @@ export default function DeleteTripButton({ tripId, userId, onTripDeleted }){
 return (
     <div>
         <button onClick={handleDelete}>
-            Delete Trip
+            Delete
         </button>
     </div>
     ); 
