@@ -1,0 +1,24 @@
+.trip-tile {
+    height: 2.5em;
+    width: 38em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.trip-tile hover {
+    background-color: #e0e0e0;
+    transform: scale((1.05));
+}
+
+.trip-tile h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.2em;
+}
