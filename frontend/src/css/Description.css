@@ -18,23 +18,3 @@
   resize: none;
   box-sizing: border-box;
 }
-
-/* Flex Container to hold the lat and long elements in a row */
-.form-row {
-  display: flex;
-  gap: 15px; /* Space between the elements */
-  align-items: center;
-  text-align: center;
-}
-
-/* Latitude and Longitude textareas */
-.description-geolocation textarea{
-  height: 2em;
-  width: 10em;
-  padding: 5px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  resize: none;
-  box-sizing: border-box;
-}
-
