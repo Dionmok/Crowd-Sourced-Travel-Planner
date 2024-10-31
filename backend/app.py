@@ -35,6 +35,7 @@ def get_user_trips(user_id):
     else:
         return jsonify({"error": "No trips found for this user"}), 404
 
+# Deletes a particular trip
 @app.route('/delete_trip', methods=['DELETE'])
 def delete_trip():
     data = request.get_json()
@@ -49,10 +50,10 @@ def delete_trip():
     else:
         return jsonify({"error": "Trip is not found or is not one of the user's trips"}), 404
 
+# Edits a particular trip
 @app.route('/edit_trip', methods=['PUT'])
 def edit_trip():
     data = request.get_json()
-    print(f"Received data: {data}")  # Log received data
 
     trip_id = data.get('trip_id')
     trip_name = data.get('trip_name')
@@ -60,7 +61,6 @@ def edit_trip():
     start_date = data.get('start_date')
     time_updated = data.get('time_updated')
 
-    # Update the trip details in the database
     update_response = (
         supabase.table('Trip')
         .update({
@@ -75,6 +75,32 @@ def edit_trip():
 
     if update_response.data:
         return jsonify({"message": "Trip updated successfully"}), 200
+    else:
+        return jsonify({"error": "Trip not found or failed to update"}), 404
+
+@app.route('/save_trip', methods=['POST'])
+def save_trip():
+    data = request.get_json()
+
+    user_id = data.get('user_id')
+    trip_name = data.get('trip_name')
+    trip_description = data.get('trip_description')
+    start_date = data.get('start_date')
+    time_created = data.get('time_created')
+
+    if not all([user_id, trip_name, trip_description, start_date]):
+        return jsonify({"error": "Missing required fields"}), 400
+    
+    response = supabase.table('Trip').insert({
+        'user_id': user_id,
+        'trip_name': trip_name,
+        'trip_description': trip_description,
+        'start_date': start_date,
+        'time_created': time_created
+    }).execute()
+
+    if response.data:
+        return jsonify({"message": "Trip saved successfully"}), 200
     else:
         return jsonify({"error": "Trip not found or failed to update"}), 404
 
