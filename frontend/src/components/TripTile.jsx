@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/TripTile.css';
 
-export default function ({ trip, userId}){
+export default function ({ trip, userId, onTripDeleted}){
     const navigate = useNavigate();
 
     const handleClick = () => {

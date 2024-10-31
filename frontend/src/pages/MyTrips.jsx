@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
 import TripTile from '../components/TripTile';
+import '../css/MyTrips.css'
 
 export default function MyTrips({ userId }){
   const [trips, setTrips] = useState([]);
@@ -30,7 +31,7 @@ export default function MyTrips({ userId }){
     <ButtonLink varient ="button-add" buttonName={"Add Trip"} routeTo={"/createTrip"}/>
     <div className='trips-container'>
     {trips.map((trip) => (
-      <TripTile key={trip.trip_id} trip={trip} userId={userId} onTripDelete={handleTripDelete} />
+      <TripTile key={trip.trip_id} trip={trip} userId={userId} />
     ))}
     </div>
     </>
