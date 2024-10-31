@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 export default function EditTripButton ({ trip }) {
-    const navigate =useNavigate();
+    const navigate = useNavigate();
 
     const handleEdit = () => {
         navigate(`/editTrip/${trip.trip_id}`, { state: { trip } }); 

@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import '../css/Description.css'; 
 
-export default function Descrtiption({ maxChars, varient, placeholder, }){
+export default function Descrtiption({ maxChars, varient, placeholder }){
     const [text, setText] = useState("");
     const [error, setError] = useState("");
 
