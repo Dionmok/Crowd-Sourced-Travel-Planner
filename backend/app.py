@@ -78,6 +78,7 @@ def edit_trip():
     else:
         return jsonify({"error": "Trip not found or failed to update"}), 404
 
+# Saves a newly created trip
 @app.route('/save_trip', methods=['POST'])
 def save_trip():
     data = request.get_json()
