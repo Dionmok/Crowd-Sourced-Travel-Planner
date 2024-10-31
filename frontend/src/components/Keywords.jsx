@@ -1,5 +1,4 @@
 import React, { useState} from 'react';
-import '../css/Keywords.css';
 
 export default function Keywords({value=[], onChange}){
     const [keyword, setKeyword] = useState("");
