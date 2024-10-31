@@ -35,5 +35,19 @@ def get_user_trips(user_id):
     else:
         return jsonify({"error": "No trips found for this user"}), 404
 
+@app.route('/delete_trip', methods=['DELETE'])
+def delete_trip():
+    data = request.get_json()
+    trip_id = data.get('trip_id')
+    user_id = data.get('user_id')
+
+    trip = supabase.table('Trip').select('*').eq('trip_id', trip_id).eq('user_id', user_id). execute()
+
+    if trip.data:
+        supabase.table('Trip').delete().eq('trip_id', trip_id).execute()
+        return jsonify({"message": "Trip deleted successfully"}), 200
+    else:
+        return jsonify({"error": "Trip is not found or is not one of the user's trips"}), 404
+
 if __name__ == '__main__':
     app.run(debug=True) # enable debug mode 
