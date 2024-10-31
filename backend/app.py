@@ -49,5 +49,34 @@ def delete_trip():
     else:
         return jsonify({"error": "Trip is not found or is not one of the user's trips"}), 404
 
+@app.route('/edit_trip', methods=['PUT'])
+def edit_trip():
+    data = request.get_json()
+    print(f"Received data: {data}")  # Log received data
+
+    trip_id = data.get('trip_id')
+    trip_name = data.get('trip_name')
+    trip_description = data.get('trip_description')
+    start_date = data.get('start_date')
+    time_updated = data.get('time_updated')
+
+    # Update the trip details in the database
+    update_response = (
+        supabase.table('Trip')
+        .update({
+            'trip_name': trip_name,
+            'trip_description': trip_description,
+            'start_date': start_date,
+            'time_updated': time_updated
+        })
+        .eq('trip_id', trip_id)
+        .execute()
+    )
+
+    if update_response.data:
+        return jsonify({"message": "Trip updated successfully"}), 200
+    else:
+        return jsonify({"error": "Trip not found or failed to update"}), 404
+
 if __name__ == '__main__':
     app.run(debug=True) # enable debug mode 
