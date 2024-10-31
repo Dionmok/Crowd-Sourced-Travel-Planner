@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import '../css/GeolocationInput.css';
 
 export default function GeolocationInput({placeholder, id, value="", onChange}){
-    // const [number, setNumber] = useState("");
+    // TODO: implement Error Handling for invalid input
     const [error, setError] = useState("");
     const maxChars = 8;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
