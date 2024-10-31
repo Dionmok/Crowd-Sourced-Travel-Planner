@@ -1,41 +1,40 @@
 import React, { useState} from 'react';
 import '../css/Keywords.css';
 
-export default function Keywords(){
-    const [keywords, setKeywords] = useState([]);
+export default function Keywords({value=[], onChange}){
     const [keyword, setKeyword] = useState("");
 
     // add a keyword to the list
     const handleAdd = () => {
         // check if the keyword is not empty
         if (keyword.trim()) {
-            setKeywords([...keywords, keyword]);
-            setKeyword(""); // clear input after adding keyword
+            onChange([...value, keyword]); // update parent state with new keyword list
+            setKeyword(""); 
         }
     };
 
-    // delete a keyword from the list
     const handleDelete = (index) => {
-        setKeywords(keywords.filter((_, i) => i !== index));
+        const updatedKeywords = value.filter((_, i) => i !== index);
+        onChange(updatedKeywords); // update parent state after deletion
     }
 
     return(
         <>
-            <div class='keyword-input-container'>  
-                <div class='keyword-input'>
+            <div className='keyword-input-container'>  
+                <div className='keyword-input'>
                     <input
                         type="text"
                         value={keyword}
-                        onChange={(e) => setKeyword(e.target.value)}
+                        onChange={(e) => setKeyword(e.target.value)} // update keyword input
                         placeholder="Add keyword"
                     />
-                    <button onClick={handleAdd}>Add</button>
+                    <button type='button' onClick={handleAdd}>Add</button>
                 </div>
-                <div class='keywords-list'>
-                    {keywords.map((keyword, index) => (
+                <div className='keywords-list'>
+                    {value.map((keyword, index) => (
                         <div key={index}>
                             {keyword}
-                            <button onClick={() => handleDelete(index)}>Delete</button>
+                            <button type="button" onClick={() => handleDelete(index)}>Delete</button>
                         </div>
                     ))}
                 </div>
