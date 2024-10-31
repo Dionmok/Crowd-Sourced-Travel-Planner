@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 export default function Rating({value, id, onChange}){
-    // const [rating, setRating] = useState("");
     
     const handleChange = (e) => {
         onChange(e.target.value);
