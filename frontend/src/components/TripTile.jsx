@@ -5,6 +5,7 @@ import '../css/TripTile.css';
 export default function ({ trip, userId, onTripDeleted}){
     const navigate = useNavigate();
 
+    // Redirects to individual trip
     const handleClick = () => {
         navigate('/individualTrip/${trip.trip_id}');
     };

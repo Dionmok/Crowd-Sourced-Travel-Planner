@@ -8,6 +8,7 @@ export default function MyTrips({ userId }){
   const [trips, setTrips] = useState([]);
 
   useEffect(() => {
+    // Tries and fetchs trips from API
     const fetchTrips = async () => {
       try {
         const response = await fetch(`http://127.0.0.1:5000/trips/${userId}`);

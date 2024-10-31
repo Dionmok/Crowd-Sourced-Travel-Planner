@@ -12,6 +12,7 @@ import EditTrip from "./pages/EditTrip";
 import CreateAccount from "./pages/CreateAccount";
 import ErrorPage from "./pages/ErrorPage";
 
+/* TODO: Replace the hard coded user_id */
 function App() {
   return (
     <>
@@ -20,9 +21,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/myExperiences" element={<MyExperiences />} />
-        <Route path="/createExperience" element={<CreateExperience />} />
-        <Route path="/myTrips" element={<MyTrips userId={123}/>} />
-        <Route path="/individualTrip" element={<IndividualTrip />} />
+        <Route path="/createExperience" element={<CreateExperience />} /> 
+        <Route path="/myTrips" element={<MyTrips userId={123}/>} />       
+        <Route path="/individualTrip/:tripId" element={<IndividualTrip />} /> 
         <Route path="/editTrip" element={<EditTrip />} />
         <Route path="/createTrip" element={<CreateTrip />} />
         <Route path="/createAccount" element={<CreateAccount />} />

@@ -25,6 +25,7 @@ def home():
     print(response)
     return f"Hello World, from Flask!"
 
+# Fetch trips for a given user_id
 @app.route('/trips/<user_id>', methods={'GET'})
 def get_user_trips(user_id):
     response = supabase.table('Trip').select('*').eq('user_id', user_id).execute()
