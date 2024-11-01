@@ -1,0 +1,19 @@
+/* Flex Container to hold the lat and long elements in a row */
+.geolocation-input-container {
+    display: flex;
+    gap: 15px; /* Space between the elements */
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Latitude and Longitude textareas */
+  #geolocationInput {
+    height: 2em;
+    width: 10em;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+    box-sizing: border-box;
+  }
+  

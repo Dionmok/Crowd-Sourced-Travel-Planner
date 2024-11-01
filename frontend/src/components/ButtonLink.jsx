@@ -10,7 +10,7 @@ export default function Button({varient,buttonName, routeTo}) {
     };
 
     return (
-        <button class={varient} onClick={handleClick}> 
+        <button className={varient} onClick={handleClick}> 
             {buttonName}
         </button>
     );
