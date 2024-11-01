@@ -1,15 +1,19 @@
+import { useLocation } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
 
-export default function IndividualTrip() {
+export default function IndividualTrip(){
+  const location = useLocation();
+  const { trip } = location.state;
+
   return (
     <>
-      <NavBar />
-      <h1>Individual Trip Page</h1>
-      <ButtonLink varient="button-edit" buttonName="Edit Trip" routeTo="/editTrip" />
-      <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />
-      <ButtonLink varient="button-back" buttonName="Back" routeTo="/myTrips" />
-
+    <NavBar />
+    <h1>{trip.trip_name}</h1>
+    <p>{trip.trip_description}</p>
+    <p>Start Date: {new Date(trip.start_date).toLocaleDateString()}</p>
+    <ButtonLink variant="button-back" buttonName="Back" routeTo="/myTrips" />
     </>
-  );
+  )
 }
+

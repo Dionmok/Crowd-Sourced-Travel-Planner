@@ -9,7 +9,7 @@ export default function ({ trip, userId, onTripDeleted}){
 
     // Redirects to individual trip
     const handleClick = () => {
-        navigate(`/individualTrip/${trip.trip_id}`);
+        navigate(`/individualTrip/${trip.trip_id}`, { state: { trip } });
     };
 
     return(
