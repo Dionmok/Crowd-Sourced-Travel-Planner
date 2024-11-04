@@ -6,7 +6,7 @@ export default function DeleteTripExperienceButton({ tripId, experienceId, onExp
 
     const handleDelete = async () => {
         // Pop-up window confirms if user wants to remove the expereince from a trip
-        const confrimDelete = window.confirm("Are you sure you remove this experience from the trp?")
+        const confrimDelete = window.confirm("Are you sure you remove this experience from the trip?")
         if(!confrimDelete) {
             return;
         } 
