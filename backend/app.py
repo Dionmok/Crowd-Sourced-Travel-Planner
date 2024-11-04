@@ -121,6 +121,16 @@ def get_trip_experiences(trip_id):
         experience_data = supabase.table('Experiences').select('*').in_('experience_id', experience_ids).execute()
         if experience_data.data:
             return jsonify(experience_data.data), 200
+
+# Removes an experience from a trip
+@app.route('/trip/<int:trip_id>/experience/<int:experience_id>', methods=['DELETE'])
+def delete_experience_from_trip(trip_id, experience_id):
+    trip_experience = supabase.from_('Trip_Experience').select('*').eq('trip_id', trip_id).eq('experience_id', experience_id).execute()
+    if trip_experience.data:
+        supabase.from_('Trip_Experience').delete().eq('trip_id', trip_id).eq('experience_id', experience_id).execute()
+        return jsonify({"message": "Experience removed from trip successfully"}), 200
+    else:
+        return jsonify({"error": "Experience not found in trip"}), 404
   
 if __name__ == '__main__':
     app.run(debug=True) # enable debug mode 
