@@ -35,9 +35,15 @@ export default function MyTrips({ userId }){
     <h1>My Trips Page</h1>
     <ButtonLink varient ="button-add" buttonName="Add Trip" routeTo="/createTrip"/>
     <div className='trips-container'>
-    {trips.map((trip) => (
-      <TripTile key={trip.trip_id} trip={trip} userId={userId} onTripDeleted={handleTripDeleted} />
-    ))}
+    {trips.length == 0 ? (
+      <p>There are no trips created.</p>
+    ) : (
+      <div>
+        {trips.map((trip) => (
+          <TripTile key={trip.trip_id} trip={trip} userId={userId} onTripDeleted={handleTripDeleted} />
+        ))}
+      </div>
+    )}
     </div>
     </>
   );

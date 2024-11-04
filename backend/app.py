@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from supabase import create_client, Client
 from dotenv import load_dotenv 
-import os 
+import os
 from flask_cors import CORS
 
 # load env variables from .env file
@@ -25,8 +25,8 @@ def home():
     print(response)
     return f"Hello World, from Flask!"
 
-# Fetch trips for a given user_id
-@app.route('/trips/<user_id>', methods={'GET'})
+# Fetches trips for a given user_id
+@app.route('/trips/<user_id>', methods=['GET'])
 def get_user_trips(user_id):
     response = supabase.table('Trip').select('*').eq('user_id', user_id).execute()
 
@@ -105,5 +105,22 @@ def save_trip():
     else:
         return jsonify({"error": "Trip not found or failed to update"}), 404
 
+# Fetches experiences that have been added to a trip
+@app.route('/trip_experiences/<trip_id>', methods=['GET'])
+def get_trip_experiences(trip_id):
+    response = supabase.table('Trip_Experience').select('*').eq('trip_id', trip_id).execute()
+    response_data = response.data
+
+    # Gets the experience ids for trip-experiences
+    experience_ids = []
+    for trip_experience in response_data:
+        if isinstance(trip_experience, dict) and 'experience_id' in trip_experience:
+            experience_ids.append(trip_experience['experience_id'])
+    
+    if experience_ids:
+        experience_data = supabase.table('Experiences').select('*').in_('experience_id', experience_ids).execute()
+        if experience_data.data:
+            return jsonify(experience_data.data), 200
+  
 if __name__ == '__main__':
     app.run(debug=True) # enable debug mode 

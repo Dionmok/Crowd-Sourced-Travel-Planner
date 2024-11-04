@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import DeleteTripButton from '../components/DeleteTripButton'; // Import DeleteTripButton
 import EditTripButton from '../components/EditTripButton';
