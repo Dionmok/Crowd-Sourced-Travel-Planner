@@ -1,15 +1,78 @@
+
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
 import Description from "../components/Description";
+import SaveChanges from '../components/SaveChanges'; 
 
 export default function EditTrip() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const trip = location.state?.trip 
+
+  const [tripName, setTripName] = useState(trip.trip_name)
+  const [tripDescription, setTripDescription] = useState(trip.trip_description);
+  const [startDate, setStartDate] = useState(trip.start_date);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  const handleSuccess = (message) => {
+    setSuccess(message);
+    setError(null);
+    navigate('/myTrips');
+  };
+
+  const handleError = (message) => {
+    setSuccess(message);
+    setError(null);
+  };
+
   return (
     <>
       <NavBar />
-      <h1>Edit Trip Page</h1>
-      <ButtonLink varient="button-add" buttonName="Save" routeTo="/individualTrip" />
-      <ButtonLink varient="button-delete" buttonName="Delete" routeTo="/myTrips" />
-      <ButtonLink varient="button-back" buttonName="Cancel" routeTo="/individualTrip" />
+      <div>
+        <label>
+          Trip Name:
+          <Description
+            maxChars={60}
+            variant="description-title"
+            placeholder="e.g., College Gap Year: Europe 2020"
+            value={tripName}
+            setText={setTripName}
+            />
+        </label>
+        <br />
+        <label>
+          Trip Description:
+          <Description
+            maxChars={200}
+            variant="description-default"
+            placeholder="Enter trip description here..."
+            value={tripDescription}
+            setText={setTripDescription}
+            />
+        </label>
+        <br />
+        <label>
+          Start Date:
+          <input
+          type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </label>
+        <br />
+        <SaveChanges
+          tripId={trip.trip_id}
+          tripName={tripName}
+          tripDescription={tripDescription}
+          startDate={startDate}
+          onSuccess={handleSuccess}
+          onError={handleError}
+        />
+      </div>
+      <ButtonLink variant="button-back" buttonName="Cancel" routeTo="/myTrips" />
     </>
   );
 }
