@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../css/DeleteTripButton.css';
 
 export default function DeleteTripButton({ tripId, userId, onTripDeleted }){
     const [error, setError] = useState(null);
@@ -34,7 +35,7 @@ export default function DeleteTripButton({ tripId, userId, onTripDeleted }){
 
 return (
     <div>
-        <button onClick={handleDelete}>
+        <button className="button-delete" onClick={handleDelete}>
             Delete
         </button>
     </div>

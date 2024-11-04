@@ -14,8 +14,10 @@ export default function TripTile ({ trip, userId, onTripDeleted}){
     return(
         <div className="trip-tile">
             <h2 onClick={handleClick}>{trip.trip_name}</h2>
-            <DeleteTripButton tripId={trip.trip_id} userId={userId} onTripDeleted={onTripDeleted} />
+            <div className="button-container">
             <EditTripButton trip ={trip}/>
+            <DeleteTripButton tripId={trip.trip_id} userId={userId} onTripDeleted={onTripDeleted} />
+            </div>
         </div>
     );
 };

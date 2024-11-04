@@ -11,9 +11,10 @@ export default function TripExperienceTile ({ experience, tripId, onRemove }){
 
     return(
         <div className="trip-tile" /*onClick={handleClick}*/>
-            <input type="checkbox" className="trip-experience-checkbox"/>
             <h2>{experience.experience_name}</h2>
+            <div className="button-container">
             <RemoveTripExperienceButton tripId={tripId} experienceId={experience.experience_id} onExperienceRemoved={onRemove}/>
+            </div>
         </div>
         
     );

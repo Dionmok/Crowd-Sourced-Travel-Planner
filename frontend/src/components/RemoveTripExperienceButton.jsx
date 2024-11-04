@@ -34,7 +34,7 @@ export default function DeleteTripExperienceButton({ tripId, experienceId, onExp
 
 return (
     <div>
-        <button onClick={handleDelete}>
+        <button className="button-delete" onClick={handleDelete}>
             Remove
         </button>
     </div>
