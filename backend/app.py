@@ -45,6 +45,9 @@ def delete_trip():
     trip = supabase.table('Trip').select('*').eq('trip_id', trip_id).eq('user_id', user_id). execute()
 
     if trip.data:
+        experiences = supabase.table('Trip_Experience').delete().eq('trip_id', trip_id).execute()
+        if experiences.data:
+            supabase.table('Trip_Experience').delete().eq('trip_id', trip_id).execute()
         supabase.table('Trip').delete().eq('trip_id', trip_id).execute()
         return jsonify({"message": "Trip deleted successfully"}), 200
     else:
