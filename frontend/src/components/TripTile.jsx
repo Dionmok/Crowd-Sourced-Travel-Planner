@@ -3,7 +3,7 @@ import DeleteTripButton from '../components/DeleteTripButton'; // Import DeleteT
 import EditTripButton from '../components/EditTripButton';
 import '../css/TripTile.css';
 
-export default function ({ trip, userId, onTripDeleted}){
+export default function TripTile ({ trip, userId, onTripDeleted}){
     const navigate = useNavigate();
 
     // Redirects to individual trip
