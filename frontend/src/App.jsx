@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import MyExperiences from "./pages/MyExperiences";
 import CreateExperience from "./pages/CreateExperience";
+// import IndividualExperience from "./pages/IndividualExperience";
+import EditExperience from "./pages/EditExperience";
 import MyTrips from "./pages/MyTrips";
 import CreateTrip from "./pages/CreateTrip";
 import IndividualTrip from "./pages/IndividualTrip";
@@ -20,7 +22,9 @@ function App() {
         <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/myExperiences" element={<MyExperiences />} />
+        <Route path="/myExperiences" element={<MyExperiences userId={123} />} />
+        {/* <Route path="/individualExperience/:experienceId" element={<IndividualExperience />} /> */}
+        <Route path="/editExperience/:experienceId" element={<EditExperience />} />
         <Route path="/createExperience" element={<CreateExperience />} /> 
         <Route path="/myTrips" element={<MyTrips userId={123}/>} />       
         <Route path="/individualTrip/:tripId" element={<IndividualTrip />} /> 
