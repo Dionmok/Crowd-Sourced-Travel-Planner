@@ -79,8 +79,8 @@ def login():
 
     # Generate JWT and send to frontend
     access_token = create_access_token(
-        identity=response.data[0]["user_id"], expires_delta=datetime.timedelta(days=7)
+        identity=response.data[0]["user_id"],
+        expires_delta=datetime.timedelta(days=7),
+        additional_claims={"username": response.data[0]["username"]},
     )
-    return jsonify(
-        {"access_token": access_token, "username": response.data[0]["username"]}
-    )
+    return jsonify(access_token=access_token)
