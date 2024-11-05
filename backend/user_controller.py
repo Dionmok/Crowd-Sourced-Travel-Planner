@@ -67,20 +67,20 @@ def login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
 
-    response = (
-        supabase.table("Users").select("username").eq("username", username).execute()
-    )
+    response = supabase.table("Users").select("*").eq("username", username).execute()
 
     # Return error if username doesn't exist
     if not response.data:
         return jsonify({"errors": ["Invalid username or password"]}), 401
 
     # Return error if incorrect password
-    if not bcrypt.check_password_hash(response.data.password, password):
+    if not bcrypt.check_password_hash(response.data[0]["password"], password):
         return jsonify({"errors": ["Invalid username or password"]}), 401
 
     # Generate JWT and send to frontend
     access_token = create_access_token(
-        identity=response.data.user_id, expires_delta=datetime.timedelta(days=7)
+        identity=response.data[0]["user_id"], expires_delta=datetime.timedelta(days=7)
     )
-    return jsonify(access_token=access_token)
+    return jsonify(
+        {"access_token": access_token, "username": response.data[0]["username"]}
+    )

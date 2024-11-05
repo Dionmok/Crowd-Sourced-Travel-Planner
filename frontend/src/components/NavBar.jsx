@@ -7,6 +7,7 @@ export default function NavBar() {
 
   function logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     navigate("/");
   }
 
@@ -30,9 +31,7 @@ export default function NavBar() {
           </div>
           <div>
             <Link to="/">
-              <span>
-                Welcome, {"<"}Username{">"}
-              </span>
+              <span>Welcome {localStorage.getItem("username") || ""}</span>
             </Link>
             <span onClick={logout}>Logout</span>
           </div>

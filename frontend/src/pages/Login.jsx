@@ -45,6 +45,7 @@ export default function Login() {
     if (res.status === 200) {
       const token = await res.json();
       localStorage.setItem("token", "Bearer " + token.access_token);
+      localStorage.setItem("username", token.username);
       navigate(from);
     } else {
       const error = await res.json();
