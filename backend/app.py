@@ -131,7 +131,7 @@ def get_trip_experiences(trip_id):
         if experience_data.data:
             return jsonify(experience_data.data), 200
   
-  # Fetches experinces for a given user_id
+# Fetches experinces for a given user_id
 @app.route('/experiences/<user_id>', methods=['GET'])
 def get_user_experiences(user_id):
     response = supabase.table('Experiences').select('*').eq('user_id', user_id).execute()
@@ -187,7 +187,8 @@ def save_experience():
         'published': True
     }).execute()
     experince_id = response.data[0]['experience_id']
-    keyword_ids = handle_keywords(keywords) # insert a new keyword on Keywords table or retrive existing keyword for the experience
+    # insert a new keyword on Keywords table or retrive existing keyword for the experience
+    keyword_ids = handle_keywords(keywords)
 
     # insert the experience_id and keyword_id into the Experience_Keywords table
     for keyword_id in keyword_ids:
@@ -208,28 +209,112 @@ def save_experience():
         return jsonify({"message": "Experience saved successfully"}), 200
     else:
         return jsonify({"error": "Experience not found or failed to update"}), 404
-    
-# inserts keywords for an experience in the Experince_Keywords table
-@app.route('/save_experience_keywords', methods=['POST'])
-def save_experience_keywords():
-    data = request.get_json()
 
-    experience_id = data.get('experience_id')
-    keywords = data.get('keywords')
-
-    if not all([experience_id, keywords]):
-        return jsonify({"error": "Missing required fields"}), 400
-
-    for keyword in keywords:
-        response = supabase.table('Experience_Keywords').insert({
-            'experience_id': experience_id,
-            'keyword': keyword
-        }).execute()
+# Returns list of keyword_ids for a given experience_id
+@app.route('/experience_keywords/<experience_id>', methods=['GET'])
+def get_experience_keywords(experience_id):
+    response = supabase.table('Experience_Keywords').select('keyword_id').eq('experience_id', experience_id).execute()
 
     if response.data:
-        return jsonify({"message": "Keywords saved successfully"}), 200
+        response_data = response.data
+        print(response_data)
+        # Gets the keyword ids for experience-keywords
+        keyword_ids = []
+        keyword_values = []
+        for item in response_data:
+            print(item)
+            keyword_id = item['keyword_id']
+            print(keyword_id)
+            keyword_value = supabase.table('Keywords').select('keyword').eq('keyword_id', item['keyword_id']).execute()
+            keyword_ids.append(item['keyword_id'])
+            keyword_values.append(keyword_value.data[0]['keyword'])
+        return keyword_values
     else:
-        return jsonify({"error": "Keywords not found or failed to update"}), 404 
+        return jsonify({"error": "No keywords found for this experience"}), 404
+            
+# Fetches all keywords
+@app.route('/get_keywords', methods=['GET'])
+def get_keywords():
+    response = supabase.table('Keywords').select('*').execute()
+    if response.data:
+        return jsonify(response.data), 200
+    else:
+        return jsonify({"error": "No keywords found"}),
 
+# Edits a particular experience
+@app.route('/edit_experience', methods=['PUT'])
+def edit_experience():
+    data = request.get_json()
+    print(data)
+
+    experience_id = data.get('experience_id')
+    experience_name = data.get('experience_name')
+    description = data.get('description')
+    photo = data.get('photo')
+    latitude = data.get('latitude')
+    longitude = data.get('longitude')
+    address = data.get('address')
+    keywords = data.get('keywords')
+    rating = data.get('rating')
+    time_updated = data.get('time_updated')
+
+    update_response = (
+        supabase.table('Experiences')
+        .update({
+            'experience_name': experience_name,
+            'description': description,
+            'photo': photo,
+            'latitude': latitude,
+            'longitude': longitude,
+            'address': address,
+            'rating': rating,
+            'time_created': time_updated
+        })
+        .eq('experience_id', experience_id)
+        .execute()
+    )
+
+    # TODO: update keywords for the experience
+    if update_response.data: 
+        # keyword_ids = handle_keywords(keywords) # insert a new keyword on Keywords table or retrive existing keyword for the experience
+        # for keyword_id in keyword_ids: # insert the experience_id and keyword_id into the Experience_Keywords table
+        #     keyword_inserts = []
+        #     existing_keyword = supabase.table('Experience_Keywords').select('*').eq('experience_id', experience_id).eq('keyword_id', keyword_id).execute()
+
+        #     # if link between experience and keyword does not exist, insert it
+        #     if not existing_keyword.data:
+        #         keyword_inserts.append({
+        #             'experience_id': experience_id,
+        #             'keyword_id': keyword_id
+        #         })
+        #     if keyword_inserts:
+        #         supabase.table('Experience_Keywords').insert(keyword_inserts).execute()
+
+        return jsonify({"message": "Experience updated successfully"}), 200
+    else:
+        return jsonify({"error": "Experience not found or failed to update"}), 404
+    
+# Deletes a particular experience
+@app.route('/delete_experience', methods=['DELETE'])
+def delete_experience():
+    data = request.get_json()
+    experience_id = data.get('experience_id')
+    user_id = data.get('user_id')
+
+    # check if experience is connected to any keywords on Experience_Keywords table
+    keyword_response = supabase.table('Experience_Keywords').select('*').eq('experience_id', experience_id).execute() # get all keywords for the experience
+    if keyword_response.data:
+        print("keywords found", keyword_response.data)    
+        supabase.table('Experience_Keywords').delete().eq('experience_id', experience_id).execute()
+    
+    # delete the experience
+    experience = supabase.table('Experiences').select('*').eq('experience_id', experience_id).eq('user_id', user_id). execute()
+
+    if experience.data:
+        supabase.table('Experiences').delete().eq('experience_id', experience_id).execute()
+        return jsonify({"message": "Experience deleted successfully"}), 200
+    else:
+        return jsonify({"error": "Experience is not found or is not one of the user's experiences"}), 404
+    
 if __name__ == '__main__':
     app.run(debug=True) # enable debug mode 
