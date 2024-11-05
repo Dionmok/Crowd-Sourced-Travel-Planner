@@ -10,7 +10,7 @@ export default function MyExperiences({userId}) {
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/experiences/123`); // Hardcoded for testing; replace with dynamic user_id fetching logic
+        const response = await fetch(`http://127.0.0.1:5000/experiences/123`); // TODO Hardcoded for testing; replace with dynamic user_id fetching logic
         if (!response.ok){
           throw new Error('Failed to fetch experiences');
         }
@@ -25,6 +25,10 @@ export default function MyExperiences({userId}) {
     fetchExperiences();
   }, [userId]);
 
+  const handleExperienceDeleted = (experienceId) => {
+    setExperiences((prevExperiences) => prevExperiences.filter(experience => experience.experience_id != experienceId));
+  };
+
   return (
     <>
       <NavBar />
@@ -36,7 +40,7 @@ export default function MyExperiences({userId}) {
         ) : (
           <div>
             {experiences.map((experience) => (
-              <ExperienceTile key={experience.experience_id} experience={experience} userId={userId} />
+              <ExperienceTile key={experience.experience_id} experience={experience} userId={userId} onExperienceDeleted={handleExperienceDeleted} />
             ))}
           </div >
         )}
