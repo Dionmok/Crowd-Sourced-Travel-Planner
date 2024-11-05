@@ -4,4 +4,4 @@ venv/
 # Ignore the .env file containing sensitive information
 .env
 
-node_modules/
+__pycache__
