@@ -122,5 +122,105 @@ def get_trip_experiences(trip_id):
         if experience_data.data:
             return jsonify(experience_data.data), 200
   
+  # Fetches experinces for a given user_id
+@app.route('/experiences/<user_id>', methods=['GET'])
+def get_user_experiences(user_id):
+    response = supabase.table('Experiences').select('*').eq('user_id', user_id).execute()
+
+    if response.data:
+        return jsonify(response.data), 200
+    else:
+        return jsonify({"error": "No experiences found for this user"}), 404
+                        
+# insert a new keyword on Keywords table or retrive existing keyword for the experience
+def handle_keywords(keywords):
+    keyword_ids = []
+    for keyword in keywords:
+        # check if keyword exists in the Keywords table
+        keyword_data = supabase.table('Keywords').select('keyword_id').eq('keyword', keyword).execute()
+        if keyword_data.data:
+            keyword_ids.append(keyword_data.data[0]['keyword_id']) # append the keyword_id to the list
+        else:
+            # insert the new keyword into the Keywords table
+            keyword_response = supabase.table('Keywords').insert({'keyword': keyword}).execute()
+            keyword_ids.append(keyword_response.data[0]['keyword_id']) # append the keyword_id to the list
+    return keyword_ids
+
+# Save a newly created Experience
+@app.route('/save_experience', methods=['POST'])
+def save_experience():
+    data = request.get_json()
+
+    user_id = data.get('user_id')
+    experience_name = data.get('experience_name')
+    description = data.get('description')
+    photo = data.get('photo')
+    latitude = data.get('latitude')
+    longitude = data.get('longitude')
+    address = data.get('address')
+    keywords = data.get('keywords')
+    rating = data.get('rating')
+    time_created = data.get('time_created')
+
+    if not all([user_id, experience_name, description, photo, latitude, longitude, address, rating, time_created]):
+        return jsonify({"error": "Missing required fields"}), 400
+    
+    response = supabase.table('Experiences').insert({
+        'user_id': user_id,
+        'experience_name': experience_name,
+        'description': description,
+        'photo': photo,
+        'latitude': latitude,
+        'longitude': longitude,
+        'address': address,
+        'rating': rating,
+        'time_created': time_created,
+        'published': True
+    }).execute()
+    experince_id = response.data[0]['experience_id']
+    keyword_ids = handle_keywords(keywords) # insert a new keyword on Keywords table or retrive existing keyword for the experience
+
+    # insert the experience_id and keyword_id into the Experience_Keywords table
+    for keyword_id in keyword_ids:
+        keyword_inserts = []
+        existing_keyword = supabase.table('Experience_Keywords').select('*').eq('experience_id', experince_id).eq('keyword_id', keyword_id).execute()
+
+        # if link between experience and keyword does not exist, insert it
+        if not existing_keyword.data:
+            print("inserting keyword")
+            keyword_inserts.append({
+                'experience_id': experince_id,
+                'keyword_id': keyword_id
+            })
+        if keyword_inserts:
+            supabase.table('Experience_Keywords').insert(keyword_inserts).execute()
+
+    if response.data:
+        return jsonify({"message": "Experience saved successfully"}), 200
+    else:
+        return jsonify({"error": "Experience not found or failed to update"}), 404
+    
+# inserts keywords for an experience in the Experince_Keywords table
+@app.route('/save_experience_keywords', methods=['POST'])
+def save_experience_keywords():
+    data = request.get_json()
+
+    experience_id = data.get('experience_id')
+    keywords = data.get('keywords')
+
+    if not all([experience_id, keywords]):
+        return jsonify({"error": "Missing required fields"}), 400
+
+    for keyword in keywords:
+        response = supabase.table('Experience_Keywords').insert({
+            'experience_id': experience_id,
+            'keyword': keyword
+        }).execute()
+
+    if response.data:
+        return jsonify({"message": "Keywords saved successfully"}), 200
+    else:
+        return jsonify({"error": "Keywords not found or failed to update"}), 404 
+
 if __name__ == '__main__':
     app.run(debug=True) # enable debug mode 
