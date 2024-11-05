@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { parsePath, useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import ImageUpload from "../components/ImageUpload";
 import ButtonLink from "../components/ButtonLink";
@@ -7,12 +7,12 @@ import TextBox from "../components/TextBox";
 import Keywords from "../components/Keywords";
 import GeolocationInput from "../components/GeolocationInput";
 import Rating from "../components/Rating";
+import ExpSaveChanges from "../components/ExpSaveChanges";
 
 export default function EditExperience() {
     const location = useLocation(); // Get the location object
     const navigate = useNavigate(); // Get the navigate function
-    const experience = location.state?.experience; 
-    console.log("experince obj",experience); // Log the experience object
+    const experience = location.state?.experience;  // Get the experience object from the location state
 
     const [experienceName, setExperienceName] = useState(experience.experience_name);
     const [description, setDescription] = useState(experience.description);
@@ -20,27 +20,16 @@ export default function EditExperience() {
     const [latitude, setLatitude] = useState(experience.latitude);
     const [longitude, setLongitude] = useState(experience.longitude);
     const [keywords, setKeywords] = useState([]);
-    const [photoURL, setPhotoURL] = useState(experience.photo || "");
+    const [photoURL, setPhotoURL] = useState(experience.photo || "testurl");
     const [rating, setRating] = useState(experience.rating);
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
 
-    console.log("experience id", experience.experience_id);
-    console.log("experince_name", experienceName);
-    console.log("description", description);
-    console.log("address", address);
-    console.log("latitude", latitude);
-    console.log("longitude", longitude);
-    console.log("keywords", keywords);
-    console.log("photoURL", photoURL);
-    console.log("rating", rating);
-    
     // Fetch the keywords for the experience
     useEffect(() => {
         const fetchKeywords = async () => {
             try {
-               
                 const response = await fetch(`http://127.0.0.1:5000/experience_keywords/${experience.experience_id}`);
                 if (response.ok) {
                     const data = await response.json();
@@ -56,50 +45,23 @@ export default function EditExperience() {
         };
         fetchKeywords();
     }, [experience.experience_id]);
-    console.log("experince_name", experienceName);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();  // Prevent the default form submission behavior
-        console.log("Handling Submit")
-
-        try {
-            const response = await fetch(`http://127.0.0.1:5000/edit_experience`, {
-                method: 'PUT',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    experience_id: experience.experience_id,
-                    experience_name: experienceName,
-                    description: description,
-                    photo: photoURL,
-                    latitude: latitude,
-                    longitude: longitude,
-                    address: address,
-                    keywords: keywords,
-                    rating: rating,
-                    time_updated: new Date().toISOString()
-                }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to save the experience');
-        }
-        console.log('Experience saved successfully');
-        setSuccess(true);
+    
+    const handleSuccess = (message) => {
+        setSuccess(message);
+        setError(null);
         navigate('/myExperiences');
-        }
-        catch (error) {
-            setError(error.message);
-        }
+      };
+    
+    const handleError = (message) => {
+        setSuccess(message);
+        setError(null);
     };
-
 
     return (
         <>
           <NavBar />
           <h1>Edit Experience page</h1>
-          <form onSubmit={handleSubmit} id='updateExperience'>
+          <form id='updateExperience'>
             <div className="title-container">
               <h1>Title</h1>
               <TextBox 
@@ -176,7 +138,19 @@ export default function EditExperience() {
                 value={rating}
                 onChange={setRating} />
             </div>
-            <ButtonLink type="submit" varient="button-add" buttonName="Save" />
+            <ExpSaveChanges 
+                experienceId={experience.experience_id}
+                experienceName={experienceName}
+                description={description}
+                address={address}
+                latitude={latitude}
+                longitude={longitude}
+                keywords={keywords}
+                photo={photoURL}
+                rating={rating}
+                onSuccess={handleSuccess}
+                onError={handleError}
+                />
             <ButtonLink varient="button-back" buttonName="Cancel" routeTo="/myExperiences" />
             
             {/* Error Message Display */}
