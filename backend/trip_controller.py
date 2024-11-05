@@ -107,7 +107,9 @@ def get_trip_experiences(trip_id):
 # Removes an experience from a trip
 @app.route('/trip/<int:trip_id>/experience/<int:experience_id>', methods=['DELETE'])
 def delete_experience_from_trip(trip_id, experience_id):
+
     trip_experience = supabase.from_('Trip_Experience').select('*').eq('trip_id', trip_id).eq('experience_id', experience_id).execute()
+    
     if trip_experience.data:
         supabase.from_('Trip_Experience').delete().eq('trip_id', trip_id).eq('experience_id', experience_id).execute()
         return jsonify({"message": "Experience removed from trip successfully"}), 200
