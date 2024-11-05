@@ -23,10 +23,32 @@ export default function Login() {
     // If user input is invalid, set errors, otherwise clear errors and log user in
     if (inputErrors.length > 0) {
       setErrors(inputErrors);
-    } else {
-      setErrors([]);
-      localStorage.setItem("token", "mockLogin");
+      return;
+    }
+
+    setErrors([]);
+
+    // Send user input to backend API
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
+
+    // If API response is valid, store JWT in local storage, else, set errors
+    if (res.status === 200) {
+      const token = await res.json();
+      localStorage.setItem("token", "Bearer " + token.access_token);
       navigate(from);
+    } else {
+      const error = await res.json();
+      setErrors(error.errors);
     }
   }
 
