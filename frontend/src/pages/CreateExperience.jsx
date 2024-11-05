@@ -19,7 +19,7 @@ export default function CreateExperience() {
   const [photoURL, setPhotoURL] = useState("");
   const [rating, setRating] = useState("");
 
-  // handle form submission
+  // handle form submission 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
     console.log("Handling Submit");
@@ -31,21 +31,7 @@ export default function CreateExperience() {
     }
     setError(""); // clear error message
 
-    // create experience object
-    // const experienceData = {
-    //   experience_name: experienceName,
-    //   description: description,
-    //   photo: photoURL,
-    //   latitude: latitude,
-    //   longitude: longitude,
-    //   address: address,
-    //   keywords: keywords,
-    //   rating: rating,
-    //   // published: true, 
-    //   // TODO: create Publish toggle button component to set this value
-    //   time_created: new Date().toISOString() // unchanged
-    // };
-    // console.log("Submiting form data:", experienceData);
+
     try {
       const userId = 123; // Hardcoded for testing; replace with dynamic user_id fetching logic
       const response = await fetch(`http:///127.0.0.1:5000/save_experience`, {
