@@ -22,6 +22,7 @@
   font-size: 1.5em;
 }
 
+.description-Create textarea,
 .description-Edit textarea{
   width: 100%;
   max-width: none;
@@ -35,12 +36,15 @@
   font-size: 1.5em;
 }
 
+.description-Create .charCounter,
 .description-title .charCounter,
 .description-Edit .charCounter{
   color: #e58e0c;
   font-weight: bold;
 }
 
+.create-title-container,
+.create-description-container,
 .edit-title-container,
 .edit-description-container{
   display: flex;
@@ -52,3 +56,4 @@
   width: 100%;
   max-width: 100%;
 }
+
