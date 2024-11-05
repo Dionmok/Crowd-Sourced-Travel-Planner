@@ -48,12 +48,35 @@ export default function CreateAccount() {
       inputErrors.push("Password and Confirm Password do not match");
     }
 
-    // If user input is invalid, set errors, otherwise clear errors and display success
+    // If user input is invalid, set errors
     if (inputErrors.length > 0) {
       setErrors(inputErrors);
+      return;
+    }
+    
+    setErrors([]);
+
+    // Send request to backend to create new account
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/create-account`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        confirm_password: confirmPassword,
+      }),
+    });
+
+    // If account created successfully, update setCreateAccountSuccess, otherwise set error(s)
+    if (res.status === 200) {
+      const user = await res.json();
+      setCreateAccountSuccess(user);
     } else {
-      setErrors([]);
-      setCreateAccountSuccess("mock");
+      const errors = await res.json();
+      setErrors(errors.errors);
     }
   }
 
@@ -62,7 +85,7 @@ export default function CreateAccount() {
       <div className="createAccountLoginPage">
         <NavBar />
         <div className="createAccountLoginContainer">
-          <h1>Thank you, {createAccountSuccess} for creating an account!</h1>
+          <h1>Thank you, {username} for creating an account!</h1>
           <Link to="/login">Login with your new account!</Link>
         </div>
       </div>
