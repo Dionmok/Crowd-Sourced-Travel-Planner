@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 import os
 from flask_cors import CORS
+import requests
 
 # load env variables from .env file
 load_dotenv()
@@ -12,6 +13,7 @@ load_dotenv()
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
 SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")
 JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "")
+GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY", "")
 
 # initalize supabase client 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -33,6 +35,28 @@ def home():
     response = supabase.table("Users").select("*").execute()
     print(response)
     return f"Hello World, from Flask!"
+
+@app.route('/experiences', methods=['GET'])
+def search_experiences():
+    location = request.args.get('location', '')
+    keywords = request.args.get('keywords', '')
+    
+    query = supabase.table('Experiences').select('*').eq('published', True)
+
+    if location:
+        query = query.ilike('location', f"%{location}%")
+    
+    if keywords:
+        query = query.or_(
+            f"description.ilike.%{keywords}%"
+        )
+    
+    response = query.execute()
+
+    if response.data:
+        return jsonify(response.data), 200
+    else:
+        return jsonify({"error": "No experiences found"}), 404
 
 # Fetches trips for a given user_id
 @app.route('/trips/<user_id>', methods=['GET'])

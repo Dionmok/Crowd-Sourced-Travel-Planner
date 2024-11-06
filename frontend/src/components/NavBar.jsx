@@ -18,7 +18,7 @@ export default function NavBar() {
             <Link to="/">
               <button>Home</button>
             </Link>
-            <Link>
+            <Link to="/feed"> {/* Link to Feed page */}
               <button>Feed</button>
             </Link>
             <Link to="/myTrips">
@@ -43,7 +43,7 @@ export default function NavBar() {
             <Link to="/">
               <button>Home</button>
             </Link>
-            <Link>
+            <Link to="/feed"> {/* Link to Feed page */}
               <button>Feed</button>
             </Link>
           </div>
