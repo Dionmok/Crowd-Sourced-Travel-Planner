@@ -20,6 +20,7 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/feed" element={<FeedPage />} />
         <Route path="/login" element={<Login />} />
@@ -32,7 +33,6 @@ function App() {
         <Route path="/editTrip/:tripId" element={<EditTrip />} />
         <Route path="/createTrip" element={<CreateTrip />} />
         <Route path="/createAccount" element={<CreateAccount />} />
-        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );
