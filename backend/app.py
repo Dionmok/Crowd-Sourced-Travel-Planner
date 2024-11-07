@@ -30,17 +30,6 @@ import user_controller
 
 import trip_controller
 
-@app.route('/')
-def home():
-    response = supabase.table("Users").select("*").execute()
-    print(response)
-    return f"Hello World, from Flask!"
-
-
-    if response.data:
-        return jsonify(response.data), 200
-    else:
-        return jsonify({"error": "No trips found for this user"}), 404
 
 # Deletes a particular trip
 @app.route('/delete_trip', methods=['DELETE'])
