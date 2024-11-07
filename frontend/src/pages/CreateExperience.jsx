@@ -9,6 +9,7 @@ import { useState } from "react";
 
 export default function CreateExperience() {
   const [error, setError] = useState("");
+  
   const [experienceName, setExperienceName] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
@@ -18,8 +19,8 @@ export default function CreateExperience() {
   const [photoURL, setPhotoURL] = useState("");
   const [rating, setRating] = useState("");
 
-  // handle form submission
-  const handleSubmit = (e) => {
+  // handle form submission 
+  const handleSubmit = async (e) => {
     e.preventDefault(); 
     console.log("Handling Submit");
     
@@ -30,24 +31,36 @@ export default function CreateExperience() {
     }
     setError(""); // clear error message
 
-    // create experience object
-    const experienceData = {
-      experience_name: experienceName,
-      description: description,
-      photo: photoURL,
-      latitude: latitude,
-      longitude: longitude,
-      address: address,
-      keywords: keywords,
-      rating: rating,
-      // published: true, 
-      // TODO: create Publish toggle button component to set this value
-      time_created: new Date().toISOString() // unchanged
-    };
-    console.log("Submiting form data:", experienceData);
 
-    // TODO: send data to backend
+    try {
+      const userId = 123; // Hardcoded for testing; replace with dynamic user_id fetching logic
+      const response = await fetch(`http:///127.0.0.1:5000/save_experience`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          experience_name: experienceName,
+          description: description,
+          photo: photoURL,
+          latitude: latitude,
+          longitude: longitude,
+          address: address,
+          keywords: keywords,
+          rating: rating,
+          time_created: new Date().toISOString()
+        }),
+      });
 
+      if (!response.ok) {
+        throw new Error('Failed to save the experience');
+      }
+      console.log('Experience saved successfully');
+    } catch (error) {
+      console.error('Error saving experience:', error);
+      setError(error.message);
+    }
   };
 
   return (

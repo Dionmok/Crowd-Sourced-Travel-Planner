@@ -31,7 +31,9 @@ export default function NavBar() {
           <div>
             <Link to="/">
               <span>
-                Welcome, {"<"}Username{">"}
+                Welcome{" "}
+                {JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+                  .username || ""}
               </span>
             </Link>
             <span onClick={logout}>Logout</span>
