@@ -1,31 +1,30 @@
 import { useState } from "react";
-import '../css/DeleteTripButton.css';
 
-export default function DeleteTripButton({ tripId, userId, onTripDeleted }){
+export default function DeleteTripExperienceButton({ tripId, experienceId, onExperienceRemoved }){
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
 
     const handleDelete = async () => {
-        // Pop-up window confirms if user wants to delete trips
-        const confrimDelete = window.confirm("Are you sure you want to delete this trip?")
+        // Pop-up window confirms if user wants to remove the expereince from a trip
+        const confrimDelete = window.confirm("Are you sure you remove this experience from the trip?")
         if(!confrimDelete) {
             return;
         } 
 
         try {
             // Makes a DELETE request
-            const response = await fetch(`http://127.0.0.1:5000/delete_trip`, {
+            const response = await fetch(`http://127.0.0.1:5000/trip/${tripId}/experience/${experienceId}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ trip_id: tripId, user_id: userId }),
         });
 
         if (!response.ok) {
-            throw new Error('Failed to delete the trip');
+            throw new Error('Failed to remove the experience from the trip');
         }
 
+        onExperienceRemoved(experienceId)
         setSuccess(true);
         onTripDeleted(tripId);
     } catch (err) {
@@ -36,7 +35,7 @@ export default function DeleteTripButton({ tripId, userId, onTripDeleted }){
 return (
     <div>
         <button className="button-delete" onClick={handleDelete}>
-            Delete
+            Remove
         </button>
     </div>
     ); 

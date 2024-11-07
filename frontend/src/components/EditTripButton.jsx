@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import '../css/EditTripButton.css';
 
 export default function EditTripButton ({ trip }) {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function EditTripButton ({ trip }) {
 
     return (
         <div>
-            <button onClick={handleEdit}>
+            <button className="button-edit"  onClick={handleEdit}>
                 Edit
             </button>
         </div>

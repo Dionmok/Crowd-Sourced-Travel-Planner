@@ -1,0 +1,37 @@
+.SaveChanges {
+    cursor: pointer;
+    height: 3em;
+    width: 12em;
+    background-color: #0ee231;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.1s linear;
+    font-weight: bold;
+}
+
+.SaveChanges.disabled{
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #f3f0f0;
+}
+
+
+.SaveTrip{
+    cursor: pointer;
+    height: 3em;
+    width: 12em;
+    background-color: #0ee231;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.1s linear;
+    font-weight: bold;
+}
+
+.SaveTrip.disabled{
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #f3f0f0;
+}
+

@@ -1,0 +1,48 @@
+.edit-description {
+    flex-grow: 1;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 3em;
+    cursor: pointer;
+    padding-right: 16px;
+    transition: background-color 0.3s;
+}
+
+.StartDate-Container{
+    width: 100%;
+    max-width: none;
+    min-width: 735px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+
+.StartDate-Input{
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    resize: none;
+    box-sizing: border-box;
+    font-size: 1.5em;
+}
+
+.aligning-container {
+    height: 2.5em;
+    width: 60em;
+    margin-left: 541px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.button-container2{
+    display: flex;
+    gap: 300px;
+}
+
+
+  

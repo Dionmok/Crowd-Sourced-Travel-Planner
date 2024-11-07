@@ -10,11 +10,50 @@
 }
 
 .description-title textarea{
-    height: 2.5em;
-    width: 38em;
+  width: 100%;
+  max-width: none;
+  min-width: 735px;
+  height: 60px;
   border-radius: 8px;
   padding: 10px;
   border: 1px solid #ccc;
   resize: none;
   box-sizing: border-box;
+  font-size: 1.5em;
 }
+
+.description-Create textarea,
+.description-Edit textarea{
+  width: 100%;
+  max-width: none;
+  min-width: 1100px;
+  height: 220px;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: none;
+  box-sizing: border-box;
+  font-size: 1.5em;
+}
+
+.description-Create .charCounter,
+.description-title .charCounter,
+.description-Edit .charCounter{
+  color: #e58e0c;
+  font-weight: bold;
+}
+
+.create-title-container,
+.create-description-container,
+.edit-title-container,
+.edit-description-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px auto;
+  padding: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+

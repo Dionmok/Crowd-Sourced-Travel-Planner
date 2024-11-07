@@ -1,8 +1,8 @@
 .trips-container {
     max-height: 700px;
-    max-width: 800px;
+    max-width: 1300px;
     overflow-y: auto;
     margin-top: 0px;
-    margin-left: 400px;
+    margin-left: 250px;
     padding: 40px;
 }

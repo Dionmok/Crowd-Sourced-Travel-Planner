@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-/*import DeleteTripButton from '../components/DeleteTripButton'; // Import DeleteTripButton*/
+import RemoveTripExperienceButton from '../components/RemoveTripExperienceButton';
 import '../css/TripTile.css';
 
-export default function TripExperienceTile ({ experience }){    
+export default function TripExperienceTile ({ experience, tripId, onRemove }){    
     const navigate = useNavigate();
 
     /*const handleClick = () => {
@@ -11,9 +11,10 @@ export default function TripExperienceTile ({ experience }){
 
     return(
         <div className="trip-tile" /*onClick={handleClick}*/>
-            <input type="checkbox" className="trip-experience-checkbox"/>
             <h2>{experience.experience_name}</h2>
-            {/* <DeleteTripButton tripId={trip.trip_id} experienceId={experience_id} onTripDeleted={onTripDeleted} /> */}
+            <div className="button-container">
+            <RemoveTripExperienceButton tripId={tripId} experienceId={experience.experience_id} onExperienceRemoved={onRemove}/>
+            </div>
         </div>
         
     );
