@@ -13,12 +13,13 @@ export default function FeedPage({ userId }) {
 
   const getQueryParams = () => {
     const params = new URLSearchParams(location.search);
+    const locationParam = params.get('location');
     const keywords = params.get('keywords');
-    return { keywords };
+    return { location: locationParam, keywords };
   };
 
   useEffect(() => {
-    const { keywords } = getQueryParams();
+    const { location: locationParam, keywords } = getQueryParams();
 
     setLoading(true);
     setError(null);
@@ -26,8 +27,11 @@ export default function FeedPage({ userId }) {
     const fetchExperiences = async () => {
       try {
         let url = 'http://127.0.0.1:5000/experiences';
-        if (keywords) {
-          url += `?keywords=${keywords}`;
+        const queryParams = new URLSearchParams();
+        if (locationParam) queryParams.append('location', locationParam);
+        if (keywords) queryParams.append('keywords', keywords);
+        if (queryParams.toString()) {
+          url += `?${queryParams.toString()}`;
         }
 
         const response = await fetch(url);

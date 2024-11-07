@@ -18,7 +18,7 @@ export default function NavBar() {
             <Link to="/">
               <button>Home</button>
             </Link>
-            <Link to="/feed"> {/* Link to Feed page */}
+            <Link to="/feed">
               <button>Feed</button>
             </Link>
             <Link to="/myTrips">
@@ -31,7 +31,9 @@ export default function NavBar() {
           <div>
             <Link to="/">
               <span>
-                Welcome, {"<"}Username{">"}
+                Welcome{" "}
+                {JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+                  .username || ""}
               </span>
             </Link>
             <span onClick={logout}>Logout</span>
@@ -43,7 +45,7 @@ export default function NavBar() {
             <Link to="/">
               <button>Home</button>
             </Link>
-            <Link to="/feed"> {/* Link to Feed page */}
+            <Link to="/feed">
               <button>Feed</button>
             </Link>
           </div>

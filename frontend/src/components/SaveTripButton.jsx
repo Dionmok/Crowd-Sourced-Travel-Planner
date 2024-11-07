@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function SaveTripButton({ tripId, tripName, tripDescription, startDate, onSuccess, onError }){
+export default function SaveChanges({ tripId, tripName, tripDescription, startDate, onSuccess, onError }){
     const [isLoading, setIsLoading] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
 
@@ -16,19 +16,17 @@ export default function SaveTripButton({ tripId, tripName, tripDescription, star
     const handleSave = async () => {
         setIsLoading(true);
         try {
-            const userId = 123; // Hardcoded for testing; replace with dynamic user_id fetching logic
-
-            const response = await fetch(`http://127.0.0.1:5000/save_trip`, {
-                method: 'POST',
+            const response = await fetch(`http://127.0.0.1:5000/edit_trip`, {
+                method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    user_id: userId,
+                    trip_id: tripId,
                     trip_name: tripName,
                     trip_description: tripDescription,
                     start_date: startDate,
-                    time_created: new Date().toISOString(),
+                    time_updated: new Date().toISOString(),
                 }),
         });
 
