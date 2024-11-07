@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../css/TripButtons.css';
 
 export default function SaveChanges({ tripId, tripName, tripDescription, startDate, onSuccess, onError }){
     const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +46,7 @@ export default function SaveChanges({ tripId, tripName, tripDescription, startDa
 
 return (
     <div>
-      <button onClick={handleSave} disabled={isLoading || isDisabled}>
+      <button onClick={handleSave} disabled={isLoading || isDisabled} className="SaveChanges">
         {isLoading ? 'Saving...' : 'Save Changes'}
       </button>
     </div>

@@ -4,7 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
 import Description from "../components/Description";
-import SaveChanges from '../components/SaveChanges'; 
+import SaveChanges from '../components/SaveChanges';
+import '../css/EditTrip.css';
+import '../css/ButtonLink.css'; 
 
 export default function EditTrip() {
   const location = useLocation()
@@ -33,7 +35,8 @@ export default function EditTrip() {
       <NavBar />
       <div>
         <label>
-          Trip Name:
+        <h2 class="edit-description">Trip Name</h2>
+        <div class="edit-title-container">
           <Description
             maxChars={60}
             variant="description-title"
@@ -41,38 +44,48 @@ export default function EditTrip() {
             value={tripName}
             setText={setTripName}
             />
+          </div>
         </label>
         <br />
-        <label>
-          Trip Description:
+        <label class="Trip-Description">
+          <h2 class="edit-description">Trip Description</h2>
+          <div class="edit-description-container">
           <Description
             maxChars={200}
-            variant="description-default"
+            variant="description-Edit"
             placeholder="Enter trip description here..."
             value={tripDescription}
             setText={setTripDescription}
             />
+            </div>
         </label>
         <br />
         <label>
-          Start Date:
+        <h2 class="edit-description">Start Date</h2>
+        <div class="StartDate-Container">
           <input
+          class="StartDate-Input"
           type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
           />
+        </div>
         </label>
         <br />
-        <SaveChanges
-          tripId={trip.trip_id}
-          tripName={tripName}
-          tripDescription={tripDescription}
-          startDate={startDate}
-          onSuccess={handleSuccess}
-          onError={handleError}
-        />
-      </div>
-      <ButtonLink variant="button-back" buttonName="Cancel" routeTo="/myTrips" />
+        <div class="aligning-container">
+          <div class="button-container2" >
+          <SaveChanges
+            tripId={trip.trip_id}
+            tripName={tripName}
+            tripDescription={tripDescription}
+            startDate={startDate}
+            onSuccess={handleSuccess}
+            onError={handleError}
+          />
+          <ButtonLink varient="button-cancel" buttonName="Cancel" routeTo="/myTrips"/>
+          </div>
+          </div>
+        </div>
     </>
   );
 }

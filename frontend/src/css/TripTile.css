@@ -1,13 +1,13 @@
 .trip-tile {
     height: 2.5em;
-    width: 38em;
+    width: 75em;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 16px;
     margin: 10px;
     cursor: pointer;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s;
 }
@@ -18,7 +18,23 @@
 }
 
 .trip-tile h2 {
+    flex-grow: 1;
     margin: 0;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 2em;
+    cursor: pointer;
+    padding-right: 16px;
+    transition: background-color 0.3s;
+
+}
+
+.trip-tile h2:hover {
+    color: #007acc;
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+.button-container{
+    display: flex;
+    gap: 8px;
 }

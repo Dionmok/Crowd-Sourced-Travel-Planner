@@ -28,6 +28,10 @@ export default function IndividualTrip(){
     fetchExperiences();
   }, [tripId]);
 
+  const handleRemoveExperience = (experienceId) => {
+    setExperiences(prevExperiences => prevExperiences.filter(exp => exp.experience_id != experienceId));
+  };
+
   return (
     <>
     <NavBar />
@@ -41,7 +45,7 @@ export default function IndividualTrip(){
     ) : (
       <div>
         {experiences.map((experience) => (
-          <TripExperienceTile key={experience.experience_id} experience={experience} />
+          <TripExperienceTile key={experience.experience_id} experience={experience} tripId={tripId} onRemove={handleRemoveExperience} />
         ))}
       </div>
     )}
