@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import '../css/TripButtons.css';
 
-export default function SaveChanges({ tripId, tripName, tripDescription, startDate, onSuccess, onError }){
+export default function SaveTripButton({ tripId, tripName, tripDescription, startDate, onSuccess, onError }){
     const [isLoading, setIsLoading] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
 
@@ -16,17 +17,19 @@ export default function SaveChanges({ tripId, tripName, tripDescription, startDa
     const handleSave = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch(`http://127.0.0.1:5000/edit_trip`, {
-                method: 'PUT',
+            const userId = 123; // Hardcoded for testing; replace with dynamic user_id fetching logic
+
+            const response = await fetch(`http://127.0.0.1:5000/save_trip`, {
+                method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    trip_id: tripId,
+                    user_id: userId,
                     trip_name: tripName,
                     trip_description: tripDescription,
                     start_date: startDate,
-                    time_updated: new Date().toISOString(),
+                    time_created: new Date().toISOString(),
                 }),
         });
 
@@ -45,8 +48,8 @@ export default function SaveChanges({ tripId, tripName, tripDescription, startDa
 
 return (
     <div>
-      <button onClick={handleSave} disabled={isLoading || isDisabled}>
-        {isLoading ? 'Saving...' : 'Save Changes'}
+      <button onClick={handleSave} disabled={isLoading || isDisabled} className="SaveTrip">
+        {isLoading ? 'Saving...' : 'Save Trip'}
       </button>
     </div>
   );
