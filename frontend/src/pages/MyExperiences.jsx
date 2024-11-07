@@ -15,7 +15,6 @@ export default function MyExperiences({userId}) {
           throw new Error('Failed to fetch experiences');
         }
         const data = await response.json();
-        console.log(data);
         setExperiences(data)
       }
       catch(error){
