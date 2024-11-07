@@ -83,5 +83,4 @@ def login():
         expires_delta=datetime.timedelta(days=7),
         additional_claims={"username": response.data[0]["username"]},
     )
-if not re.search(r"[A-Za-z]+", username):
-    inputErrors.append("Username must contain only letters (A-Z, a-z)")
+    return jsonify(access_token=access_token)

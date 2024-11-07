@@ -35,9 +35,4 @@ export default function DeleteExperienceButton({experienceId, userId, onExperien
             </button>
         </div>
     );
-<<<<<<< HEAD
 };
-=======
-};
-
->>>>>>> c368bad5041fa9d62ebbae37bed8eb71a11bfc13
