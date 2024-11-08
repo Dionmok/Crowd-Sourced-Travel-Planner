@@ -1,17 +1,18 @@
 .experience-tile {
-    display: flex; /* Use flexbox for horizontal layout */
-    align-items: center; /* Vertically center items */
+    display: flex; 
+    align-items: center; 
+    height: 150px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
     background-color: #f9f9f9;
-    padding-left: 25px;
+    /* padding-left: 25px; */
     padding-right:25px;
 }
 
 .experience-tile:hover {
-    background-color: #e0e0e0;
+    background-color: rgba(247, 219, 166, 0.315);
     cursor: pointer;
 }
 
@@ -21,20 +22,20 @@
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1; 
+    padding-right: 20px;
 }
 
 .title {
-    font-size: 2em;
+    font-size: 26px;
     margin: 0;
 }
 
 
 .image {
-    width: 150px; /* Set a fixed width for the image */
-    height: 150px; /* Set a fixed height for the image */
+    width: 200px; 
+    height: 150px; 
     margin-right: 25px; 
     border-radius: 5px;
-    /* padding-right: 10px; */
     overflow: hidden;
     flex-shrink: 0; 
 }
@@ -69,7 +70,7 @@
 }
 
 .button-edit-container .delete button {
-    background-color: #cfa0a0; 
+    background-color: #FA4032; 
 }
 
 .button-edit-container .delete button:hover {

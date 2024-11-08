@@ -6,6 +6,8 @@
     /* margin-right: 100px; */
     margin-left: 250px;
     padding: 30px;
+    /* background: rgba(255, 166, 0, 0.315); */
+    
 }
 
 /* Add experience button */
@@ -22,7 +24,7 @@
     height: 3em;
     font-size: 1em;
     font-weight: bold;
-    background-color: rgb(167, 225, 125);
+    background-color: #FA812F;
 }
 .experiences-container h1{
     position:fixed;
@@ -30,4 +32,9 @@
     display: flex;
     flex-direction: column;
     padding:50px;
+}
+
+
+.vertical-gradient-bg {
+    background: linear-gradient(to bottom, #3498db, #2ecc71); /* top-to-bottom gradient */
 }
