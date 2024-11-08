@@ -74,8 +74,7 @@ export default function IndividualExperience() {
             </div>
             <div className="image-container">
               <h1>Image: </h1>
-                {/* TODO: Add Image Preview, and fix file not found error  */}
-                <h1> {photoURL} </h1> 
+                <img src={photoURL} alt="Experience Image" />
             </div>
             <div className="rating-container">
               <h1>Rating</h1>
