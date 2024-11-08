@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import {FaEdit} from 'react-icons/fa';
 
 export default function EditExperienceButton({ experience }) {
     const navigate = useNavigate();
@@ -10,7 +11,7 @@ export default function EditExperienceButton({ experience }) {
     return (
         <div>
             <button onClick={handleEdit}>
-                Edit
+                <FaEdit />
             </button>
         </div >
     );

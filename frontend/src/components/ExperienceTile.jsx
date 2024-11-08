@@ -12,12 +12,12 @@ export default function ({ experience, userId, onExperienceDeleted }){
     };
 
     return(
-        <div onClick={handleClick} className="experience-tile">
-            <div className='image'>
+        <div  className="experience-tile">
+            <div onClick={handleClick} className='image'>
                 <img src={experience.photo} alt="Experience" />
             </div>
             <div className="experience-details">
-                <div className='title'>
+                <div onClick={handleClick} className='title'>
                     <h2>{experience.experience_name}</h2>
                 </div>
                 <div className='rating'>
@@ -42,8 +42,6 @@ export default function ({ experience, userId, onExperienceDeleted }){
                 <div className='delete'>
                     <DeleteExperienceButton experienceId={experience.experience_id} userId={userId} onExperienceDeleted={onExperienceDeleted} />
                 </div>
-                
-                
             </div>
         
             
