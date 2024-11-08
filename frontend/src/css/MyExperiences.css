@@ -1,0 +1,33 @@
+.experiences-container {
+    max-height: 700px;
+    max-width: 1300px;
+    overflow-y: auto;
+    /* /* margin-top: 0px; */
+    /* margin-right: 100px; */
+    margin-left: 250px;
+    padding: 30px;
+}
+
+/* Add experience button */
+.add-experience-button {
+    position:fixed;
+    left:0px;
+    top:80%;
+    display: flex;
+    flex-direction: column;
+    padding:40px;
+}
+
+.add-experience-button button{
+    height: 3em;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: rgb(167, 225, 125);
+}
+.experiences-container h1{
+    position:fixed;
+    left:0px;
+    display: flex;
+    flex-direction: column;
+    padding:50px;
+}
