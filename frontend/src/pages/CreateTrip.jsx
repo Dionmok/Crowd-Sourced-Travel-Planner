@@ -62,7 +62,7 @@ export default function CreateTrip() {
         <div className='StartDate-Container'>
         <h2 className='date-input'>Start Date</h2>
           <input
-          className="StartDate-Input"
+          className='StartDate-Input'
           type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
