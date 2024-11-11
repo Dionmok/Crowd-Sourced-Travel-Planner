@@ -35,8 +35,8 @@ export default function EditTrip() {
       <NavBar />
       <div>
         <label>
-        <h2 class="edit-description">Trip Name</h2>
-        <div class="edit-title-container">
+        <h2 className="edit-description">Trip Name</h2>
+        <div className="edit-title-container">
           <Description
             maxChars={60}
             variant="description-title"
@@ -47,9 +47,9 @@ export default function EditTrip() {
           </div>
         </label>
         <br />
-        <label class="Trip-Description">
-          <h2 class="edit-description">Trip Description</h2>
-          <div class="edit-description-container">
+        <label className="Trip-Description">
+          <h2 className="edit-description">Trip Description</h2>
+          <div className="edit-description-container">
           <Description
             maxChars={200}
             variant="description-Edit"
@@ -61,10 +61,10 @@ export default function EditTrip() {
         </label>
         <br />
         <label>
-        <h2 class="edit-description">Start Date</h2>
-        <div class="StartDate-Container">
+        <h2 className="edit-description">Start Date</h2>
+        <div className="StartDate-Container">
           <input
-          class="StartDate-Input"
+          className="StartDate-Input"
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
@@ -72,8 +72,8 @@ export default function EditTrip() {
         </div>
         </label>
         <br />
-        <div class="aligning-container">
-          <div class="button-container2" >
+        <div className="aligning-container">
+          <div className="button-container2" >
           <SaveChanges
             tripId={trip.trip_id}
             tripName={tripName}

@@ -33,8 +33,8 @@ export default function CreateTrip() {
       <NavBar />
       <div>
         <label>
-          <h2 class="create-title">Trip Name</h2>
-          <div class="create-title-container">
+          <h2 className="create-title">Trip Name</h2>
+          <div className="create-title-container">
           <Description
             maxChars={60}
             variant="description-title"
@@ -46,8 +46,8 @@ export default function CreateTrip() {
         </label>
         <br />
         <label>
-        <div class="create-description-container">
-          <h2 class="create-description">Trip Description</h2>
+        <div className='create-description-container'>
+          <h2 className='create-description'>Trip Description</h2>
           <Description
             maxChars={200}
             variant="description-Create"
@@ -59,10 +59,10 @@ export default function CreateTrip() {
         </label>
         <br />
         <label>
-        <div class="StartDate-Container">
-        <h2 class="date-input">Start Date</h2>
+        <div className='StartDate-Container'>
+        <h2 className='date-input'>Start Date</h2>
           <input
-          class="StartDate-Input"
+          className="StartDate-Input"
           type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
@@ -70,8 +70,8 @@ export default function CreateTrip() {
           </div>
         </label>
         <br />
-        <div class="aligning-container3">
-          <div class="button-container3" >
+        <div className='aligning-container3'>
+          <div className='button-container3' >
             <SaveTripButton
               tripName={tripName}
               tripDescription={tripDescription}
