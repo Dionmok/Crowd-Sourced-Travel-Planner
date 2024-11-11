@@ -10,30 +10,31 @@
     
 }
 
-.add-trips-button {
-    position: relative;
-    left:0px;
-    top:80%;
-    display: flex;
-    flex-direction: column;
-    padding:40px;
-}
-
 .add-trip-button {
-    position: absolute; /* Position it absolutely inside the container */
-    bottom: 40px;          /* Adjust this to move it vertically */
+    position: absolute;
+    bottom: 40px;          
     left: 30px;
     display: flex;
     padding: 20px;
 }
 
+.trip-page-title {
+    position: absolute;
+    left: 770px;
+    display: flex;
+    padding: 20px;
+    font-size: 60px;
+}
+
+
 .trips-container {
     max-height: 700px;
     max-width: 1300px;
     overflow-y: auto;
+    margin-top: 70px;
     margin-left: 250px;
     padding: 30px;
-    position: relative; /* Make this relative for absolute positioning of .add-trip-button */
+    position: relative;
 }
 
 .vertical-gradient-bg {

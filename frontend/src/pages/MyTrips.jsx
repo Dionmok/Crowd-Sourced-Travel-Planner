@@ -35,8 +35,10 @@ export default function MyTrips({ userId }){
     <div className='add-trip-button'>
         <ButtonLink varient ="button-add" buttonName="Add Trip" routeTo="/createTrip"/>
       </div>
+    <div className='trip-page-title'>
+      <h2>My Trips</h2>
+    </div>
     <div className='trips-container'>
-      <h1>My Trips Page</h1>
       <div className='trip-list'>
         {trips.length == 0 ? (
           <p>There are no trips created.</p>

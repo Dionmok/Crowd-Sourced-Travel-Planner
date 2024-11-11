@@ -25,8 +25,9 @@
 }
 
 .title {
-    font-size: 45px;
+    font-size: 40px;
     margin: 0;
+    text-align: center;
 }
 
 .button-container {
