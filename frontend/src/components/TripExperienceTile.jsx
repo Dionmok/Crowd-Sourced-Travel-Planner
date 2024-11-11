@@ -5,8 +5,9 @@ import '../css/ExperienceTile.css';
 export default function TripExperienceTile ({ experience, tripId, onRemove }){    
     const navigate = useNavigate();
 
+    // Redirects to individual experience
     const handleClick = () => {
-        navigate(`/experience/${experience.experience_id}`);
+        navigate(`/individualExperience/${experience.experience_id}`, { state: { experience } });
     };
 
     return(
