@@ -10,6 +10,7 @@ export default function IndividualTrip(){
   const { tripId } = useParams();
   const { trip } = location.state;
   const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Tries and fetchs experiences from API
@@ -23,6 +24,8 @@ export default function IndividualTrip(){
         setExperiences(data)
       } catch(error){
         console.error(error)
+      } finally {
+        setLoading(false)
       }
     };
 
@@ -51,7 +54,9 @@ export default function IndividualTrip(){
     </div>
     <div className='trips-experience-container'>
       <div className='trips-experience-list'>
-      {experiences.length == 0 ? (
+      {loading ? (
+                <p>Loading experiences...</p>
+      ) : experiences.length == 0 ? (
         <p>There are no experiences added to this trip.</p>
       ) : (
         <div>
