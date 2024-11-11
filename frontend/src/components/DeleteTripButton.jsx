@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../css/DeleteTripButton.css';
+import {FaTrash} from 'react-icons/fa';
 
 export default function DeleteTripButton({ tripId, userId, onTripDeleted }){
     const [error, setError] = useState(null);
@@ -35,8 +35,8 @@ export default function DeleteTripButton({ tripId, userId, onTripDeleted }){
 
 return (
     <div>
-        <button className="button-delete" onClick={handleDelete}>
-            Delete
+        <button onClick={handleDelete}>
+            <FaTrash />
         </button>
     </div>
     ); 
