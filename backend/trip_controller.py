@@ -12,7 +12,7 @@ def get_user_trips(user_id):
     if response.data:
         return jsonify(response.data), 200
     else:
-        return jsonify({"error": "No trips found for this user"}), 404
+        return jsonify([]), 200
 
 # Deletes a particular trip
 @app.route('/delete_trip', methods=['DELETE'])
