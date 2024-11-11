@@ -41,6 +41,7 @@ export default function FeedPage({ userId }) {
         setExperiences(data);
       } catch (error) {
         setError(error.message);
+        setExperiences([]);
       } finally {
         setLoading(false);
       }
@@ -50,11 +51,11 @@ export default function FeedPage({ userId }) {
   }, [location.search]);
 
   const handleSaveSuccess = (message) => {
-    alert(message); // Replace with your preferred notification method
+    alert(message);
   };
 
   const handleSaveError = (error) => {
-    alert(`Error saving trip: ${error}`); // Replace with your preferred notification method
+    alert(`Error saving trip: ${error}`);
   };
 
   return (
@@ -72,8 +73,8 @@ export default function FeedPage({ userId }) {
               <TripExperienceTile experience={experience} />
               <SaveTripButton
                 tripId={experience.experience_id}
-                tripName={experience.trip_name || experience.title}  // Use whichever field contains the trip name
-                tripDescription={experience.trip_description || experience.description}  // Use whichever field contains the description
+                tripName={experience.trip_name || experience.title}
+                tripDescription={experience.trip_description || experience.description}
                 startDate={experience.start_date}
                 onSuccess={handleSaveSuccess}
                 onError={handleSaveError}

@@ -33,16 +33,27 @@ import trip_controller
 
 @app.route('/experiences', methods=['GET'])
 def search_experiences():
-    location = request.args.get('location', '')
-    keywords = request.args.get('keywords', '')
-    # Base query to select only published experiences
+    location = request.args.get('location', '').strip()
+    keywords = request.args.get('keywords', '').strip().split(',')
+
     query = supabase.table('Experiences').select('*').eq('published', True)
-
     if location:
-        query = query.ilike('location', f"%{location}%")
+        query = query.ilike('address', f"%{location}%")
 
-    if keywords:
-        query = query.ilike('experience_name', f"%{keywords}%")
+    if keywords and keywords[0]:
+        keyword_ids_response = supabase.table('Keywords').select('keyword_id').in_('keyword', keywords).execute()
+
+        if not keyword_ids_response.data:
+            return jsonify({"error": "No experiences found matching the keywords"}), 404
+
+        keyword_ids = [item['keyword_id'] for item in keyword_ids_response.data]
+        experience_ids_response = supabase.table('Experience_Keywords').select('experience_id').in_('keyword_id', keyword_ids).execute()
+
+        if not experience_ids_response.data:
+            return jsonify({"error": "No experiences found matching the keywords"}), 404
+
+        experience_ids = [item['experience_id'] for item in experience_ids_response.data]
+        query = query.in_('experience_id', experience_ids)
 
     response = query.execute()
 
