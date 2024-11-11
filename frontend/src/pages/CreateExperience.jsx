@@ -56,9 +56,7 @@ export default function CreateExperience() {
       if (!response.ok) {
         throw new Error('Failed to save the experience');
       }
-      console.log('Experience saved successfully');
     } catch (error) {
-      console.error('Error saving experience:', error);
       setError(error.message);
     }
   };

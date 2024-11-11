@@ -10,9 +10,17 @@ export default function ImageUpload({value, onChange}){
 
         // check if file uploaded 
         if (file) {
-            const imagePreview = URL.createObjectURL(file); // create a preview of the image
-            onChange(imagePreview); // set the preview as the image
-            setError("");
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64Image = reader.result; // encode the image to base64
+                onChange(base64Image); // set the base64 image as the value
+
+                setError("");
+            };
+            reader.onerror = () => {
+                setError("Failed to read the file");
+            };
+            reader.readAsDataURL(file); // read the file as data URL
         } else {
             setError("Please choose a file");
         }
@@ -21,6 +29,7 @@ export default function ImageUpload({value, onChange}){
     return (
         <>
             <div className='image-container'>
+                {/* preview image */}
                 <img src={value || DefaultImage} alt="ExperienceImage" className='upload-photo' />
 
                 <div className='image-upload-container'>

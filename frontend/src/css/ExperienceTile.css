@@ -1,0 +1,86 @@
+.experience-tile {
+    display: flex; 
+    align-items: center; 
+    height: 150px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    /* padding-left: 25px; */
+    padding-right:25px;
+}
+
+.experience-tile:hover {
+    background-color: rgba(247, 219, 166, 0.315);
+    cursor: pointer;
+}
+
+
+.experience-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1; 
+    padding-right: 20px;
+}
+
+.title {
+    font-size: 26px;
+    margin: 0;
+}
+
+
+.image {
+    width: 200px; 
+    height: 150px; 
+    margin-right: 25px; 
+    border-radius: 5px;
+    overflow: hidden;
+    flex-shrink: 0; 
+}
+
+.image img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+}
+
+.rating{
+    margin-top: 7px;
+    font-size: 1.2em;
+}
+
+.button-edit-container {
+    display: flex;
+    flex-direction: column; 
+    gap:15px;
+}
+
+
+.button-edit-container button{
+    cursor: pointer;
+    height: 6m;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 8px 12px;
+    font-weight: bold;
+}
+
+.button-edit-container .delete button {
+    background-color: #FA4032; 
+}
+
+.button-edit-container .delete button:hover {
+    background-color: #e1231f; 
+}
+
+.button-edit-container .edit button {
+    background-color: #e7cfb0; 
+}
+
+.button-edit-container .edit button:hover {
+    background-color: #e19c41; 
+}
