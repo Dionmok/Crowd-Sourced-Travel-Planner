@@ -1,40 +1,63 @@
 .trip-tile {
-    height: 2.5em;
-    width: 75em;
+    display: flex; 
+    align-items: center; 
+    height: 80px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    /* padding-left: 25px; */
+    padding-right:25px;
+}
+
+.trip-tile:hover {
+    background-color: rgba(247, 219, 166, 0.315);
     cursor: pointer;
+}
+
+.trip-details {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s;
+    flex-grow: 1; 
+    padding-right: 20px;
 }
 
-.trip-tile hover {
-    background-color: #e0e0e0;
-    transform: scale((1.05));
-}
-
-.trip-tile h2 {
-    flex-grow: 1;
+.title {
+    font-size: 45px;
     margin: 0;
-    text-align: center;
-    font-size: 2em;
-    cursor: pointer;
-    padding-right: 16px;
-    transition: background-color 0.3s;
-
 }
 
-.trip-tile h2:hover {
-    color: #007acc;
-    text-decoration: underline;
-    transform: scale(1.1);
-}
-
-.button-container{
+.button-container {
     display: flex;
-    gap: 8px;
+    flex-direction: column; 
+    gap:15px;
+}
+
+.button-container button{
+    cursor: pointer;
+    height: 6m;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 8px 12px;
+    font-weight: bold;
+}
+
+.button-container .delete button {
+    background-color: #FA4032; 
+}
+
+.button-container .delete button:hover {
+    background-color: #e1231f; 
+}
+
+.button-container .edit button {
+    background-color: #e7cfb0; 
+}
+
+.button-container .edit button:hover {
+    background-color: #e19c41; 
 }
