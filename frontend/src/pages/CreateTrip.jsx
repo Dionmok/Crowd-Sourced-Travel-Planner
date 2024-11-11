@@ -33,8 +33,8 @@ export default function CreateTrip() {
       <NavBar />
       <div>
         <label>
-          <h2 className="create-title">Trip Name</h2>
-          <div className="create-title-container">
+          <h2 className='create-title'>Trip Name</h2>
+          <div className='create-title-container'>
           <Description
             maxChars={60}
             variant="description-title"
