@@ -1,0 +1,73 @@
+.back-button {
+    position: absolute;
+    bottom: 85px;          
+    left: 20px;
+    display: flex;
+    padding: 20px;
+}
+
+.individual-trip-page-title {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-size: 60px;
+    text-align: center;
+    width: 100%;
+    
+}
+
+.button-back {
+    cursor: pointer;
+    height: 3em;
+    width: 12em;
+    background-color: #ff200bfa;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+.trip-date {
+    position: absolute;
+    top: 200px;        
+    left: 30px;
+    display: flex;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(255, 166, 0, 0.315);
+    border-radius: 5px;
+
+}
+
+.Individual-trip-description{
+    word-wrap: break-word;
+    width: 170px;
+    height: 300px;
+    white-space: normal;
+    line-height: 1.6;
+    font-size: 18px;
+    padding: 20px;
+    margin: 0;
+    position: absolute;
+    top: 400px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    background-color: rgba(255, 166, 0, 0.315);
+    border-radius: 5px;
+}
+
+.trips-experience-container{
+    max-height: 700px;
+    max-width: 1300px;
+    overflow-y: auto;
+    margin-left: 250px;
+    position: absolute;
+    top: 200px;          
+    left: 30px;
+
+}
+
+

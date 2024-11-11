@@ -33,8 +33,8 @@ export default function MyTrips({ userId }){
     <>
     <NavBar />
     <div className='add-trip-button'>
-        <ButtonLink varient ="button-add" buttonName="Add Trip" routeTo="/createTrip"/>
-      </div>
+      <ButtonLink varient ="button-add" buttonName="Add Trip" routeTo="/createTrip"/>
+    </div>
     <div className='trip-page-title'>
       <h2>My Trips</h2>
     </div>
