@@ -32,18 +32,22 @@ export default function MyTrips({ userId }){
   return (
     <>
     <NavBar />
-    <h1>My Trips Page</h1>
-    <ButtonLink varient ="button-add" buttonName="Add Trip" routeTo="/createTrip"/>
-    <div className='trips-container'>
-    {trips.length == 0 ? (
-      <p>There are no trips created.</p>
-    ) : (
-      <div>
-        {trips.map((trip) => (
-          <TripTile key={trip.trip_id} trip={trip} userId={userId} onTripDeleted={handleTripDeleted} />
-        ))}
+    <div className='add-trip-button'>
+        <ButtonLink varient ="button-add" buttonName="Add Trip" routeTo="/createTrip"/>
       </div>
-    )}
+    <div className='trips-container'>
+      <h1>My Trips Page</h1>
+      <div className='trip-list'>
+        {trips.length == 0 ? (
+          <p>There are no trips created.</p>
+        ) : (
+          <div>
+            {trips.map((trip) => (
+              <TripTile key={trip.trip_id} trip={trip} userId={userId} onTripDeleted={handleTripDeleted} />
+            ))}
+          </div>
+        )}
+    </div>
     </div>
     </>
   );

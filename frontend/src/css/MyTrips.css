@@ -2,7 +2,40 @@
     max-height: 700px;
     max-width: 1300px;
     overflow-y: auto;
-    margin-top: 0px;
+    /* /* margin-top: 0px; */
+    /* margin-right: 100px; */
     margin-left: 250px;
-    padding: 40px;
+    padding: 30px;
+    /* background: rgba(255, 166, 0, 0.315); */
+    
+}
+
+.add-trips-button {
+    position: relative;
+    left:0px;
+    top:80%;
+    display: flex;
+    flex-direction: column;
+    padding:40px;
+}
+
+.add-trip-button {
+    position: absolute; /* Position it absolutely inside the container */
+    bottom: 40px;          /* Adjust this to move it vertically */
+    left: 30px;
+    display: flex;
+    padding: 20px;
+}
+
+.trips-container {
+    max-height: 700px;
+    max-width: 1300px;
+    overflow-y: auto;
+    margin-left: 250px;
+    padding: 30px;
+    position: relative; /* Make this relative for absolute positioning of .add-trip-button */
+}
+
+.vertical-gradient-bg {
+    background: linear-gradient(to bottom, #3498db, #2ecc71); /* top-to-bottom gradient */
 }

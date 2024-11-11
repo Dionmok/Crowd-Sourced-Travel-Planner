@@ -1,15 +1,17 @@
 .button-add {
     cursor: pointer;
-    height: 2.5em;
+    height: 3em;
+    font-size: 1em;
+    font-weight: bold;
     width: 12em;
-    background-color: #40EB5D;
+    background-color: #FA812F;
     border: none;
     text-align: center;
     border-radius: 5px;
     transition: background-color 0.1s linear;
     font-weight: bold;
   }
-  
+
 .button-add:hover {
     background-color: rgb(13, 197, 0);
     transition: background-color 0.1s linear;
