@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {FaTrash} from 'react-icons/fa';
 
 export default function DeleteTripExperienceButton({ tripId, experienceId, onExperienceRemoved }){
     const [error, setError] = useState(null);
@@ -34,8 +35,8 @@ export default function DeleteTripExperienceButton({ tripId, experienceId, onExp
 
 return (
     <div>
-        <button className="button-delete" onClick={handleDelete}>
-            Remove
+        <button onClick={handleDelete}>
+            <FaTrash />
         </button>
     </div>
     ); 

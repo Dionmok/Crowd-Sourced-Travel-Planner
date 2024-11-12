@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import '../css/EditTripButton.css';
+import {FaEdit} from 'react-icons/fa';
 
 export default function EditTripButton ({ trip }) {
     const navigate = useNavigate();
@@ -10,8 +10,8 @@ export default function EditTripButton ({ trip }) {
 
     return (
         <div>
-            <button className="button-edit"  onClick={handleEdit}>
-                Edit
+            <button onClick={handleEdit}>
+                <FaEdit />
             </button>
         </div>
     );

@@ -2,7 +2,38 @@
     max-height: 700px;
     max-width: 1300px;
     overflow-y: auto;
-    margin-top: 0px;
     margin-left: 250px;
-    padding: 40px;
+    padding: 30px;
+}
+
+.add-trip-button {
+    position: absolute;
+    bottom: 40px;          
+    left: 30px;
+    display: flex;
+    padding: 20px;
+}
+
+.trip-page-title {
+    position: absolute;
+    left: 770px;
+    top: 75px;
+    display: flex;
+    padding: 20px;
+    font-size: 60px;
+}
+
+
+.trips-container {
+    max-height: 700px;
+    max-width: 1300px;
+    overflow-y: auto;
+    margin-top: 65px;
+    margin-left: 250px;
+    padding: 30px;
+    position: relative;
+}
+
+.vertical-gradient-bg {
+    background: linear-gradient(to bottom, #3498db, #2ecc71);
 }
