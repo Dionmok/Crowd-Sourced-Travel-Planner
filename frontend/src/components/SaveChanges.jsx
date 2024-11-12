@@ -17,7 +17,7 @@ export default function SaveChanges({ tripId, tripName, tripDescription, startDa
     const handleSave = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch(`http://127.0.0.1:5000/edit_trip`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/edit_trip`, {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
