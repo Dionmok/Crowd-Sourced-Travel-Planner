@@ -6,6 +6,7 @@ import '../css/MyExperiences.css';
 
 export default function MyExperiences({userId}) {
   const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchExperiences = async () => {
@@ -19,6 +20,9 @@ export default function MyExperiences({userId}) {
       }
       catch(error){
         console.error(error)
+      }
+      finally {
+        setLoading(false)
       }
     }
     fetchExperiences();
@@ -37,7 +41,9 @@ export default function MyExperiences({userId}) {
           <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />
         </div>
         <div className='experience-list'>
-          {experiences.length == 0 ? (
+          { loading ? (
+                <p>Loading experiences...</p>
+          ): experiences.length == 0 ? (
             <p>There are no experiences created.</p>
           ) : (
             <div>

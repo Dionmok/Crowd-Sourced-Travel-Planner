@@ -12,7 +12,7 @@ def get_user_trips(user_id):
     if response.data:
         return jsonify(response.data), 200
     else:
-        return jsonify({"error": "No trips found for this user"}), 404
+        return jsonify([]), 200
 
 # Deletes a particular trip
 @app.route('/delete_trip', methods=['DELETE'])
@@ -103,6 +103,10 @@ def get_trip_experiences(trip_id):
         experience_data = supabase.table('Experiences').select('*').in_('experience_id', experience_ids).execute()
         if experience_data.data:
             return jsonify(experience_data.data), 200
+        else:
+          return jsonify([]), 200
+    else:
+      return jsonify([]), 200 
 
 # Removes an experience from a trip
 @app.route('/trip/<int:trip_id>/experience/<int:experience_id>', methods=['DELETE'])

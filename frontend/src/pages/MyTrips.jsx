@@ -6,6 +6,7 @@ import '../css/MyTrips.css'
 
 export default function MyTrips({ userId }){
   const [trips, setTrips] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Tries and fetchs trips from API
@@ -19,6 +20,8 @@ export default function MyTrips({ userId }){
         setTrips(data)
       } catch(error){
         console.error(error)
+      } finally {
+        setLoading(false)
       }
     };
 
@@ -40,7 +43,9 @@ export default function MyTrips({ userId }){
     </div>
     <div className='trips-container'>
       <div className='trip-list'>
-        {trips.length == 0 ? (
+        {loading ? (
+                <p>Loading trips...</p>
+        ): trips.length == 0 ? (
           <p>There are no trips created.</p>
         ) : (
           <div>
