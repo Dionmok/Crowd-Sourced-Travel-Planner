@@ -21,6 +21,7 @@ export default function SaveChanges({ tripId, tripName, tripDescription, startDa
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem("token")
                 },
                 body: JSON.stringify({
                     trip_id: tripId,

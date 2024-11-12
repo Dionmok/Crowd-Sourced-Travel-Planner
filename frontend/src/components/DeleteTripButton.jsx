@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {FaTrash} from 'react-icons/fa';
 
-export default function DeleteTripButton({ tripId, userId, onTripDeleted }){
+export default function DeleteTripButton({ tripId, onTripDeleted }){
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
 
@@ -18,8 +18,9 @@ export default function DeleteTripButton({ tripId, userId, onTripDeleted }){
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem("token")
                 },
-                body: JSON.stringify({ trip_id: tripId, user_id: userId }),
+                body: JSON.stringify({ trip_id: tripId }),
         });
 
         if (!response.ok) {

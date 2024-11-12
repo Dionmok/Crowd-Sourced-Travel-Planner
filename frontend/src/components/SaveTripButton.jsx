@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import '../css/TripButtons.css';
 
-export default function SaveTripButton({ tripId, tripName, tripDescription, startDate, onSuccess, onError }){
+export default function SaveTripButton({ tripName, tripDescription, startDate, onSuccess, onError }){
     const [isLoading, setIsLoading] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
 
@@ -17,15 +17,14 @@ export default function SaveTripButton({ tripId, tripName, tripDescription, star
     const handleSave = async () => {
         setIsLoading(true);
         try {
-            const userId = 123; // Hardcoded for testing; replace with dynamic user_id fetching logic
 
             const response = await fetch(`${import.meta.env.VITE_API_URL}/save_trip`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem("token")
                 },
                 body: JSON.stringify({
-                    user_id: userId,
                     trip_name: tripName,
                     trip_description: tripDescription,
                     start_date: startDate,

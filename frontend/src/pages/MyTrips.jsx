@@ -4,7 +4,7 @@ import ButtonLink from "../components/ButtonLink";
 import TripTile from '../components/TripTile';
 import '../css/MyTrips.css'
 
-export default function MyTrips({ userId }){
+export default function MyTrips(){
   const [trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -12,7 +12,11 @@ export default function MyTrips({ userId }){
     // Tries and fetchs trips from API
     const fetchTrips = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/trips/${userId}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/trips`, {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        });
         if (!response.ok){
           throw new Error('Failed to fetch trips');
         }
@@ -26,7 +30,7 @@ export default function MyTrips({ userId }){
     };
 
     fetchTrips();
-  }, [userId]);
+  }, []);
 
   const handleTripDeleted = (tripId) => {
     setTrips((prevTrips) => prevTrips.filter(trip => trip.trip_id != tripId));
@@ -50,7 +54,7 @@ export default function MyTrips({ userId }){
         ) : (
           <div>
             {trips.map((trip) => (
-              <TripTile key={trip.trip_id} trip={trip} userId={userId} onTripDeleted={handleTripDeleted} />
+              <TripTile key={trip.trip_id} trip={trip} onTripDeleted={handleTripDeleted} />
             ))}
           </div>
         )}
