@@ -1,12 +1,15 @@
 from __main__ import app, supabase
 from flask import jsonify, request
 from flask_bcrypt import Bcrypt
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 bcrypt = Bcrypt(app)
 
 # Fetches trips for a given user_id
-@app.route('/trips/<user_id>', methods=['GET'])
-def get_user_trips(user_id):
+@app.route('/trips', methods=['GET'])
+@jwt_required()
+def get_user_trips():
+    user_id = get_jwt_identity()
     response = supabase.table('Trip').select('*').eq('user_id', user_id).execute()
 
     if response.data:
@@ -16,10 +19,11 @@ def get_user_trips(user_id):
 
 # Deletes a particular trip
 @app.route('/delete_trip', methods=['DELETE'])
+@jwt_required()
 def delete_trip():
+    user_id = get_jwt_identity()
     data = request.get_json()
     trip_id = data.get('trip_id')
-    user_id = data.get('user_id')
 
     trip = supabase.table('Trip').select('*').eq('trip_id', trip_id).eq('user_id', user_id). execute()
 
@@ -34,7 +38,9 @@ def delete_trip():
 
 # Edits a particular trip
 @app.route('/edit_trip', methods=['PUT'])
+@jwt_required()
 def edit_trip():
+    user_id = get_jwt_identity()
     data = request.get_json()
 
     trip_id = data.get('trip_id')
@@ -52,6 +58,7 @@ def edit_trip():
             'time_updated': time_updated
         })
         .eq('trip_id', trip_id)
+        .eq('user_id', user_id)
         .execute()
     )
 
@@ -62,10 +69,11 @@ def edit_trip():
 
 # Saves a newly created trip
 @app.route('/save_trip', methods=['POST'])
+@jwt_required()
 def save_trip():
+    user_id = get_jwt_identity()
     data = request.get_json()
 
-    user_id = data.get('user_id')
     trip_name = data.get('trip_name')
     trip_description = data.get('trip_description')
     start_date = data.get('start_date')
@@ -89,8 +97,10 @@ def save_trip():
 
 # Fetches experiences that have been added to a trip
 @app.route('/trip_experiences/<trip_id>', methods=['GET'])
+@jwt_required()
 def get_trip_experiences(trip_id):
-    response = supabase.table('Trip_Experience').select('*').eq('trip_id', trip_id).execute()
+    user_id = get_jwt_identity()
+    response = supabase.table('Trip_Experience').select('*, Trip(user_id)').eq('trip_id', trip_id).eq('Trip.user_id', user_id).execute()
     response_data = response.data
 
     # Gets the experience ids for trip-experiences
@@ -110,9 +120,10 @@ def get_trip_experiences(trip_id):
 
 # Removes an experience from a trip
 @app.route('/trip/<int:trip_id>/experience/<int:experience_id>', methods=['DELETE'])
+@jwt_required()
 def delete_experience_from_trip(trip_id, experience_id):
-
-    trip_experience = supabase.from_('Trip_Experience').select('*').eq('trip_id', trip_id).eq('experience_id', experience_id).execute()
+    user_id = get_jwt_identity()
+    trip_experience = supabase.from_('Trip_Experience').select('*, Trip(user_id)').eq('trip_id', trip_id).eq('experience_id', experience_id).eq('Trip.user_id', user_id).execute()
     
     if trip_experience.data:
         supabase.from_('Trip_Experience').delete().eq('trip_id', trip_id).eq('experience_id', experience_id).execute()

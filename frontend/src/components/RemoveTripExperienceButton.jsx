@@ -18,6 +18,7 @@ export default function DeleteTripExperienceButton({ tripId, experienceId, onExp
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem("token")
                 },
         });
 

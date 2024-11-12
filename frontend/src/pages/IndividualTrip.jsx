@@ -16,7 +16,11 @@ export default function IndividualTrip(){
     // Tries and fetchs experiences from API
     const fetchExperiences = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/trip_experiences/${tripId}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/trip_experiences/${tripId}`, {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        });
         if (!response.ok){
           throw new Error('Failed to fetch experiences');
         }
