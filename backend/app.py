@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 from supabase import create_client, Client
 from dotenv import load_dotenv 
 from flask_jwt_extended import JWTManager
@@ -12,6 +12,7 @@ load_dotenv()
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
 SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")
 JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "")
+GOOGLE_PLACES_API_KEY = os.environ.get("GOOGLE_PLACES_API_KEY", "")
 
 # initalize supabase client 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -30,6 +31,8 @@ import user_controller
 
 import trip_controller
 
+import search_controller
+  
 import experience_controller
 
 if __name__ == '__main__':

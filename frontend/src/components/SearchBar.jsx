@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/SearchBar.css';
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar() {
     const [location, setLocation] = useState('');
     const [keywords, setKeywords] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (onSearch) {
-            onSearch({ location, keywords });
+        const searchParams = new URLSearchParams();
+        if (location.trim()) {
+            searchParams.append('location', location.trim());
         }
+        if (keywords.trim()) {
+            const keywordList = keywords.split(',').map(keyword => keyword.trim()).join(',');
+            searchParams.append('keywords', keywordList);
+        }
+
+        navigate(`/feed?${searchParams.toString()}`);
+
         setLocation(''); 
         setKeywords(''); 
     };

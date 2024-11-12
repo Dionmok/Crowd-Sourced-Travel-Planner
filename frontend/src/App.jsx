@@ -2,6 +2,7 @@ import "./css/Reset.css";
 import "./css/App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import FeedPage from "./pages/FeedPage";
 import Login from "./pages/Login";
 import MyExperiences from "./pages/MyExperiences";
 import CreateExperience from "./pages/CreateExperience";
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<Home />} />
+        <Route path="/feed" element={<FeedPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/myExperiences" element={<MyExperiences userId={123} />} />
         <Route path="/individualExperience/:experienceId" element={<IndividualExperience />} />
