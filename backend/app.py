@@ -33,5 +33,7 @@ import trip_controller
 
 import search_controller
   
+import experience_controller
+
 if __name__ == '__main__':
     app.run(debug=True) # enable debug mode 

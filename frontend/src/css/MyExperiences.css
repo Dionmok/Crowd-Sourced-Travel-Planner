@@ -1,0 +1,40 @@
+.experiences-container {
+    max-height: 700px;
+    max-width: 1300px;
+    overflow-y: auto;
+    /* /* margin-top: 0px; */
+    /* margin-right: 100px; */
+    margin-left: 250px;
+    padding: 30px;
+    /* background: rgba(255, 166, 0, 0.315); */
+    
+}
+
+/* Add experience button */
+.add-experience-button {
+    position:fixed;
+    left:0px;
+    top:80%;
+    display: flex;
+    flex-direction: column;
+    padding:40px;
+}
+
+.add-experience-button button{
+    height: 3em;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #FA812F;
+}
+.experiences-container h1{
+    position:fixed;
+    left:0px;
+    display: flex;
+    flex-direction: column;
+    padding:50px;
+}
+
+
+.vertical-gradient-bg {
+    background: linear-gradient(to bottom, #3498db, #2ecc71); /* top-to-bottom gradient */
+}

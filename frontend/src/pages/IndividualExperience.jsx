@@ -27,7 +27,6 @@ export default function IndividualExperience() {
                 const response = await fetch(`http://127.0.0.1:5000/experience_keywords/${experience.experience_id}`);
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data);
                     setKeywords(data);
                 } else {
                     console.error('Failed to fetch keywords');
@@ -65,7 +64,7 @@ export default function IndividualExperience() {
             </div>
             <div className="keywords-container">
               <h1>Keywords:</h1>
-                <div class='keywords-list'>
+                <div className='keywords-list'>
                     {keywords.map((keyword, index) => (
                      <div key={index}>
                         {keyword}  
@@ -75,8 +74,7 @@ export default function IndividualExperience() {
             </div>
             <div className="image-container">
               <h1>Image: </h1>
-                {/* TODO: Add Image Preview, and fix file not found error  */}
-                <h1> {photoURL} </h1> 
+                <img src={photoURL} alt="Experience Image" />
             </div>
             <div className="rating-container">
               <h1>Rating</h1>
