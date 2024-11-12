@@ -14,7 +14,7 @@ export default function DeleteTripExperienceButton({ tripId, experienceId, onExp
 
         try {
             // Makes a DELETE request
-            const response = await fetch(`http://127.0.0.1:5000/trip/${tripId}/experience/${experienceId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/trip/${tripId}/experience/${experienceId}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',

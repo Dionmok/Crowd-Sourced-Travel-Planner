@@ -19,7 +19,7 @@ export default function SaveTripButton({ tripId, tripName, tripDescription, star
         try {
             const userId = 123; // Hardcoded for testing; replace with dynamic user_id fetching logic
 
-            const response = await fetch(`http://127.0.0.1:5000/save_trip`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/save_trip`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

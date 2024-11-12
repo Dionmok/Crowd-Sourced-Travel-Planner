@@ -12,7 +12,7 @@ export default function MyTrips({ userId }){
     // Tries and fetchs trips from API
     const fetchTrips = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/trips/${userId}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/trips/${userId}`);
         if (!response.ok){
           throw new Error('Failed to fetch trips');
         }

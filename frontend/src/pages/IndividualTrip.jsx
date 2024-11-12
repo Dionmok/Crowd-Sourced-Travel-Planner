@@ -16,7 +16,7 @@ export default function IndividualTrip(){
     // Tries and fetchs experiences from API
     const fetchExperiences = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/trip_experiences/${tripId}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/trip_experiences/${tripId}`);
         if (!response.ok){
           throw new Error('Failed to fetch experiences');
         }
