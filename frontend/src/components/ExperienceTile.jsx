@@ -3,7 +3,7 @@ import EditExperienceButton from '../components/EditExperienceButton';
 import DeleteExperienceButton from '../components/DeleteExperienceButton';
 import '../css/ExperienceTile.css';
 
-export default function ({ experience, userId, onExperienceDeleted }){
+export default function ({ experience, onExperienceDeleted }){
     const navigate = useNavigate();
 
     // Redirects to individual experience
@@ -33,6 +33,10 @@ export default function ({ experience, userId, onExperienceDeleted }){
                 <div className='description'>
                     <p>Description: {experience.description}</p>
                 </div>
+                {/* TODO: Add USERNAME of user that created the Experience */}
+                <div className='username'>
+                    {/* <p>Posted by: {experience.user_id}</p> */}
+                </div>
             </div>
 
             <div className='button-edit-container'>
@@ -40,7 +44,7 @@ export default function ({ experience, userId, onExperienceDeleted }){
                     <EditExperienceButton experience={experience}/>
                 </div>
                 <div className='delete'>
-                    <DeleteExperienceButton experienceId={experience.experience_id} userId={userId} onExperienceDeleted={onExperienceDeleted} />
+                    <DeleteExperienceButton experienceId={experience.experience_id} onExperienceDeleted={onExperienceDeleted} />
                 </div>
             </div>
         
