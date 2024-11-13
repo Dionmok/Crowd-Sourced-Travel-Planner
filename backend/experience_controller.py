@@ -1,15 +1,17 @@
 from __main__ import app, supabase
 from flask import jsonify, request
 from flask_bcrypt import Bcrypt
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 bcrypt = Bcrypt(app)
 
 
 # Fetches experinces for a given user_id
-@app.route('/experiences/<user_id>', methods=['GET'])
-def get_user_experiences(user_id):
+@app.route('/saved_experiences', methods=['GET'])
+@jwt_required()
+def get_user_experiences():
+    user_id = get_jwt_identity()
     response = supabase.table('Experiences').select('*').eq('user_id', user_id).execute()
-
     if response.data:
         return jsonify(response.data), 200
     else:
@@ -34,10 +36,11 @@ def handle_keywords(keywords):
 
 # Save a newly created Experience
 @app.route('/save_experience', methods=['POST'])
+@jwt_required()
 def save_experience():
     data = request.get_json()
-
-    user_id = data.get('user_id')
+    user_id = get_jwt_identity()
+    # user_id = data.get('user_id')
     experience_name = data.get('experience_name')
     description = data.get('description')
     photo = data.get('photo')
@@ -134,7 +137,9 @@ def get_experience_keywords_ids(experience_id):
     
 # Edits a particular experience
 @app.route('/edit_experience', methods=['PUT'])
+@jwt_required()
 def edit_experience():
+    user_id = get_jwt_identity()
     data = request.get_json()
 
     experience_id = data.get('experience_id')
@@ -161,6 +166,7 @@ def edit_experience():
             'time_created': time_updated
         })
         .eq('experience_id', experience_id)
+        .eq('user_id', user_id)
         .execute()
     )
 
@@ -199,10 +205,12 @@ def edit_experience():
     
 # Deletes a particular experience
 @app.route('/delete_experience', methods=['DELETE'])
+@jwt_required()
 def delete_experience():
     data = request.get_json()
     experience_id = data.get('experience_id')
-    user_id = data.get('user_id')
+    user_id = get_jwt_identity()
+    # user_id = data.get('user_id')
 
     # check if experience is connected to any keywords on Experience_Keywords table
     keyword_response = supabase.table('Experience_Keywords').select('*').eq('experience_id', experience_id).execute() # get all keywords for the experience
