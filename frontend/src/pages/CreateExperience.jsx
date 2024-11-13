@@ -33,14 +33,13 @@ export default function CreateExperience() {
 
 
     try {
-      const userId = 123; // Hardcoded for testing; replace with dynamic user_id fetching logic
       const response = await fetch(`http:///127.0.0.1:5000/save_experience`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: localStorage.getItem("token")
         },
         body: JSON.stringify({
-          user_id: userId,
           experience_name: experienceName,
           description: description,
           photo: photoURL,
