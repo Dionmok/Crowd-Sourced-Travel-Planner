@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/feed" element={<FeedPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/myExperiences" element={<MyExperiences userId={123} />} />
+        <Route path="/myExperiences" element={<MyExperiences />} />
         <Route path="/individualExperience/:experienceId" element={<IndividualExperience />} />
         <Route path="/editExperience/:experienceId" element={<EditExperience />} />
         <Route path="/createExperience" element={<CreateExperience />} /> 
