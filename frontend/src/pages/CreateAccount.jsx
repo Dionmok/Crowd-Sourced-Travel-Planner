@@ -1,6 +1,6 @@
 import NavBar from "../components/NavBar";
 import "../css/CreateAccountLogin.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function CreateAccount() {
@@ -10,9 +10,7 @@ export default function CreateAccount() {
   const [errors, setErrors] = useState([]);
   const [createAccountSuccess, setCreateAccountSuccess] = useState(null);
 
-  async function submitCreateAccount(e) {
-    e.preventDefault();
-
+  useEffect(() => {
     // Validate user input
     const inputErrors = [];
     if (username.length < 4 || username.length > 16) {
@@ -48,13 +46,16 @@ export default function CreateAccount() {
       inputErrors.push("Password and Confirm Password do not match");
     }
 
+    setErrors(inputErrors);
+  }, [username, password, confirmPassword]);
+
+  async function submitCreateAccount(e) {
+    e.preventDefault();
+
     // If user input is invalid, set errors
-    if (inputErrors.length > 0) {
-      setErrors(inputErrors);
+    if (errors.length > 0) {
       return;
     }
-    
-    setErrors([]);
 
     // Send request to backend to create new account
     const res = await fetch(`${import.meta.env.VITE_API_URL}/create-account`, {
