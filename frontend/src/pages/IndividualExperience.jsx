@@ -24,7 +24,11 @@ export default function IndividualExperience() {
     useEffect(() => {
         const fetchKeywords = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:5000/experience_keywords/${experience.experience_id}`);
+                const response = await fetch(`http://127.0.0.1:5000/experience_keywords/${experience.experience_id}`, {
+                  headers: {
+                    Authorization: localStorage.getItem("token")
+                  }
+                });
                 if (response.ok) {
                     const data = await response.json();
                     setKeywords(data);

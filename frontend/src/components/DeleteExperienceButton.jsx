@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {FaTrash} from 'react-icons/fa';
 
-export default function DeleteExperienceButton({experienceId, userId, onExperienceDeleted}) {
+export default function DeleteExperienceButton({experienceId, onExperienceDeleted}) {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
 
@@ -16,8 +16,9 @@ export default function DeleteExperienceButton({experienceId, userId, onExperien
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem("token")
                 },
-                body: JSON.stringify({experience_id: experienceId, user_id: userId}),
+                body: JSON.stringify({experience_id: experienceId }),
         });
 
         if (!response.ok) {

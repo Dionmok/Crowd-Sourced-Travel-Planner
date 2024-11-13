@@ -4,14 +4,18 @@ import ButtonLink from "../components/ButtonLink";
 import ExperienceTile from "../components/ExperienceTile";
 import '../css/MyExperiences.css';
 
-export default function MyExperiences({userId}) {
+export default function MyExperiences() {
   const [experiences, setExperiences] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/experiences/123`); // TODO Hardcoded for testing; replace with dynamic user_id fetching logic
+        const response = await fetch(`http://127.0.0.1:5000/saved_experiences`, {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        }); 
         if (!response.ok){
           throw new Error('Failed to fetch experiences');
         }
@@ -26,7 +30,7 @@ export default function MyExperiences({userId}) {
       }
     }
     fetchExperiences();
-  }, [userId]);
+  }, []);
 
   const handleExperienceDeleted = (experienceId) => {
     setExperiences((prevExperiences) => prevExperiences.filter(experience => experience.experience_id != experienceId));
@@ -48,7 +52,7 @@ export default function MyExperiences({userId}) {
           ) : (
             <div>
               {experiences.map((experience) => (
-                <ExperienceTile key={experience.experience_id} experience={experience} userId={userId} onExperienceDeleted={handleExperienceDeleted} />
+                <ExperienceTile key={experience.experience_id} experience={experience} onExperienceDeleted={handleExperienceDeleted} />
               ))}
             </div >
           )}
