@@ -20,6 +20,7 @@ export default function ExpSaveChanges({ experienceId, experienceName, descripti
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem("token")
                 },
                 body: JSON.stringify({
                     experience_id: experienceId,
