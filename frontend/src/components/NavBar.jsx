@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../css/NavBar.css";
+import logo from "../assets/TRIPPIE.png";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -15,6 +16,9 @@ export default function NavBar() {
       {localStorage.getItem("token") ? (
         <nav>
           <div>
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
             <Link to="/">
               <button>Home</button>
             </Link>
@@ -42,6 +46,9 @@ export default function NavBar() {
       ) : (
         <nav>
           <div>
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
             <Link to="/">
               <button>Home</button>
             </Link>
