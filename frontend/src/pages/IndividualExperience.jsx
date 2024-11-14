@@ -3,6 +3,8 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
 import EditExperienceButton from "../components/EditExperienceButton";
+import DeleteExperienceButton from "../components/DeleteExperienceButton";
+import '../css/IndividualExperience.css';
 
 export default function IndividualExperience() {
     const location = useLocation(); 
@@ -46,48 +48,58 @@ export default function IndividualExperience() {
     return (
         <>
           <NavBar />
-          <h1>Individual Experience page</h1>
           <form id='updateExperience'>
-            <div className="title-container">
-              <h1>Trip Name: {experienceName} </h1>
-            </div>
-            <div className="description-container">
-              <h1>Description: </h1>
-              <h1> {description} </h1>
-            </div>
-            <div className="location-container">
-              <h1>Address:</h1>
-                <h1> {address} </h1>
-              <h1>Geolocation: </h1>
-              <div className='geolocation-input-container'>
-                <h1>Latitude</h1>
-                    <h1> {latitude} </h1>
-                <h1>Longitude</h1>
-                    <h1> {longitude} </h1>
+            <div className="experience-container">
+              {/* Tile  */}
+              <div className="title">
+                    <h1>{experienceName} </h1>
               </div>
-            </div>
-            <div className="keywords-container">
-              <h1>Keywords:</h1>
-                <div className='keywords-list'>
-                    {keywords.map((keyword, index) => (
-                     <div key={index}>
-                        {keyword}  
-                    </div> 
-                    ))}
+              {/* Boxes next to each other  */}
+              <div className="row-container">
+                {/* left side  */}
+                <div className="left-container">
+                  <img src={photoURL} alt="Experience Image" />
+                  <div className="rating-container">
+                    <h1>Rating</h1>
+                      <h1> {rating} </h1>
+                  </div>
                 </div>
-            </div>
-            <div className="image-container">
-              <h1>Image: </h1>
-                <img src={photoURL} alt="Experience Image" />
-            </div>
-            <div className="rating-container">
-              <h1>Rating</h1>
-                <h1> {rating} </h1>
-            </div>
+                {/* right side  */}
+                <div className="right-container">
+                  <div className=".description-container">
+                    <h1>Description: </h1>
+                    <h2> {description} </h2>
+                  </div>
+                  <div className="location-container">
+                    <h1>Address:</h1>
+                      <h2> {address} </h2>
+                    <h1>Geolocation: </h1>
+                    <div className='geolocation-input-container'>
+                      <h1>Latitude</h1>
+                          <h2> {latitude} </h2>
+                      <h1>Longitude</h1>
+                          <h2> {longitude} </h2>
+                    </div>
+                  </div>
+                  <div className="keywords-container">
+                    <h1>Keywords:</h1>
+                      <div className='keywords-list'>
+                          {keywords.map((keyword, index) => (
+                          <h2 key={index}>
+                              {keyword}  
+                          </h2> 
+                          ))}
+                      </div>
+                  </div>
+                  
+                </div>
+              </div>
+          </div>
 
             <EditExperienceButton experience={experience} />
+            <DeleteExperienceButton experience={experience} />
             {/* TODO: Add ExperinceTrip button  */}
-            <ButtonLink varient="button-back" buttonName="Cancel" routeTo="/myExperiences" />
+            <ButtonLink varient="button-back" buttonName="Back" routeTo="/myExperiences" />
             
             {/* Error Message Display */}
             {error && (
