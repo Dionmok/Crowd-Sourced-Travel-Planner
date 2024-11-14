@@ -57,6 +57,10 @@ export default function EditExperience() {
         setError(null);
     };
 
+    const handleCancelClick = () => {
+      navigate(`/individualExperience/${experience.experience_id}`, { state: { experience } });
+    }
+    
     return (
         <>
           <NavBar />
@@ -151,7 +155,8 @@ export default function EditExperience() {
                 onSuccess={handleSuccess}
                 onError={handleError}
                 />
-            <ButtonLink varient="button-back" buttonName="Cancel" routeTo="/myExperiences" />
+            {/* Cancel button to exit edit mode */}
+            <button onClick={handleCancelClick}>Cancel</button>
             
             {/* Error Message Display */}
             {error && (
