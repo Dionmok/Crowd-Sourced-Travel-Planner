@@ -5,7 +5,9 @@ import TextBox from "../components/TextBox";
 import Keywords from "../components/Keywords";
 import GeolocationInput from "../components/GeolocationInput";
 import Rating from "../components/Rating";
-import { useState } from "react";
+import { useState} from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function CreateExperience() {
   const [error, setError] = useState("");
@@ -18,6 +20,8 @@ export default function CreateExperience() {
   const [keywords, setKeywords] = useState([]);
   const [photoURL, setPhotoURL] = useState("");
   const [rating, setRating] = useState("");
+
+  const navigate = useNavigate();
 
   // handle form submission 
   const handleSubmit = async (e) => {
@@ -58,6 +62,8 @@ export default function CreateExperience() {
     } catch (error) {
       setError(error.message);
     }
+    console.log("Experience saved successfully");
+    navigate('/myExperiences');
   };
 
   return (
@@ -141,7 +147,7 @@ export default function CreateExperience() {
             value={rating}
             onChange={setRating} />
         </div>
-        <ButtonLink type="submit" varient="button-add" buttonName="Save" />
+        <button type="submit" className="button-add">Submit</button>
         <ButtonLink varient="button-back" buttonName="Cancel" routeTo="/myExperiences" />
         
         {/* Error Message Display */}
