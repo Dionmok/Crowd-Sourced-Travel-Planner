@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import EditExperienceButton from '../components/EditExperienceButton';
 import DeleteExperienceButton from '../components/DeleteExperienceButton';
+import AddExperienceToTripButton from "../components/AddExperienceToTripButton";
 import '../css/ExperienceTile.css';
 
 export default function ({ experience, onExperienceDeleted }){
@@ -40,6 +41,9 @@ export default function ({ experience, onExperienceDeleted }){
             </div>
 
             <div className='button-edit-container'>
+                <div className='add-to-trip'>
+                    <AddExperienceToTripButton experienceId={experience.experience_id} />
+                </div>
                 <div className='edit'>
                     <EditExperienceButton experience={experience}/>
                 </div>
