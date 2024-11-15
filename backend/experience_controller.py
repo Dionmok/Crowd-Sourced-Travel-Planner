@@ -227,3 +227,23 @@ def delete_experience():
     else:
         return jsonify({"error": "Experience is not found or is not one of the user's experiences"}), 404
     
+
+# Adds Experience to a users Trip 
+@app.route('/add_to_trip', methods=['POST'])
+def add_to_trip():
+    data = request.get_json()
+    experience_id = data.get('experience_id')
+    trip_id = data.get('trip_id')
+
+    if not all([experience_id, trip_id]):
+        return jsonify({"error": "Missing required fields"}), 400
+
+    response = supabase.table('Trip_Experience').insert({
+        'experience_id': experience_id,
+        'trip_id': trip_id,
+    }).execute()
+
+    if response.data:
+        return jsonify({"message": "Experience added to trip successfully"}), 200
+    else:
+        return jsonify({"error": "Failed to add experience to trip"}), 404
