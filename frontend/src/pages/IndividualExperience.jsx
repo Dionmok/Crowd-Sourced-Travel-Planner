@@ -4,7 +4,6 @@ import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
 import EditExperienceButton from "../components/EditExperienceButton";
 import DeleteExperienceButton from "../components/DeleteExperienceButton";
-import Rating from "../components/Rating";
 import '../css/IndividualExperience.css';
 
 export default function IndividualExperience() {
@@ -19,12 +18,12 @@ export default function IndividualExperience() {
     const [longitude, setLongitude] = useState(experience.longitude);
     const [keywords, setKeywords] = useState([]);
     const [photoURL, setPhotoURL] = useState(experience.photo || "testurl");
-    const [rating, setRating] = useState("");
+    const [rating, setRating] = useState(experience.rating);
     const [userRating, setUserRating] = useState("");
 
     const [error, setError] = useState("");
  
-    // Fetch the keywords, rating and user rating for the experience
+    // Fetch the keywords and current user rating for the experience
     useEffect(() => {
         const fetchKeywords = async () => {
             try {
@@ -46,24 +45,6 @@ export default function IndividualExperience() {
         };
         fetchKeywords();
 
-        const fetchExperienceRating = async () => {
-          try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_rating/${experience.experience_id}`, {
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              }
-            });
-            if (response.ok) {
-              const data = await response.json();
-              setRating(data.rating)
-            }
-          } catch(error) {
-            console.error(error)
-          }
-        };
-        fetchExperienceRating();
-
         const fetchUserRating = async () => {
           try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_user_rating/${experience.experience_id}`, {
@@ -82,7 +63,34 @@ export default function IndividualExperience() {
           }
         };
         fetchUserRating();
-    }, [experience.experience_id, userRating]);
+    }, [experience.experience_id]);
+
+    async function handleRatingChange(e) {
+      setUserRating(e.target.value);
+
+      await fetch(`${import.meta.env.VITE_API_URL}/rate_experience`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          experience_id: experience.experience_id,
+          user_rating: e.target.value,
+        }),
+      });
+
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_rating/${experience.experience_id}`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      });
+      const data = await response.json();
+
+      setRating(data.rating);
+    };
 
     return (
         <>
@@ -100,7 +108,15 @@ export default function IndividualExperience() {
                   <img src={photoURL} alt="Experience Image" />
                   <div className="rating-container">
                     <h1>Rating: {rating}</h1>
-                    <p>Your rating: <Rating userRating={userRating} setRating={setUserRating} experience_id={experience.experience_id}/></p>
+                    <span>Your rating: </span>
+                    <select name="rating" value={userRating} onChange={handleRatingChange}>
+                      <option value="">Select Rating</option>
+                      <option value="1">1 Star</option>
+                      <option value="2">2 Stars</option>
+                      <option value="3">3 Stars</option>
+                      <option value="4">4 Stars</option>
+                      <option value="5">5 Stars</option>
+                    </select>
                   </div>
                 </div>
                 {/* right side  */}
