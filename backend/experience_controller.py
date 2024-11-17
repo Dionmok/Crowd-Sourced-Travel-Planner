@@ -13,6 +13,15 @@ def get_user_experiences():
     user_id = get_jwt_identity()
     response = supabase.table('Experiences').select('*').eq('user_id', user_id).execute()
     if response.data:
+        for experience in response.data:
+            ratings = supabase.table('Ratings').select('rating').eq('experience_id', experience['experience_id']).execute()
+            if ratings.data:
+                ratingsList = []
+                for rating in ratings.data:
+                    ratingsList.append(int(rating['rating']))
+                experience['rating'] = f"{round(sum(ratingsList) / len(ratingsList),1)} ({len(ratingsList)} ratings)"
+            else:
+                experience['rating'] = "0 (0 ratings)"
         return jsonify(response.data), 200
     else:
         return jsonify({"error": "No experiences found for this user"}), 404
@@ -48,10 +57,9 @@ def save_experience():
     longitude = data.get('longitude')
     address = data.get('address')
     keywords = data.get('keywords')
-    rating = data.get('rating')
     time_created = data.get('time_created')
 
-    if not all([user_id, experience_name, description, photo, latitude, longitude, address, rating, time_created]):
+    if not all([user_id, experience_name, description, photo, latitude, longitude, address, time_created]):
         return jsonify({"error": "Missing required fields"}), 400
     
     response = supabase.table('Experiences').insert({
@@ -62,7 +70,6 @@ def save_experience():
         'latitude': latitude,
         'longitude': longitude,
         'address': address,
-        'rating': rating,
         'time_created': time_created,
         'published': True
     }).execute()
@@ -150,7 +157,6 @@ def edit_experience():
     longitude = data.get('longitude')
     address = data.get('address')
     keywords = data.get('keywords')
-    rating = data.get('rating')
     time_updated = data.get('time_updated')
 
     update_response = (
@@ -162,7 +168,6 @@ def edit_experience():
             'latitude': latitude,
             'longitude': longitude,
             'address': address,
-            'rating': rating,
             'time_created': time_updated
         })
         .eq('experience_id', experience_id)
@@ -227,3 +232,50 @@ def delete_experience():
     else:
         return jsonify({"error": "Experience is not found or is not one of the user's experiences"}), 404
     
+# Fetches the experience rating for the current user
+@app.route('/experience_user_rating/<experience_id>', methods=['GET'])
+@jwt_required()
+def get_experience_user_rating(experience_id):
+    user_id = get_jwt_identity()
+
+    rating = supabase.table('Ratings').select('rating').eq('experience_id', experience_id).eq('user_id', user_id).execute()
+
+    if rating.data:
+        return jsonify({'user_rating': rating.data[0]['rating']}), 200
+    else:
+        return jsonify({'user_rating': ''}), 200
+    
+# Sets the users rating for a particular experience
+@app.route('/rate_experience', methods=['POST'])
+@jwt_required()
+def rate_experience():
+    user_id = get_jwt_identity()
+    experience_id = request.json.get("experience_id", None)
+    user_rating = request.json.get("user_rating", None)
+
+    rating = supabase.table('Ratings').select('rating').eq('experience_id', experience_id).eq('user_id', user_id).execute()
+
+    if user_rating == '':
+        supabase.table('Ratings').delete().eq('experience_id', experience_id).eq('user_id', user_id).execute()
+        return jsonify({'message': 'Rating deleted successfully'}), 200
+    elif len(rating.data) > 0:
+        supabase.table('Ratings').update({'rating': user_rating}).eq('experience_id', experience_id).eq('user_id', user_id).execute()
+        return jsonify({'message': 'Rating updated successfully'}), 200
+    else:
+        supabase.table('Ratings').insert({'user_id': user_id, 'experience_id': experience_id, 'rating': user_rating}).execute()
+        return jsonify({'message': 'Rating created successfully'}), 200
+
+# Fetches the current rating for a particular experience
+@app.route('/experience_rating/<experience_id>', methods=['GET'])
+def get_experience_rating(experience_id):
+    ratings = supabase.table('Ratings').select('rating').eq('experience_id', experience_id).execute()
+
+    avg_rating = "0 (0 ratings)"
+
+    if ratings.data:
+        ratingsList = []
+        for rating in ratings.data:
+            ratingsList.append(int(rating['rating']))
+        avg_rating = f"{round(sum(ratingsList) / len(ratingsList),1)} ({len(ratingsList)} ratings)"
+
+    return jsonify({'rating': avg_rating}), 200

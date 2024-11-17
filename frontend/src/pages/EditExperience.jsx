@@ -6,7 +6,6 @@ import ButtonLink from "../components/ButtonLink";
 import TextBox from "../components/TextBox";
 import Keywords from "../components/Keywords";
 import GeolocationInput from "../components/GeolocationInput";
-import Rating from "../components/Rating";
 import ExpSaveChanges from "../components/ExpSaveChanges";
 
 export default function EditExperience() {
@@ -21,7 +20,6 @@ export default function EditExperience() {
     const [longitude, setLongitude] = useState(experience.longitude);
     const [keywords, setKeywords] = useState([]);
     const [photoURL, setPhotoURL] = useState(experience.photo || "testurl");
-    const [rating, setRating] = useState(experience.rating);
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
@@ -134,14 +132,6 @@ export default function EditExperience() {
                 value={photoURL}
                 onChange={setPhotoURL} />
             </div>
-            <div className="rating-container">
-              <h1>Rating</h1>
-              <Rating 
-                name='rating'
-                id='createExperienceRating'
-                value={rating}
-                onChange={setRating} />
-            </div>
             <ExpSaveChanges 
                 experienceId={experience.experience_id}
                 experienceName={experienceName}
@@ -151,7 +141,6 @@ export default function EditExperience() {
                 longitude={longitude}
                 keywords={keywords}
                 photo={photoURL}
-                rating={rating}
                 onSuccess={handleSuccess}
                 onError={handleError}
                 />

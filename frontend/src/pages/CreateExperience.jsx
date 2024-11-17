@@ -4,7 +4,6 @@ import ButtonLink from "../components/ButtonLink";
 import TextBox from "../components/TextBox";
 import Keywords from "../components/Keywords";
 import GeolocationInput from "../components/GeolocationInput";
-import Rating from "../components/Rating";
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +18,6 @@ export default function CreateExperience() {
   const [longitude, setLongitude] = useState("");
   const [keywords, setKeywords] = useState([]);
   const [photoURL, setPhotoURL] = useState("");
-  const [rating, setRating] = useState("");
 
   const navigate = useNavigate();
 
@@ -29,7 +27,7 @@ export default function CreateExperience() {
     console.log("Handling Submit");
     
     // check if all required fields are filled
-    if (!experienceName || !description || !address || !latitude || !longitude || !address || keywords.length === 0 || !photoURL || !rating ) {
+    if (!experienceName || !description || !address || !latitude || !longitude || !address || keywords.length === 0 || !photoURL ) {
       setError("Please fill in all required fields");
       return;
     }
@@ -51,7 +49,6 @@ export default function CreateExperience() {
           longitude: longitude,
           address: address,
           keywords: keywords,
-          rating: rating,
           time_created: new Date().toISOString()
         }),
       });
@@ -138,14 +135,6 @@ export default function CreateExperience() {
             id='imageUpload'
             value={photoURL}
             onChange={setPhotoURL} />
-        </div>
-        <div className="rating-container">
-          <h1>Rating</h1>
-          <Rating 
-            name='rating'
-            id='createExperienceRating'
-            value={rating}
-            onChange={setRating} />
         </div>
         <button type="submit" className="button-add">Submit</button>
         <ButtonLink varient="button-back" buttonName="Cancel" routeTo="/myExperiences" />
