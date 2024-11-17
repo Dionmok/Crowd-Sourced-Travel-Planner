@@ -18,7 +18,7 @@ export default function IndividualExperience() {
     const [longitude, setLongitude] = useState(experience.longitude);
     const [keywords, setKeywords] = useState([]);
     const [photoURL, setPhotoURL] = useState(experience.photo || "testurl");
-    const [rating, setRating] = useState(experience.rating);
+    const [rating, setRating] = useState("Loading...");
     const [userRating, setUserRating] = useState("");
 
     const [error, setError] = useState("");
@@ -63,6 +63,24 @@ export default function IndividualExperience() {
           }
         };
         fetchUserRating();
+
+        const fetchExperienceRating = async () => {
+          try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_rating/${experience.experience_id}`, {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              }
+            });
+            if (response.ok) {
+              const data = await response.json();
+              setRating(data.rating);
+            }
+          } catch(error) {
+            console.error(error)
+          }
+        }
+        fetchExperienceRating();
     }, [experience.experience_id]);
 
     async function handleRatingChange(e) {
