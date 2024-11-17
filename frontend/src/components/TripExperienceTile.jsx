@@ -20,7 +20,7 @@ export default function TripExperienceTile ({ experience, tripId, onRemove }){
                     <h2>{experience.experience_name}</h2>
                 </div>
                 <div className='rating'>
-                    <p>Rating:{experience.rating}</p>
+                    <p>Rating: {experience.rating}</p>
                 </div>
                 {/* TODO: Add keywordss  */}
                 {/* <div className='keywords'>
