@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import RemoveTripExperienceButton from '../components/RemoveTripExperienceButton';
 import '../css/ExperienceTile.css';
 
-export default function TripExperienceTile ({ experience, tripId, onRemove }){    
+export default function TripExperienceTile ({ experience, tripId, onRemove, showDelete=true}){    
     const navigate = useNavigate();
 
     // Redirects to individual experience
@@ -36,7 +36,7 @@ export default function TripExperienceTile ({ experience, tripId, onRemove }){
 
             <div className='button-edit-container'>
                 <div className='delete'>
-                    <RemoveTripExperienceButton tripId={tripId} experienceId={experience.experience_id} onExperienceRemoved={onRemove}/>
+                    {showDelete && <RemoveTripExperienceButton tripId={tripId} experienceId={experience.experience_id} onExperienceRemoved={onRemove}/>}
                 </div>
             </div>
         </div>

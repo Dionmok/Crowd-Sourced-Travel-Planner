@@ -70,7 +70,7 @@ export default function FeedPage({ userId }) {
         {experiences.length > 0 ? (
           experiences.map((experience) => (
             <div key={experience.experience_id}>
-              <TripExperienceTile experience={experience} />
+              <TripExperienceTile experience={experience} showDelete={false}/>
               <SaveTripButton
                 tripId={experience.experience_id}
                 tripName={experience.trip_name || experience.title}

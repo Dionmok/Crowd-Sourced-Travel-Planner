@@ -46,6 +46,10 @@ export default function IndividualExperience() {
         fetchKeywords();
 
         const fetchUserRating = async () => {
+          if (!localStorage.getItem("token")) {
+            return;
+          }
+
           try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_user_rating/${experience.experience_id}`, {
               headers: {
@@ -84,6 +88,10 @@ export default function IndividualExperience() {
     }, [experience.experience_id]);
 
     async function handleRatingChange(e) {
+      if (!localStorage.getItem("token")) {
+        return;
+      }
+
       setUserRating(e.target.value);
 
       await fetch(`${import.meta.env.VITE_API_URL}/rate_experience`, {
@@ -126,15 +134,19 @@ export default function IndividualExperience() {
                   <img src={photoURL} alt="Experience Image" />
                   <div className="rating-container">
                     <h1>Rating: {rating}</h1>
-                    <span>Your rating: </span>
-                    <select name="rating" value={userRating} onChange={handleRatingChange}>
-                      <option value="">Select Rating</option>
-                      <option value="1">1 Star</option>
-                      <option value="2">2 Stars</option>
-                      <option value="3">3 Stars</option>
-                      <option value="4">4 Stars</option>
-                      <option value="5">5 Stars</option>
-                    </select>
+                    {localStorage.getItem("token") &&
+                    <div>
+                      <span>Your rating: </span>
+                      <select name="rating" value={userRating} onChange={handleRatingChange}>
+                        <option value="">Select Rating</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                      </select>
+                    </div>
+                    }
                   </div>
                 </div>
                 {/* right side  */}
@@ -169,8 +181,10 @@ export default function IndividualExperience() {
               </div>
           </div>
 
-            <EditExperienceButton experience={experience} />
-            <DeleteExperienceButton experience={experience} />
+            {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+              .sub && <EditExperienceButton experience={experience} />}
+            {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+              .sub && <DeleteExperienceButton experience={experience} />}
             {/* TODO: Add ExperinceTrip button  */}
             <ButtonLink varient="button-back" buttonName="Back" routeTo="/myExperiences" />
             
