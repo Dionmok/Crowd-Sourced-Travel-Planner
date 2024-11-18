@@ -227,3 +227,33 @@ def delete_experience():
     else:
         return jsonify({"error": "Experience is not found or is not one of the user's experiences"}), 404
     
+
+# Adds Experience to a users Trip 
+@app.route('/add_to_trip', methods=['POST'])
+@jwt_required()
+def add_to_trip():
+    data = request.get_json()
+    experience_id = data.get('experience_id')
+    trip_id = data.get('trip_id')
+    user_id = get_jwt_identity()
+
+    if not all([experience_id, trip_id]):
+        return jsonify({"error": "Missing required fields"}), 400
+    
+    # check if the user is the owner of the trip
+    trip_response = supabase.table('Trip').select('user_id').eq('trip_id', trip_id).execute()
+    if trip_response.data:
+        if trip_response.data[0]['user_id'] != user_id:
+            return jsonify({"error": "You are not the owner of the trip"}), 400
+    else:
+        return jsonify({"error": "Trip not found"}), 404
+
+    response = supabase.table('Trip_Experience').insert({
+        'experience_id': experience_id,
+        'trip_id': trip_id,
+    }).execute()
+
+    if response.data:
+        return jsonify({"message": "Experience added to trip successfully"}), 200
+    else:
+        return jsonify({"error": "Failed to add experience to trip"}), 404
