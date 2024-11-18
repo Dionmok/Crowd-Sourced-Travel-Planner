@@ -208,13 +208,21 @@ def delete_experience():
     data = request.get_json()
     experience_id = data.get('experience_id')
     user_id = get_jwt_identity()
-    # user_id = data.get('user_id')
 
     # check if experience is connected to any keywords on Experience_Keywords table
     keyword_response = supabase.table('Experience_Keywords').select('*').eq('experience_id', experience_id).execute() # get all keywords for the experience
     if keyword_response.data:
-        print("keywords found", keyword_response.data)    
         supabase.table('Experience_Keywords').delete().eq('experience_id', experience_id).execute()
+    
+    # check if experience is connected to any trips on Trip_Experience table
+    trip_response = supabase.table('Trip_Experience').select('*').eq('experience_id', experience_id).execute() # get all trips for the experience
+    if trip_response.data:
+        supabase.table('Trip_Experience').delete().eq('experience_id', experience_id).execute()
+    
+    # check if experience is connected to any ratings on Ratings table
+    rating_response = supabase.table('Ratings').select('*').eq('experience_id', experience_id).execute() # get all ratings for the experience
+    if rating_response.data:
+        supabase.table('Ratings').delete().eq('experience_id', experience_id).execute()
     
     # delete the experience
     experience = supabase.table('Experiences').select('*').eq('experience_id', experience_id).eq('user_id', user_id). execute()
