@@ -18,11 +18,12 @@ export default function IndividualExperience() {
     const [longitude, setLongitude] = useState(experience.longitude);
     const [keywords, setKeywords] = useState([]);
     const [photoURL, setPhotoURL] = useState(experience.photo || "testurl");
-    const [rating, setRating] = useState(experience.rating);
+    const [rating, setRating] = useState("Loading...");
+    const [userRating, setUserRating] = useState("");
 
     const [error, setError] = useState("");
  
-    // Fetch the keywords for the experience
+    // Fetch the keywords and current user rating for the experience
     useEffect(() => {
         const fetchKeywords = async () => {
             try {
@@ -43,7 +44,71 @@ export default function IndividualExperience() {
             }
         };
         fetchKeywords();
+
+        const fetchUserRating = async () => {
+          try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_user_rating/${experience.experience_id}`, {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token")
+              }
+            });
+            if (response.ok) {
+              const data = await response.json();
+              setUserRating(data.user_rating);
+            }
+          } catch(error) {
+            console.error(error)
+          }
+        };
+        fetchUserRating();
+
+        const fetchExperienceRating = async () => {
+          try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_rating/${experience.experience_id}`, {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              }
+            });
+            if (response.ok) {
+              const data = await response.json();
+              setRating(data.rating);
+            }
+          } catch(error) {
+            console.error(error)
+          }
+        }
+        fetchExperienceRating();
     }, [experience.experience_id]);
+
+    async function handleRatingChange(e) {
+      setUserRating(e.target.value);
+
+      await fetch(`${import.meta.env.VITE_API_URL}/rate_experience`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          experience_id: experience.experience_id,
+          user_rating: e.target.value,
+        }),
+      });
+
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_rating/${experience.experience_id}`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      });
+      const data = await response.json();
+
+      setRating(data.rating);
+    };
 
     return (
         <>
@@ -60,8 +125,16 @@ export default function IndividualExperience() {
                 <div className="left-container">
                   <img src={photoURL} alt="Experience Image" />
                   <div className="rating-container">
-                    <h1>Rating</h1>
-                      <h1> {rating} </h1>
+                    <h1>Rating: {rating}</h1>
+                    <span>Your rating: </span>
+                    <select name="rating" value={userRating} onChange={handleRatingChange}>
+                      <option value="">Select Rating</option>
+                      <option value="1">1 Star</option>
+                      <option value="2">2 Stars</option>
+                      <option value="3">3 Stars</option>
+                      <option value="4">4 Stars</option>
+                      <option value="5">5 Stars</option>
+                    </select>
                   </div>
                 </div>
                 {/* right side  */}

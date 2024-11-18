@@ -4,7 +4,7 @@ import DeleteExperienceButton from '../components/DeleteExperienceButton';
 import AddExperienceToTripButton from "../components/AddExperienceToTripButton";
 import '../css/ExperienceTile.css';
 
-export default function ({ experience, onExperienceDeleted }){
+export default function ExperienceTile ({ experience, onExperienceDeleted }){
     const navigate = useNavigate();
 
     // Redirects to individual experience
@@ -22,7 +22,7 @@ export default function ({ experience, onExperienceDeleted }){
                     <h2>{experience.experience_name}</h2>
                 </div>
                 <div className='rating'>
-                    <p>Rating:{experience.rating}</p>
+                    <p>Rating: {experience.rating}</p>
                 </div>
                 {/* TODO: Add keywordss  */}
                 {/* <div className='keywords'>

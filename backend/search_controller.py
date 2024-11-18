@@ -28,6 +28,15 @@ def search_experiences():
     response = query.execute()
 
     if response.data:
+        for experience in response.data:
+            ratings = supabase.table('Ratings').select('rating').eq('experience_id', experience['experience_id']).execute()
+            if ratings.data:
+                ratingsList = []
+                for rating in ratings.data:
+                    ratingsList.append(int(rating['rating']))
+                experience['rating'] = f"{round(sum(ratingsList) / len(ratingsList),1)} ({len(ratingsList)} ratings)"
+            else:
+                experience['rating'] = "0 (0 ratings)"
         return jsonify(response.data), 200
     else:
         return jsonify({"error": "No experiences found"}), 404
