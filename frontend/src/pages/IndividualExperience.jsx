@@ -169,8 +169,10 @@ export default function IndividualExperience() {
               </div>
           </div>
 
-            <EditExperienceButton experience={experience} />
-            <DeleteExperienceButton experience={experience} />
+            {experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+              .sub && <EditExperienceButton experience={experience} />}
+            {experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+              .sub && <DeleteExperienceButton experience={experience} />}
             {/* TODO: Add ExperinceTrip button  */}
             <ButtonLink varient="button-back" buttonName="Back" routeTo="/myExperiences" />
             
