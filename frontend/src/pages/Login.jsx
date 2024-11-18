@@ -1,15 +1,13 @@
 import NavBar from "../components/NavBar";
 import "../css/CreateAccountLogin.css";
 import { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
-  const location = useLocation();
-  const { from } = location.state || { from: "/" };
 
   async function submitLogin(e) {
     e.preventDefault();
@@ -45,7 +43,7 @@ export default function Login() {
     if (res.status === 200) {
       const token = await res.json();
       localStorage.setItem("token", "Bearer " + token.access_token);
-      navigate(from);
+      navigate("/");
     } else {
       const error = await res.json();
       setErrors(error.errors);

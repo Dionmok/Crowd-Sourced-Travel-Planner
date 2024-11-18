@@ -57,7 +57,7 @@ export default function NavBar() {
             </Link>
           </div>
           <div>
-            <Link to="/login" state={{ from: location.pathname }}>
+            <Link to="/login">
               <span>Login</span>
             </Link>
             <Link to="/createAccount">
