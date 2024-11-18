@@ -14,14 +14,7 @@ def get_user_experiences():
     response = supabase.table('Experiences').select('*').eq('user_id', user_id).execute()
     if response.data:
         for experience in response.data:
-            ratings = supabase.table('Ratings').select('rating').eq('experience_id', experience['experience_id']).execute()
-            if ratings.data:
-                ratingsList = []
-                for rating in ratings.data:
-                    ratingsList.append(int(rating['rating']))
-                experience['rating'] = f"{round(sum(ratingsList) / len(ratingsList),1)} ({len(ratingsList)} ratings)"
-            else:
-                experience['rating'] = "0 (0 ratings)"
+            experience['rating'] = get_average_rating(experience['experience_id'])
         return jsonify(response.data), 200
     else:
         return jsonify({"error": "No experiences found for this user"}), 404
@@ -268,14 +261,18 @@ def rate_experience():
 # Fetches the current rating for a particular experience
 @app.route('/experience_rating/<experience_id>', methods=['GET'])
 def get_experience_rating(experience_id):
-    ratings = supabase.table('Ratings').select('rating').eq('experience_id', experience_id).execute()
+    avg_rating = get_average_rating(experience_id)
 
-    avg_rating = "0 (0 ratings)"
+    return jsonify({'rating': avg_rating}), 200
+
+# Calculates and returns the average rating and number of ratings of the given experience
+def get_average_rating(experience_id):
+    ratings = supabase.table('Ratings').select('rating').eq('experience_id', experience_id).execute()
 
     if ratings.data:
         ratingsList = []
         for rating in ratings.data:
             ratingsList.append(int(rating['rating']))
-        avg_rating = f"{round(sum(ratingsList) / len(ratingsList),1)} ({len(ratingsList)} ratings)"
-
-    return jsonify({'rating': avg_rating}), 200
+        return f"{round(sum(ratingsList) / len(ratingsList),1)} ({len(ratingsList)} ratings)"
+    else:
+        return "0 (0 ratings)"
