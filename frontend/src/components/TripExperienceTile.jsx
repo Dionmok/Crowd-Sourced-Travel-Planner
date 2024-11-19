@@ -11,11 +11,11 @@ export default function TripExperienceTile ({ experience, tripId, onRemove, show
     };
 
     return(
-        <div  className="experience-tile">
+        <div  className='experience-tile'>
             <div onClick={handleClick} className='image'>
                 <img src={experience.photo} alt="Experience" />
             </div>
-            <div className="experience-details">
+            <div className='experience-details'>
                 <div onClick={handleClick} className='title'>
                     <h2>{experience.experience_name}</h2>
                 </div>
