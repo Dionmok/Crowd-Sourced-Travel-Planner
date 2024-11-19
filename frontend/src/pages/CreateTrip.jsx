@@ -42,43 +42,43 @@ export default function CreateTrip() {
             setText={setTripName}
             />
             </div>
-        <br />
       </label>
-        <label>
+      <br />
+      <label>
         <div className='create-description-container'>
-          <h2 className='create-trip-description-title'>Trip Description</h2>
-          <Description
-            maxChars={200}
-            variant="description-Create"
-            placeholder="Enter trip description here..."
-            value={''}
-            setText={setTripDescription}
-            />
-          </div>
-        </label>
-        <br />
-        <label>
+            <h2 className='create-trip-description-title'>Trip Description</h2>
+            <Description
+              maxChars={200}
+              variant="description-Create"
+              placeholder="Enter trip description here..."
+              value={''}
+              setText={setTripDescription}
+              />
+        </div>
+      </label>
+      <br />
+      <label>
         <div className='startdate-container'>
-        <h2 className='create-trip-startdate-title'>Start Date</h2>
+          <h2 className='create-trip-startdate-title'>Start Date</h2>
           <input
           className="StartDate-Input"
           type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
           />
-          </div>
-        </label>
-        <br />
-        <div className='save-cancel-button-container'>
-            <SaveTripButton
-              tripName={tripName}
-              tripDescription={tripDescription}
-              startDate={startDate}
-              onSuccess={handleSuccess}
-              onError={handleError}
-            />
-            <ButtonLink varient="button-cancel" buttonName="Cancel" routeTo="/myTrips" />
         </div>
+      </label>
+      <br />
+      <div className='save-cancel-button-container'>
+        <SaveTripButton
+          tripName={tripName}
+          tripDescription={tripDescription}
+          startDate={startDate}
+          onSuccess={handleSuccess}
+          onError={handleError}
+        />
+        <ButtonLink varient="button-cancel" buttonName="Cancel" routeTo="/myTrips" />
+      </div>
     </>
   );
 }

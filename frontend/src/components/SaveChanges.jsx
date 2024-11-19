@@ -47,7 +47,7 @@ export default function SaveChanges({ tripId, tripName, tripDescription, startDa
 
 return (
     <div>
-      <button onClick={handleSave} disabled={isLoading || isDisabled} className="SaveChanges">
+      <button onClick={handleSave} disabled={isLoading || isDisabled} className="save-changes">
         {isLoading ? 'Saving...' : 'Save Changes'}
       </button>
     </div>

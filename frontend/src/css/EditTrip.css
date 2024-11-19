@@ -1,4 +1,7 @@
-.edit-description {
+.edit-trip-name-title,
+.edit-trip-description-title,
+.edit-trip-startdate-title {
+    padding-top: 30px;
     flex-grow: 1;
     margin: 0 auto;
     text-align: center;
@@ -7,41 +10,40 @@
     transition: background-color 0.3s;
 }
 
-.StartDate-Container{
-    width: 100%;
-    max-width: none;
-    min-width: 735px;
-    height: 60px;
+.startDate-Input{
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+    box-sizing: border-box;
+    font-size: 2em;
+    align-items: center;
+}
+
+.save-cancel-button-container {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+}
+
+.edit-description-container{
+    height: 260px;
+    gap: 15px;
+}
+
+.edit-title-container{
+    height: 50px;
+    gap: 15px;
+}
+
+.startdate-container{
+    height: 110px;
+    gap: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
   }
-
-.StartDate-Input{
-    border-radius: 8px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    resize: none;
-    box-sizing: border-box;
-    font-size: 1.5em;
-}
-
-.aligning-container {
-    max-height: 700px;
-    max-width: 1300px;
-    overflow-y: auto;
-    margin-left: 555px;
-    position: absolute;
-    bottom: 170px;          
-    left: 30px;
-}
-
-.button-container2{
-    display: flex;
-    gap: 300px;
-}
-
-
   

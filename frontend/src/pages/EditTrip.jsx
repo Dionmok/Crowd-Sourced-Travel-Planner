@@ -32,48 +32,46 @@ export default function EditTrip() {
 
   return (
     <>
-      <NavBar />
-      <div>
+      <NavBar/>
         <label>
-        <h2 className="edit-description">Trip Name</h2>
-        <div className="edit-title-container">
-          <Description
-            maxChars={60}
-            variant="description-title"
-            placeholder="e.g., College Gap Year: Europe 2020"
-            value={tripName}
-            setText={setTripName}
-            />
+          <h2 className="edit-trip-name-title">Trip Name</h2>
+          <div className="edit-title-container">
+            <Description
+              maxChars={60}
+              variant="description-title"
+              placeholder="e.g., College Gap Year: Europe 2020"
+              value={tripName}
+              setText={setTripName}
+              />
           </div>
         </label>
-        <br />
-        <label className="Trip-Description">
-          <h2 className="edit-description">Trip Description</h2>
+        <br/>
+        <label>
           <div className="edit-description-container">
-          <Description
-            maxChars={200}
-            variant="description-Edit"
-            placeholder="Enter trip description here..."
-            value={tripDescription}
-            setText={setTripDescription}
-            />
+            <h2 className="edit-trip-description-title">Trip Description</h2>
+            <Description
+              maxChars={200}
+              variant="description-Edit"
+              placeholder="Enter trip description here..."
+              value={tripDescription}
+              setText={setTripDescription}
+              />
             </div>
         </label>
         <br />
         <label>
-        <h2 className="edit-description">Start Date</h2>
-        <div className="StartDate-Container">
-          <input
-          className="StartDate-Input"
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          />
-        </div>
+          <div className="startdate-container">
+            <h2 className="edit-trip-startdate-title">Start Date</h2>
+            <input
+            className="startDate-Input"
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            />
+          </div>
         </label>
-        <br />
-        <div className="aligning-container">
-          <div className="button-container2" >
+        <br/>
+        <div className="save-cancel-button-container">
           <SaveChanges
             tripId={trip.trip_id}
             tripName={tripName}
@@ -83,8 +81,6 @@ export default function EditTrip() {
             onError={handleError}
           />
           <ButtonLink varient="button-cancel" buttonName="Cancel" routeTo="/myTrips"/>
-          </div>
-          </div>
         </div>
     </>
   );
