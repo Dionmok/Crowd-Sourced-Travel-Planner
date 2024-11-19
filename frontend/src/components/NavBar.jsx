@@ -20,16 +20,16 @@ export default function NavBar({ current }) {
               <img src={logo} alt="logo" />
             </Link>
             <Link to="/">
-              <button className={current === "home" && "selected"}>Home</button>
+              <button className={current === "home" ? "selected" : ""}>Home</button>
             </Link>
             <Link to="/feed">
-              <button className={current === "feed" && "selected"}>Feed</button>
+              <button className={current === "feed" ? "selected" : ""}>Feed</button>
             </Link>
             <Link to="/myTrips">
-              <button className={current === "trips" && "selected"}>My Trips</button>
+              <button className={current === "trips" ? "selected" : ""}>My Trips</button>
             </Link>
             <Link to="/myExperiences">
-              <button className={current === "experiences" && "selected"}>My Experiences</button>
+              <button className={current === "experiences" ? "selected" : ""}>My Experiences</button>
             </Link>
           </div>
           <div>
@@ -50,10 +50,10 @@ export default function NavBar({ current }) {
               <img src={logo} alt="logo" />
             </Link>
             <Link to="/">
-              <button className={current === "home" && "selected"}>Home</button>
+              <button className={current === "home" ? "selected" : ""}>Home</button>
             </Link>
             <Link to="/feed">
-              <button className={current === "feed" && "selected"}>Feed</button>
+              <button className={current === "feed" ? "selected" : ""}>Feed</button>
             </Link>
           </div>
           <div>
