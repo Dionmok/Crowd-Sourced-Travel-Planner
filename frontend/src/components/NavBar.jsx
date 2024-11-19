@@ -2,7 +2,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../css/NavBar.css";
 import logo from "../assets/TRIPPIE.png";
 
-export default function NavBar() {
+export default function NavBar({ current }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -20,16 +20,16 @@ export default function NavBar() {
               <img src={logo} alt="logo" />
             </Link>
             <Link to="/">
-              <button>Home</button>
+              <button className={current === "home" && "selected"}>Home</button>
             </Link>
             <Link to="/feed">
-              <button>Feed</button>
+              <button className={current === "feed" && "selected"}>Feed</button>
             </Link>
             <Link to="/myTrips">
-              <button>My Trips</button>
+              <button className={current === "trips" && "selected"}>My Trips</button>
             </Link>
             <Link to="/myExperiences">
-              <button>My Experiences</button>
+              <button className={current === "experiences" && "selected"}>My Experiences</button>
             </Link>
           </div>
           <div>
@@ -50,10 +50,10 @@ export default function NavBar() {
               <img src={logo} alt="logo" />
             </Link>
             <Link to="/">
-              <button>Home</button>
+              <button className={current === "home" && "selected"}>Home</button>
             </Link>
             <Link to="/feed">
-              <button>Feed</button>
+              <button className={current === "feed" && "selected"}>Feed</button>
             </Link>
           </div>
           <div>

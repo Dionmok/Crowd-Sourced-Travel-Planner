@@ -29,9 +29,18 @@ nav button {
   font-size: 1em;
 }
 
+nav button.selected {
+  background-color: rgb(223, 145, 0);
+  border: 2px solid black;
+}
+
 nav button:hover {
   background-color: rgb(223, 145, 0);
   transition: background-color 0.1s linear;
+}
+
+nav button:active {
+  border: 2px solid black;
 }
 
 nav span {
@@ -44,8 +53,4 @@ nav span {
 nav span:hover {
   opacity: 60%;
   transition: opacity 0.1s linear;
-}
-
-nav img {
-  
 }

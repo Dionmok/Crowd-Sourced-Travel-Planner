@@ -5,7 +5,7 @@ import "../css/Home.css";
 export default function Home() {
   return (
     <div className="bgImage">
-      <NavBar />
+      <NavBar current={"home"}/>
       <SearchBar />
       <div className="homeContainer">
         <h1>Welcome to Trippie</h1>
