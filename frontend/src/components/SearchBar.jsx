@@ -14,7 +14,10 @@ export default function SearchBar() {
             searchParams.append('location', location.trim());
         }
         if (keywords.trim()) {
-            const keywordList = keywords.split(',').map(keyword => keyword.trim()).join(',');
+            const keywordList = keywords
+            .split(',')
+            .map(keyword => keyword.trim().toLowerCase())
+            .join(',');
             searchParams.append('keywords', keywordList);
         }
 
