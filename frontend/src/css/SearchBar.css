@@ -2,19 +2,20 @@
     display: flex;
     align-items: center;
     padding: 1em 2em;
-    background-color: rgba(255, 166, 0, 0.315);
+    background-color: rgb(255,227,175);
     gap: 1em;
   }
   
   .search-button {
     cursor: pointer;
-    height: 9em;
-    width: 12em;
+    height: 8em;
+    width: 11em;
     background-color: rgb(255, 165, 0);
     border: none;
     transition: background-color 0.1s linear;
     font-weight: bold;
     color: black;
+    font-size: 1em;
   }
   
   .search-button:hover {

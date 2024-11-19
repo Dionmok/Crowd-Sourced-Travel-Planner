@@ -1,0 +1,56 @@
+.homeContainer {
+  margin: 0 250px;
+  overflow-y: auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.8);
+  flex-grow: 1;
+  text-align: center;
+}
+
+.bgImage {
+  height: 100%;
+  background-color: rgba(158, 210, 253, 0.2);
+  background-image: url("../assets/background.png");
+  background-blend-mode: lighten;
+  background-repeat: no-repeat;
+  background-position-y: 6em;
+  display: flex;
+  flex-direction: column;
+}
+
+.homeContainer h1 {
+  font-weight: bold;
+  font-size: 3em;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto 30px auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3s steps(21, end),
+    blink-caret .67s step-end 5;
+  width: 11.5em;
+}
+
+.homeContainer p {
+  margin-top: 1em;
+  animation: 6s ease 0s normal forwards 1 fadeIn;
+}
+
+@keyframes fadeIn {
+  0% { opacity:0; }
+  60% { opacity:0; }
+  100% { opacity:1; }
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 11.5em }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}

@@ -12,7 +12,7 @@
 }
 
 .trip-tile:hover {
-    background-color: rgba(247, 219, 166, 0.315);
+    background-color: #d0d0d0;
     cursor: pointer;
 }
 
