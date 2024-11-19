@@ -13,7 +13,6 @@
     font-size: 60px;
     text-align: center;
     width: 100%;
-    
 }
 
 .button-back {
@@ -37,7 +36,6 @@
     font-weight: bold;
     background-color: rgba(255, 166, 0, 0.315);
     border-radius: 5px;
-
 }
 
 .Individual-trip-description{
@@ -67,7 +65,4 @@
     position: absolute;
     top: 200px;          
     left: 30px;
-
 }
-
-
