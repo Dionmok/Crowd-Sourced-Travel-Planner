@@ -3,7 +3,6 @@
     margin: 0 auto;
     text-align: center;
     font-size: 3em;
-    cursor: pointer;
     padding-right: 16px;
     transition: background-color 0.3s;
 }
@@ -30,13 +29,13 @@
 }
 
 .aligning-container {
-    height: 2.5em;
-    width: 60em;
-    margin-left: 541px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s;
+    max-height: 700px;
+    max-width: 1300px;
+    overflow-y: auto;
+    margin-left: 555px;
+    position: absolute;
+    bottom: 170px;          
+    left: 30px;
 }
 
 .button-container2{
