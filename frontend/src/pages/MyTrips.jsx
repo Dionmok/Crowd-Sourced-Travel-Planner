@@ -55,7 +55,7 @@ export default function MyTrips(){
             ))}
           </div>
         )}
-    </div>
+      </div>
     </div>
     </>
   );
