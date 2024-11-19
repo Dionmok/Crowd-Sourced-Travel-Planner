@@ -43,7 +43,7 @@ export default function IndividualTrip(){
   return (
     <>
     <NavBar />
-    <div className="page-container">
+    <div className='page-container'>
     <div className='back-button'>
       <ButtonLink varient="button-cancel" buttonName="Back" routeTo="/myTrips" />
     </div>
