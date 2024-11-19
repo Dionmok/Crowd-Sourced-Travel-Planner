@@ -42,9 +42,6 @@ export default function MyTrips(){
     <div className='add-trip-button'>
       <ButtonLink varient ="button-add" buttonName="+ Trip" routeTo="/createTrip"/>
     </div>
-    <div className='trip-page-title'>
-      <h2>My Trips</h2>
-    </div>
     <div className='trips-container'>
       <div className='trip-list'>
         {loading ? (
