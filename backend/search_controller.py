@@ -4,7 +4,7 @@ from flask import request, jsonify
 @app.route('/experiences', methods=['GET'])
 def search_experiences():
     location = request.args.get('location', '').strip()
-    keywords = request.args.get('keywords', '').strip().split(',')
+    keywords = request.args.get('keywords', '').strip().lower().split(',')
 
     query = supabase.table('Experiences').select('*').eq('published', True)
     if location:
@@ -31,10 +31,8 @@ def search_experiences():
         for experience in response.data:
             ratings = supabase.table('Ratings').select('rating').eq('experience_id', experience['experience_id']).execute()
             if ratings.data:
-                ratingsList = []
-                for rating in ratings.data:
-                    ratingsList.append(int(rating['rating']))
-                experience['rating'] = f"{round(sum(ratingsList) / len(ratingsList),1)} ({len(ratingsList)} ratings)"
+                ratings_list = [int(rating['rating']) for rating in ratings.data]
+                experience['rating'] = f"{round(sum(ratings_list) / len(ratings_list),1)} ({len(ratings_list)} ratings)"
             else:
                 experience['rating'] = "0 (0 ratings)"
         return jsonify(response.data), 200
