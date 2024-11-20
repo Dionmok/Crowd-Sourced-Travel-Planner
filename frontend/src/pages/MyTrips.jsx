@@ -38,7 +38,7 @@ export default function MyTrips(){
 
   return (
     <>
-    <NavBar />
+    <NavBar current="trips"/>
     <div className='add-trip-button'>
       <ButtonLink varient ="button-add" buttonName="Add Trip" routeTo="/createTrip"/>
     </div>

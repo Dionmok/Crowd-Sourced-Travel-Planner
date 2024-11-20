@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: rgba(158, 210, 253, 0.2);
+  background-image: url("../assets/background.png");
+  background-blend-mode: lighten;
+  background-repeat: no-repeat;
+  background-position-y: 6em;
 }
 
 .createAccountLoginContainer {

@@ -12,7 +12,6 @@
     padding: 20px;
     font-size: 60px;
     text-align: center;
-    width: 100%;
     
 }
 
@@ -33,11 +32,11 @@
     left: 30px;
     display: flex;
     padding: 20px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    background-color: rgba(255, 166, 0, 0.315);
+    background-color: rgb(255,227,175);
     border-radius: 5px;
-
+    width: 170px;
 }
 
 .Individual-trip-description{
@@ -46,7 +45,7 @@
     height: 300px;
     white-space: normal;
     line-height: 1.6;
-    font-size: 18px;
+    font-size: 16px;
     padding: 20px;
     margin: 0;
     position: absolute;
@@ -55,19 +54,15 @@
     display: flex;
     flex-direction: column;
     font-weight: bold;
-    background-color: rgba(255, 166, 0, 0.315);
+    background-color: rgb(255,227,175);
     border-radius: 5px;
 }
 
 .trips-experience-container{
-    max-height: 700px;
-    max-width: 1300px;
+    height: 100%;
+    margin: 0 250px;
     overflow-y: auto;
-    margin-left: 250px;
-    position: absolute;
-    top: 200px;          
-    left: 30px;
-
+    padding: 30px;
 }
 
 
