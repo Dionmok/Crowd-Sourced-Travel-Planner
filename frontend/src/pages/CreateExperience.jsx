@@ -6,7 +6,7 @@ import Keywords from "../components/Keywords";
 import GeolocationInput from "../components/GeolocationInput";
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Autocomplete } from "@react-google-maps/api";
 
 export default function CreateExperience() {
   const [error, setError] = useState("");
@@ -18,6 +18,7 @@ export default function CreateExperience() {
   const [longitude, setLongitude] = useState("");
   const [keywords, setKeywords] = useState([]);
   const [photoURL, setPhotoURL] = useState("");
+  const [autocomplete, setAutocomplete] = useState(null);
 
   const navigate = useNavigate();
 
@@ -63,6 +64,19 @@ export default function CreateExperience() {
     navigate('/myExperiences');
   };
 
+  const handlePlaceSelect = () => {
+    if (autocomplete) {
+      const place = autocomplete.getPlace();
+      if (place && place.geometry && place.geometry.location) {
+        setAddress(place.formatted_address);
+        setLatitude(place.geometry.location.lat().toString());
+        setLongitude(place.geometry.location.lng().toString());
+      } else {
+        setError("Could not retrieve location details");
+      }
+    }
+  };
+
   return (
     <>
       <NavBar />
@@ -94,31 +108,30 @@ export default function CreateExperience() {
         </div>
         <div className="location-container">
           <h1>Address</h1>
-          <TextBox 
-            name='address' 
-            id='address'
-            maxChars='100' 
-            varient="description-title" 
-            placeholder="Enter location here..." 
-            value={address} 
-            onChange={setAddress}
-            required/>
+          <Autocomplete onLoad={(instance) => setAutocomplete(instance)} onPlaceChanged={handlePlaceSelect}>
+            <input
+              type='text'
+              name='address' 
+              placeholder="Enter location here..." 
+              value={address} 
+              onChange={(e) => setAddress(e.target.value)}
+              className="location-input"
+              required/>
+          </Autocomplete>
           <h1>Geolocation</h1>
           <div className='geolocation-input-container'>
             <h1>Latitude</h1>
               <GeolocationInput 
                 name='latitude' 
                 id='latitude'
-                placeholder="38.8951" 
-                value={latitude} 
-                onChange={setLatitude} />
+                placeholder="Auto-populated" 
+                value={latitude} />
             <h1>Longitude</h1>
               <GeolocationInput 
               name='longitude' 
               id='longitude'
-              placeholder="-77.0364"
-              value={longitude} 
-              onChange={setLongitude}/>
+              placeholder="Auto-populated"
+              value={longitude} />
           </div>
         </div>
         <div className="keywords-container">
