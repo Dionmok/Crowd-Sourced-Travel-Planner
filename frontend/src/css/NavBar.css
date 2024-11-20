@@ -3,7 +3,7 @@ nav {
   justify-content: space-between;
   padding: 1em 2em;
   gap: 2em;
-  background-color: rgba(255, 166, 0, 0.315);
+  background-color: rgb(255,227,175);
 }
 
 nav a {
@@ -26,11 +26,21 @@ nav button {
   border: none;
   transition: background-color 0.1s linear;
   font-weight: bold;
+  font-size: .9em;
+}
+
+nav button.selected {
+  background-color: rgb(223, 145, 0);
+  border: 2px solid black;
 }
 
 nav button:hover {
   background-color: rgb(223, 145, 0);
   transition: background-color 0.1s linear;
+}
+
+nav button:active {
+  border: 2px solid black;
 }
 
 nav span {
@@ -46,5 +56,5 @@ nav span:hover {
 }
 
 nav img {
-  
+  width: 225px;
 }

@@ -1,11 +1,3 @@
-.trips-container {
-    max-height: 700px;
-    max-width: 1300px;
-    overflow-y: auto;
-    margin-left: 250px;
-    padding: 30px;
-}
-
 .add-trip-button {
     position: absolute;
     bottom: 65px;          
@@ -24,13 +16,9 @@
 }
 
 .trips-container {
-    max-height: 700px;
-    max-width: 1300px;
+    margin: 65px 250px 0px 250px;
     overflow-y: auto;
-    margin-top: 65px;
-    margin-left: 250px;
     padding: 30px;
-    position: relative;
 }
 
 .vertical-gradient-bg {

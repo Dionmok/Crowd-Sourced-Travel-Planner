@@ -112,6 +112,18 @@ def get_trip_experiences(trip_id):
     if experience_ids:
         experience_data = supabase.table('Experiences').select('*').in_('experience_id', experience_ids).execute()
         if experience_data.data:
+            # Get ratings for all trip-experiences
+            for experience in experience_data.data:
+                ratings = supabase.table('Ratings').select('rating').eq('experience_id', experience['experience_id']).execute()
+
+                if ratings.data:
+                    ratingsList = []
+                    for rating in ratings.data:
+                        ratingsList.append(int(rating['rating']))
+                    experience['rating'] = f"{round(sum(ratingsList) / len(ratingsList),1)} ({len(ratingsList)} ratings)"
+                else:
+                    experience['rating'] = "0 (0 ratings)"
+
             return jsonify(experience_data.data), 200
         else:
           return jsonify([]), 200

@@ -38,7 +38,7 @@ export default function MyExperiences() {
 
   return (
     <>
-      <NavBar />
+      <NavBar current="experiences"/>
       <div className="experiences-container">
         <h1>Your Saved Experiences</h1>
         <div className="add-experience-button">

@@ -60,7 +60,7 @@ export default function FeedPage({ userId }) {
 
   return (
     <div>
-      <NavBar />
+      <NavBar current="feed"/>
       <SearchBar onSearch={(query) => navigate(`/feed?keywords=${query.keywords}`)} />
 
       {loading && <p>Loading...</p>}

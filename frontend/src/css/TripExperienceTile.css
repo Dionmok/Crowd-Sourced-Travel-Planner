@@ -1,4 +1,4 @@
-.experience-tile {
+.trip-experience-tile {
     display: flex; 
     align-items: center; 
     height: 150px;
@@ -7,17 +7,16 @@
     padding: 10px;
     border-radius: 5px;
     background-color: #f9f9f9;
-    /* padding-left: 25px; */
     padding-right:25px;
 }
 
-.experience-tile:hover {
+.trip-experience-tile:hover {
     background-color: #d0d0d0;
     cursor: pointer;
 }
 
 
-.experience-details {
+.trip-experience-details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -25,7 +24,7 @@
     padding-right: 20px;
 }
 
-.experience-details .title {
+.trip-experience-details .title {
     text-align: left;
     font-size: 26px;
     margin: 0;
@@ -47,7 +46,7 @@
     object-fit: cover; 
 }
 
-.rating{
+.trip-experience-rating{
     margin-top: 7px;
     font-size: 1.2em;
 }
@@ -76,12 +75,4 @@
 
 .button-edit-container .delete button:hover {
     background-color: #e1231f; 
-}
-
-.button-edit-container .edit button {
-    background-color: #e7cfb0; 
-}
-
-.button-edit-container .edit button:hover {
-    background-color: #e19c41; 
 }
