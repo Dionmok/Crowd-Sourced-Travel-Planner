@@ -1,50 +1,48 @@
-.date-input,
-.create-title,
-.create-description {
+.create-trip-name-title,
+.create-trip-description-title,
+.create-trip-startdate-title {
+    padding-top: 30px;
     flex-grow: 1;
     margin: 0 auto;
     text-align: center;
     font-size: 3em;
-    cursor: pointer;
     padding-right: 16px;
     transition: background-color 0.3s;
 }
 
-.StartDate-Container{
-    width: 100%;
-    max-width: none;
-    min-width: 735px;
-    height: 60px;
+.StartDate-Input{
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+    box-sizing: border-box;
+    font-size: 2em;
+    align-items: center;
+}
+
+.save-cancel-button-container {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+}
+
+.create-description-container{
+    height: 260px;
+    gap: 15px;
+}
+
+.create-title-container{
+    height: 50px;
+    gap: 15px;
+}
+
+.startdate-container{
+    height: 110px;
+    gap: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
   }
-
-.StartDate-Input{
-    border-radius: 8px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    resize: none;
-    box-sizing: border-box;
-    font-size: 1.5em;
-}
-
-.aligning-container3 {
-    height: 2.5em;
-    width: 60em;
-    margin-left: 487px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s;
-}
-
-.button-container3{
-    display: flex;
-    gap: 400px;
-}
-
-
-  

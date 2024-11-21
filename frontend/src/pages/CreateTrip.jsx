@@ -31,10 +31,9 @@ export default function CreateTrip() {
   return (
     <>
       <NavBar />
-      <div>
-        <label>
-          <h2 className="create-title">Trip Name</h2>
-          <div className="create-title-container">
+      <label>
+          <h2 className='create-trip-name-title'>Trip Name</h2>
+          <div className='create-title-container'>
           <Description
             maxChars={60}
             variant="description-title"
@@ -43,45 +42,42 @@ export default function CreateTrip() {
             setText={setTripName}
             />
             </div>
-        </label>
-        <br />
-        <label>
+      </label>
+      <br />
+      <label>
         <div className='create-description-container'>
-          <h2 className='create-description'>Trip Description</h2>
-          <Description
-            maxChars={200}
-            variant="description-Create"
-            placeholder="Enter trip description here..."
-            value={''}
-            setText={setTripDescription}
-            />
-          </div>
-        </label>
-        <br />
-        <label>
-        <div className='StartDate-Container'>
-        <h2 className='date-input'>Start Date</h2>
+            <h2 className='create-trip-description-title'>Trip Description</h2>
+            <Description
+              maxChars={200}
+              variant="description-Create"
+              placeholder="Enter trip description here..."
+              value={''}
+              setText={setTripDescription}
+              />
+        </div>
+      </label>
+      <br />
+      <label>
+        <div className='startdate-container'>
+          <h2 className='create-trip-startdate-title'>Start Date</h2>
           <input
           className="StartDate-Input"
           type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
           />
-          </div>
-        </label>
-        <br />
-        <div className='aligning-container3'>
-          <div className='button-container3' >
-            <SaveTripButton
-              tripName={tripName}
-              tripDescription={tripDescription}
-              startDate={startDate}
-              onSuccess={handleSuccess}
-              onError={handleError}
-            />
-            <ButtonLink varient="button-cancel" buttonName="Cancel" routeTo="/myTrips" />
-          </div>
         </div>
+      </label>
+      <br />
+      <div className='save-cancel-button-container'>
+        <SaveTripButton
+          tripName={tripName}
+          tripDescription={tripDescription}
+          startDate={startDate}
+          onSuccess={handleSuccess}
+          onError={handleError}
+        />
+        <ButtonLink varient="button-cancel" buttonName="Cancel" routeTo="/myTrips" />
       </div>
     </>
   );

@@ -12,7 +12,7 @@
     padding: 20px;
     font-size: 60px;
     text-align: center;
-    
+    width: 100%;
 }
 
 .button-back {
@@ -36,7 +36,6 @@
     font-weight: bold;
     background-color: rgb(255,227,175);
     border-radius: 5px;
-    width: 170px;
 }
 
 .Individual-trip-description{
@@ -62,7 +61,8 @@
     height: 100%;
     margin: 0 250px;
     overflow-y: auto;
-    padding: 30px;
+    margin-left: 250px;
+    position: absolute;
+    top: 200px;          
+    left: 30px;
 }
-
-

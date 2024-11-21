@@ -42,35 +42,35 @@ export default function IndividualTrip(){
 
   return (
     <>
-    <NavBar current="trips"/>
-    <div className="page-container">
-    <div className='back-button'>
-      <ButtonLink varient="button-cancel" buttonName="Back" routeTo="/myTrips" />
-    </div>
-    <div className="individual-trip-page-title">
-      <h2>{trip.trip_name}</h2>
-    </div>
-    <div className='Individual-trip-description'>
-      <p>Description: {trip.trip_description}</p>
-    </div>
-    <div className='trip-date'>
-      <p>Start Date: {new Date(trip.start_date).toLocaleDateString()}</p>
-    </div>
-    <div className='trips-experience-container'>
-      <div className='trips-experience-list'>
-      {loading ? (
-                <p>Loading experiences...</p>
-      ) : experiences.length == 0 ? (
-        <p>There are no experiences added to this trip.</p>
-      ) : (
-        <div>
-          {experiences.map((experience) => (
-            <TripExperienceTile key={experience.experience_id} experience={experience} tripId={tripId} onRemove={handleRemoveExperience} state={{ trip }}/>
-          ))}
-        </div>
-      )}
+    <NavBar />
+    <div className='page-container'>
+      <div className='back-button'>
+        <ButtonLink varient="button-cancel" buttonName="Back" routeTo="/myTrips" />
       </div>
-    </div>
+      <div className="individual-trip-page-title">
+        <h2>{trip.trip_name}</h2>
+      </div>
+      <div className='Individual-trip-description'>
+        <p>Description: {trip.trip_description}</p>
+      </div>
+      <div className='trip-date'>
+        <p>Start Date: {new Date(trip.start_date).toLocaleDateString()}</p>
+      </div>
+      <div className='trips-experience-container'>
+        <div className='trips-experience-list'>
+        {loading ? (
+                  <p>Loading experiences...</p>
+        ) : experiences.length == 0 ? (
+          <p>There are no experiences added to this trip.</p>
+        ) : (
+          <div>
+            {experiences.map((experience) => (
+              <TripExperienceTile key={experience.experience_id} experience={experience} tripId={tripId} onRemove={handleRemoveExperience} />
+            ))}
+          </div>
+        )}
+        </div>
+      </div>
     </div>
     </>
   );

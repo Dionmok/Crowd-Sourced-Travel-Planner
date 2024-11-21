@@ -19,7 +19,7 @@ export default function TripTile ({ trip, onTripDeleted}){
                 </div>
             </div>
             
-            <div className="button-container">
+            <div className='button-container'>
                 <div className='edit'>
                     <EditTripButton trip ={trip}/>
                 </div>

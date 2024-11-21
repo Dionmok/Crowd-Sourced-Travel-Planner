@@ -40,10 +40,7 @@ export default function MyTrips(){
     <>
     <NavBar current="trips"/>
     <div className='add-trip-button'>
-      <ButtonLink varient ="button-add" buttonName="Add Trip" routeTo="/createTrip"/>
-    </div>
-    <div className='trip-page-title'>
-      <h2>My Trips</h2>
+      <ButtonLink varient ="button-add" buttonName="+ Trip" routeTo="/createTrip"/>
     </div>
     <div className='trips-container'>
       <div className='trip-list'>
@@ -58,7 +55,7 @@ export default function MyTrips(){
             ))}
           </div>
         )}
-    </div>
+      </div>
     </div>
     </>
   );
