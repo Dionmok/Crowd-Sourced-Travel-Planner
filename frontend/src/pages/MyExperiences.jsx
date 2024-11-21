@@ -52,7 +52,7 @@ export default function MyExperiences() {
               { loading ? (
                     <p>Loading experiences...</p>
               ): experiences.length == 0 ? (
-                <p>There are no experiences created.</p>
+                <p className="no-experience-text">There are no experiences created.</p>
               ) : (
                 <div>
                   {experiences.map((experience) => (

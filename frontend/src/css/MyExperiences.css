@@ -39,6 +39,12 @@
     width: 100%;
 }
 
+.no-experience-text{
+    font-size: 1.1rem;
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+}
 
 /* Add experience button to the bottom of the page*/
 .add-experience-button {
@@ -54,5 +60,3 @@
     font-weight: bold;
     background-color: #FA812F;
 }
-
-
