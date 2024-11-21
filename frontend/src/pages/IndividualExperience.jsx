@@ -10,6 +10,8 @@ export default function IndividualExperience() {
     const location = useLocation(); 
     const navigate = useNavigate(); 
     const experience = location.state?.experience;  // Get the experience object from the location state
+    const from = location.state?.from;
+    const trip = location.state?.trip;
 
     const [experienceName, setExperienceName] = useState(experience.experience_name);
     const [description, setDescription] = useState(experience.description);
@@ -186,7 +188,7 @@ export default function IndividualExperience() {
             {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
               .sub && <DeleteExperienceButton experience={experience} />}
             {/* TODO: Add ExperinceTrip button  */}
-            <ButtonLink varient="button-back" buttonName="Back" routeTo="/myExperiences" />
+            <ButtonLink varient="button-back" buttonName="Back" routeTo="/myExperiences" state={{ from, trip }} />
             
             {/* Error Message Display */}
             {error && (
