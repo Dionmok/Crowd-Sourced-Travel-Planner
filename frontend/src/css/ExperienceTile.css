@@ -1,14 +1,16 @@
 .experience-tile {
     display: flex; 
-    align-items: center; 
+    align-items: flex-start; 
     height: 150px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #b28a5b;
     padding: 10px;
     border-radius: 5px;
-    background-color: #f9f9f9;
-    /* padding-left: 25px; */
+    background-color: #fcf7f1;
+    display: flex;
     padding-right:25px;
+    width: 100%;
+   
 }
 
 .experience-tile:hover {
@@ -28,7 +30,8 @@
 .experience-details .title {
     text-align: left;
     font-size: 26px;
-    margin: 0;
+    font-weight: normal; 
+    margin-top: 5px;
 }
 
 
@@ -48,10 +51,19 @@
 }
 
 .rating{
-    margin-top: 7px;
+    margin-top: 9px;
     font-size: 1.2em;
 }
 
+.address {
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+.description {
+    font-size: 1.0em;
+    margin-top: 5px;
+}
 .button-edit-container {
     display: flex;
     flex-direction: column; 

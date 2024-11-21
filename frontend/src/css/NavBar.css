@@ -26,7 +26,7 @@ nav button {
   border: none;
   transition: background-color 0.1s linear;
   font-weight: bold;
-  font-size: 1em;
+  font-size: .9em;
 }
 
 nav button.selected {
@@ -53,4 +53,8 @@ nav span {
 nav span:hover {
   opacity: 60%;
   transition: opacity 0.1s linear;
+}
+
+nav img {
+  width: 225px;
 }
