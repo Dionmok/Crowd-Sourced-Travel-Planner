@@ -153,12 +153,8 @@ export default function IndividualExperience() {
                     </div>
                     }
                   </div>
-                  {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
-                    .sub && <EditExperienceButton experience={experience} />}
-                  {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
-                    .sub && <DeleteExperienceButton experience={experience} />}
+                  
                   <ButtonLink varient="button-back" buttonName="Back" routeTo="/myExperiences" />
-                  {/* <button onClick={handleGoBack}>GO BACK</button> */}
                 </div>
                 {/* right side  */}
                 <div className="right-container">
@@ -187,9 +183,16 @@ export default function IndividualExperience() {
                           ))}
                       </div>
                   </div>
-                  <div className="add-to-trip-container">
+                  <div className="add-to-trip-and-edit-container">
                     <AddExperienceToTripButton experience={experience} />
+                    <div className="edit-buttons-container">
+                    {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+                      .sub && <EditExperienceButton experience={experience} />}
+                    {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+                      .sub && <DeleteExperienceButton experience={experience} />}
                   </div>
+                  </div>
+                  
                 </div>
               </div>
           </div>

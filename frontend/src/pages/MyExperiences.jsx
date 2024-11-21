@@ -40,22 +40,28 @@ export default function MyExperiences() {
     <>
       <NavBar current="experiences"/>
       <div className="experiences-container">
-        <h1>Your Saved Experiences</h1>
-        <div className="add-experience-button">
-          <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />
-        </div>
-        <div className='experience-list'>
-          { loading ? (
-                <p>Loading experiences...</p>
-          ): experiences.length == 0 ? (
-            <p>There are no experiences created.</p>
-          ) : (
-            <div>
-              {experiences.map((experience) => (
-                <ExperienceTile key={experience.experience_id} experience={experience} onExperienceDeleted={handleExperienceDeleted} />
-              ))}
-            </div >
-          )}
+        <div className="flex-box-container"> 
+          <div className="left-side-container">
+            <h1>Your Saved Experiences</h1>
+            <div className="add-experience-button">
+              <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />
+            </div>
+          </div>
+          <div className="right-side-container">
+            <div className='experience-list'>
+              { loading ? (
+                    <p>Loading experiences...</p>
+              ): experiences.length == 0 ? (
+                <p>There are no experiences created.</p>
+              ) : (
+                <div>
+                  {experiences.map((experience) => (
+                    <ExperienceTile key={experience.experience_id} experience={experience} onExperienceDeleted={handleExperienceDeleted} />
+                  ))}
+                </div >
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </>
