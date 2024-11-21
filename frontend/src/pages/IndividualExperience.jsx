@@ -11,6 +11,8 @@ export default function IndividualExperience() {
     const location = useLocation(); 
     const navigate = useNavigate(); 
     const experience = location.state?.experience;  // Get the experience object from the location state
+    const from = location.state?.from;
+    const trip = location.state?.trip;
 
     const [experienceName, setExperienceName] = useState(experience.experience_name);
     const [description, setDescription] = useState(experience.description);
@@ -118,10 +120,6 @@ export default function IndividualExperience() {
 
       setRating(data.rating);
     };
-
-    const handleGoBack = () => {
-      navigate(-1);
-    }
 
     return (
         <>

@@ -65,7 +65,7 @@ export default function IndividualTrip(){
       ) : (
         <div>
           {experiences.map((experience) => (
-            <TripExperienceTile key={experience.experience_id} experience={experience} tripId={tripId} onRemove={handleRemoveExperience} />
+            <TripExperienceTile key={experience.experience_id} experience={experience} tripId={tripId} onRemove={handleRemoveExperience} state={{ trip }}/>
           ))}
         </div>
       )}
