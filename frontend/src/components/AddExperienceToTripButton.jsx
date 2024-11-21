@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../css/AddToExperienceButton.css'; 
 
 export default function AddExperienceToTripButton({ experienceId }) {
   const [triptoAdd, setTriptoAdd] = useState(""); // state to store the selected trip
