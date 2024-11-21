@@ -1,13 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import RemoveTripExperienceButton from '../components/RemoveTripExperienceButton';
 import '../css/TripExperienceTile.css';
 
 export default function TripExperienceTile ({ experience, tripId, onRemove, showDelete=true}){    
     const navigate = useNavigate();
+    const location = useLocation();
+    const trip = location.state?.trip;
 
     // Redirects to individual experience
     const handleClick = () => {
-        navigate(`/individualExperience/${experience.experience_id}`, { state: { experience } });
+        navigate(`/individualExperience/${experience.experience_id}`, { state: { experience, trip, from: location.pathname } });
     };
 
     return(

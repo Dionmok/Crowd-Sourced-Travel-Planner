@@ -14,11 +14,15 @@ import IndividualTrip from "./pages/IndividualTrip";
 import EditTrip from "./pages/EditTrip";
 import CreateAccount from "./pages/CreateAccount";
 import ErrorPage from "./pages/ErrorPage";
+import { LoadScript } from "@react-google-maps/api";
 
-/* TODO: Replace the hard coded user_id */
+const libraries = ["places"];
+
 function App() {
+  const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
   return (
-    <>
+    <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={libraries}>
       <Routes>
         <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<Home />} />
@@ -34,7 +38,7 @@ function App() {
         <Route path="/createTrip" element={<CreateTrip />} />
         <Route path="/createAccount" element={<CreateAccount />} />
       </Routes>
-    </>
+    </LoadScript>
   );
 }
 

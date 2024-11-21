@@ -1,19 +1,57 @@
 .experiences-container {
-    margin: 0 250px;
-    overflow-y: auto;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.8);
-    flex-grow: 1;
-}
-
-/* Add experience button */
-.add-experience-button {
-    position:fixed;
-    left:0px;
-    top:80%;
     display: flex;
     flex-direction: column;
-    padding:40px;
+}
+.flex-box-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 30px;
+    
+}
+
+.left-side-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 20%;
+    align-items: center;
+}
+.left-side-container h1{
+    font-size: 1.1rem;
+    /* font-weight: bold; */
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.right-side-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+}
+
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.no-experience-text{
+    font-size: 1.1rem;
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Add experience button to the bottom of the page*/
+.add-experience-button {
+    display: flex;
+    justify-content: center;
+    padding: 550px;
+
 }
 
 .add-experience-button button{
@@ -21,16 +59,4 @@
     font-size: 1em;
     font-weight: bold;
     background-color: #FA812F;
-}
-.experiences-container h1{
-    position:fixed;
-    left:0px;
-    display: flex;
-    flex-direction: column;
-    padding:50px;
-}
-
-
-.vertical-gradient-bg {
-    background: linear-gradient(to bottom, #3498db, #2ecc71); /* top-to-bottom gradient */
 }
