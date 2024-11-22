@@ -48,6 +48,7 @@ export default function AddExperienceToTripButton({ experienceId }) {
       } catch (error) {
         console.error(error);
       }
+      window.alert("Added to trip successfully!");
       console.log("Added to trip successfully");
     }
   };
