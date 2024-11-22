@@ -7,6 +7,8 @@ import TextBox from "../components/TextBox";
 import Keywords from "../components/Keywords";
 import GeolocationInput from "../components/GeolocationInput";
 import ExpSaveChanges from "../components/ExpSaveChanges";
+import '../css/IndividualExperience.css';
+
 
 export default function EditExperience() {
     const location = useLocation(); // Get the location object
@@ -62,10 +64,8 @@ export default function EditExperience() {
     return (
         <>
           <NavBar />
-          <h1>Edit Experience page</h1>
           <form id='updateExperience'>
-            <div className="title-container">
-              <h1>Title</h1>
+            <div className="experience-container">
               <TextBox 
                 name='experienceName' 
                 id='experienceName'
@@ -75,64 +75,19 @@ export default function EditExperience() {
                 value={experienceName}
                 onChange={setExperienceName}
                 required/>
-            </div>
-            <div className="description-container">
-              <h1>Description</h1>
-              <TextBox 
-                name='description'
-                id='description' 
-                maxChars='200' 
-                varient="description-default" 
-                placeholder="Enter experience description here..." 
-                value={description} 
-                onChange={setDescription}
-                required />
-            </div>
-            <div className="location-container">
-              <h1>Address</h1>
-              <TextBox 
-                name='address' 
-                id='address'
-                maxChars='100' 
-                varient="description-title" 
-                placeholder="Enter location here..." 
-                value={address} 
-                onChange={setAddress}
-                required/>
-              <h1>Geolocation</h1>
-              <div className='geolocation-input-container'>
-                <h1>Latitude</h1>
-                  <GeolocationInput 
-                    name='latitude' 
-                    id='latitude'
-                    placeholder="38.8951" 
-                    value={latitude} 
-                    onChange={setLatitude} />
-                <h1>Longitude</h1>
-                  <GeolocationInput 
-                  name='longitude' 
-                  id='longitude'
-                  placeholder="-77.0364"
-                  value={longitude} 
-                  onChange={setLongitude}/>
-              </div>
-            </div>
-            <div className="keywords-container">
-              <h1>Keywords</h1>
-              <Keywords 
-                name='keywords'
-                value={keywords}
-                onChange={setKeywords} />
-            </div>
-            <div className="image-container">
-              <h1>Image</h1>
-              <ImageUpload 
-                name='image'
-                id='imageUpload'
-                value={photoURL}
-                onChange={setPhotoURL} />
-            </div>
-            <ExpSaveChanges 
+              {/* Boxes next to each other  */}
+              <div className="row-container">
+                {/* left side  */}
+                <div className="left-container"> 
+                  <div className="image-container">
+                
+                    <ImageUpload 
+                      name='image'
+                      id='imageUpload'
+                      value={photoURL}
+                      onChange={setPhotoURL} />
+                  </div>
+                  <ExpSaveChanges 
                 experienceId={experience.experience_id}
                 experienceName={experienceName}
                 description={description}
@@ -144,9 +99,73 @@ export default function EditExperience() {
                 onSuccess={handleSuccess}
                 onError={handleError}
                 />
-            {/* Cancel button to exit edit mode */}
-            <button onClick={handleCancelClick}>Cancel</button>
             
+                  {/* Cancel button to exit edit mode */}
+                  
+                  <div className="back-button-container">
+                    
+                    <button onClick={handleCancelClick}>Cancel</button>
+                  </div>
+                  
+                </div>
+                {/* right side  */}
+                <div className="right-container">
+                  <div className=".description-container">
+                    <h1>Description: </h1>
+                    <TextBox 
+                      name='description'
+                      id='description' 
+                      maxChars='200' 
+                      varient="description-default" 
+                      placeholder="Enter experience description here..." 
+                      value={description} 
+                      onChange={setDescription}
+                      required />
+                  </div>
+                  <div className="location-container">
+                    <h1>Address</h1>
+                    <TextBox 
+                      name='address' 
+                      id='address'
+                      maxChars='100' 
+                      varient="description-title" 
+                      placeholder="Enter location here..." 
+                      value={address} 
+                      onChange={setAddress}
+                      required/>
+                    <h1>Geolocation</h1>
+                    <div className='geolocation-input-container'>
+                      <h1>Latitude</h1>
+                        <GeolocationInput 
+                          name='latitude' 
+                          id='latitude'
+                          placeholder="38.8951" 
+                          value={latitude} 
+                          onChange={setLatitude} />
+                      <h1>Longitude</h1>
+                        <GeolocationInput 
+                        name='longitude' 
+                        id='longitude'
+                        placeholder="-77.0364"
+                        value={longitude} 
+                        onChange={setLongitude}/>
+                    </div>
+                  </div>
+                  <div className="keywords-container">
+                    <h1>Keywords</h1>
+                    <Keywords 
+                      name='keywords'
+                      value={keywords}
+                      onChange={setKeywords} />
+                  </div>
+                </div>
+              </div>
+            
+            
+            
+            
+            
+            </div>
             {/* Error Message Display */}
             {error && (
               <div>

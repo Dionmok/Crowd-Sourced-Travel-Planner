@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
 import TripExperienceTile from '../components/TripExperienceTile';
 import SaveTripButton from '../components/SaveTripButton';
+import AddExperienceToTripButton from '../components/AddExperienceToTripButton';
 import '../css/FeedPage.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -80,6 +81,7 @@ export default function FeedPage({ userId }) {
                 onSuccess={handleSaveSuccess}
                 onError={handleSaveError}
               />
+              <AddExperienceToTripButton experienceId={experience.experience_id} />
             </div>
           ))
         ) : (

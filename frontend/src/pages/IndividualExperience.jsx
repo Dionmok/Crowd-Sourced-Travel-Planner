@@ -151,8 +151,9 @@ export default function IndividualExperience() {
                     </div>
                     }
                   </div>
-                  
-                  <ButtonLink varient="button-back" buttonName="Back" routeTo="/myExperiences" />
+                  <div className="back-button-container">
+                    <ButtonLink varient="button-back" buttonName="Back" routeTo="/myExperiences" />
+                  </div>
                 </div>
                 {/* right side  */}
                 <div className="right-container">
