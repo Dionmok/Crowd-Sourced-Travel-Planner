@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
 import TripExperienceTile from '../components/TripExperienceTile';
-import SaveTripButton from '../components/SaveTripButton';
 import '../css/FeedPage.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -51,14 +50,6 @@ export default function FeedPage({ userId }) {
     fetchExperiences();
   }, [location.search]);
 
-  const handleSaveSuccess = (message) => {
-    alert(message);
-  };
-
-  const handleSaveError = (error) => {
-    alert(`Error saving trip: ${error}`);
-  };
-
   return (
     <div>
       <NavBar current="feed"/>
@@ -72,14 +63,6 @@ export default function FeedPage({ userId }) {
           experiences.map((experience) => (
             <div key={experience.experience_id}>
               <TripExperienceTile experience={experience} showDelete={false}/>
-              <SaveTripButton
-                tripId={experience.experience_id}
-                tripName={experience.trip_name || experience.title}
-                tripDescription={experience.trip_description || experience.description}
-                startDate={experience.start_date}
-                onSuccess={handleSaveSuccess}
-                onError={handleSaveError}
-              />
             </div>
           ))
         ) : (
