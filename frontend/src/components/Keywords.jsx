@@ -25,7 +25,6 @@ export default function Keywords({value=[], onChange}){
         fetchKeywords();
     }
     , []);
-    console.log("Existing Keywords", existingKeywords);
 
 
     // add a keyword to the list
