@@ -42,7 +42,6 @@ export default function MyExperiences() {
       <div className="experiences-container">
         <div className="flex-box-container"> 
           <div className="left-side-container">
-            <h1>Your Saved Experiences</h1>
             <div className="add-experience-button">
               <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />
             </div>
