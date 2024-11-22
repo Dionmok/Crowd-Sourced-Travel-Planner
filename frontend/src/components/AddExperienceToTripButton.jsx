@@ -30,7 +30,8 @@ export default function AddExperienceToTripButton({ experienceId }) {
     fetchTrips();
   }, []);
 
-  const handleAdd = async () => {
+  const handleAdd = async (e) => {
+    e.preventDefault();
     // TODO: Implement correct handling of empty trip selection and selection of trip already containing the experience
     if (triptoAdd.trim() && !existingTrips.includes(triptoAdd)) {
       try {

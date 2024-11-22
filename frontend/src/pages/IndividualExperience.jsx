@@ -184,7 +184,7 @@ export default function IndividualExperience() {
                   </div>
                   <p>Created on: {timeCreated}</p>
                   <div className="add-to-trip-and-edit-container">
-                    <AddExperienceToTripButton experience={experience} />
+                    <AddExperienceToTripButton experienceId={experience.experience_id} />
                     <div className="edit-buttons-container">
                     {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
                       .sub && <EditExperienceButton experience={experience} />}
