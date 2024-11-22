@@ -12,6 +12,8 @@ export default function EditExperience() {
     const location = useLocation(); // Get the location object
     const navigate = useNavigate(); // Get the navigate function
     const experience = location.state?.experience;  // Get the experience object from the location state
+    const from = location.state?.from;  // Get the previous page from the location state
+    const trip = location.state?.trip; // Get the previous trip info from the location state
 
     const [experienceName, setExperienceName] = useState(experience.experience_name);
     const [description, setDescription] = useState(experience.description);
@@ -47,7 +49,7 @@ export default function EditExperience() {
     const handleSuccess = (message) => {
         setSuccess(message);
         setError(null);
-        navigate('/myExperiences');
+        navigate(`/individualExperience/${experience.experience_id}`, { state: { experience, from, trip } });
       };
     
     const handleError = (message) => {
@@ -56,7 +58,7 @@ export default function EditExperience() {
     };
 
     const handleCancelClick = () => {
-      navigate(`/individualExperience/${experience.experience_id}`, { state: { experience } });
+      navigate(`/individualExperience/${experience.experience_id}`, { state: { experience, from, trip } });
     }
     
     return (

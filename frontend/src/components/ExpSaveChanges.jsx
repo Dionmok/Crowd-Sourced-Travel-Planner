@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 
-export default function ExpSaveChanges({ experienceId, experienceName, description, address, latitude, longitude, keywords, photo, rating, onSuccess, onError }){
+export default function ExpSaveChanges({ experienceId, experienceName, description, address, latitude, longitude, keywords, photo, onSuccess, onError }){
     const [isLoading, setIsLoading] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
 
     useEffect(() => {
         // Check if all required fields are filled
-        if (experienceName && description.trim() && address && latitude && longitude && keywords.length > 0 && photo && rating) {
+        if (experienceName && description.trim() && address && latitude && longitude && keywords.length > 0 && photo) {
             setIsDisabled(false);
         } else {
             setIsDisabled(true)
         }
-    }, [experienceName, description, address, latitude, longitude, keywords, photo, rating]);
+    }, [experienceName, description, address, latitude, longitude, keywords, photo]);
 
     const handleSave = async () => {
         setIsLoading(true);
@@ -31,7 +31,6 @@ export default function ExpSaveChanges({ experienceId, experienceName, descripti
                     longitude: longitude,
                     address: address,
                     keywords: keywords,
-                    rating: rating,
                     time_updated: new Date().toISOString()
                 }),
             });

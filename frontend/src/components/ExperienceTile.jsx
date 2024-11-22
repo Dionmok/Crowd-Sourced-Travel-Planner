@@ -46,7 +46,7 @@ export default function ExperienceTile ({ experience, onExperienceDeleted }){
                     <AddExperienceToTripButton experienceId={experience.experience_id} />
                 </div>
                 <div className='edit'>
-                    <EditExperienceButton experience={experience}/>
+                    <EditExperienceButton experience={experience} from={location.pathname}/>
                 </div>
                 <div className='delete'>
                     <DeleteExperienceButton experienceId={experience.experience_id} onExperienceDeleted={onExperienceDeleted} />
