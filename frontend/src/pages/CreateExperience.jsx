@@ -3,14 +3,13 @@ import ImageUpload from "../components/ImageUpload";
 import ButtonLink from "../components/ButtonLink";
 import TextBox from "../components/TextBox";
 import Keywords from "../components/Keywords";
-import GeolocationInput from "../components/GeolocationInput";
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { Autocomplete } from "@react-google-maps/api";
+import LocationAutocomplete from "../components/LocationAutocomplete";
 
 export default function CreateExperience() {
   const [error, setError] = useState("");
-  
+
   const [experienceName, setExperienceName] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
@@ -18,7 +17,6 @@ export default function CreateExperience() {
   const [longitude, setLongitude] = useState("");
   const [keywords, setKeywords] = useState([]);
   const [photoURL, setPhotoURL] = useState("");
-  const [autocomplete, setAutocomplete] = useState(null);
 
   const navigate = useNavigate();
 
@@ -26,9 +24,9 @@ export default function CreateExperience() {
   const handleSubmit = async (e) => {
     e.preventDefault(); 
     console.log("Handling Submit");
-    
+
     // check if all required fields are filled
-    if (!experienceName || !description || !address || !latitude || !longitude || !address || keywords.length === 0 || !photoURL ) {
+    if (!experienceName || !description || !address || !latitude || !longitude || keywords.length === 0 || !photoURL ) {
       setError("Please fill in all required fields");
       return;
     }
@@ -36,20 +34,23 @@ export default function CreateExperience() {
 
 
     try {
-      const response = await fetch(`http:///127.0.0.1:5000/save_experience`, {
+      const response = await fetch(`http://127.0.0.1:5000/save_experience`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem("token")
         },
+        // Simplified object properties for improved readability and reduced redundancy.
+        // Keys like `description`, `latitude`, `longitude`, etc., now use shorthand syntax
+        // since their names match the variable names. Explicit mappings are kept where keys differ.
         body: JSON.stringify({
           experience_name: experienceName,
-          description: description,
+          description,
           photo: photoURL,
-          latitude: latitude,
-          longitude: longitude,
-          address: address,
-          keywords: keywords,
+          latitude,
+          longitude,
+          address,
+          keywords,
           time_created: new Date().toISOString()
         }),
       });
@@ -62,19 +63,6 @@ export default function CreateExperience() {
     }
     console.log("Experience saved successfully");
     navigate('/myExperiences');
-  };
-
-  const handlePlaceSelect = () => {
-    if (autocomplete) {
-      const place = autocomplete.getPlace();
-      if (place && place.geometry && place.geometry.location) {
-        setAddress(place.formatted_address);
-        setLatitude(place.geometry.location.lat().toString());
-        setLongitude(place.geometry.location.lng().toString());
-      } else {
-        setError("Could not retrieve location details");
-      }
-    }
   };
 
   return (
@@ -108,31 +96,7 @@ export default function CreateExperience() {
         </div>
         <div className="location-container">
           <h1>Address</h1>
-          <Autocomplete onLoad={(instance) => setAutocomplete(instance)} onPlaceChanged={handlePlaceSelect}>
-            <input
-              type='text'
-              name='address' 
-              placeholder="Enter location here..." 
-              value={address} 
-              onChange={(e) => setAddress(e.target.value)}
-              className="location-input"
-              required/>
-          </Autocomplete>
-          <h1>Geolocation</h1>
-          <div className='geolocation-input-container'>
-            <h1>Latitude</h1>
-              <GeolocationInput 
-                name='latitude' 
-                id='latitude'
-                placeholder="Auto-populated" 
-                value={latitude} />
-            <h1>Longitude</h1>
-              <GeolocationInput 
-              name='longitude' 
-              id='longitude'
-              placeholder="Auto-populated"
-              value={longitude} />
-          </div>
+          <LocationAutocomplete setAddress={setAddress} setLatitude={setLatitude} setLongitude={setLongitude} setError={setError} />
         </div>
         <div className="keywords-container">
           <h1>Keywords</h1>
