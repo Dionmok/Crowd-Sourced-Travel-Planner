@@ -80,7 +80,6 @@ export default function EditExperience() {
                 {/* left side  */}
                 <div className="left-container"> 
                   <div className="image-container">
-                
                     <ImageUpload 
                       name='image'
                       id='imageUpload'
@@ -88,22 +87,19 @@ export default function EditExperience() {
                       onChange={setPhotoURL} />
                   </div>
                   <ExpSaveChanges 
-                experienceId={experience.experience_id}
-                experienceName={experienceName}
-                description={description}
-                address={address}
-                latitude={latitude}
-                longitude={longitude}
-                keywords={keywords}
-                photo={photoURL}
-                onSuccess={handleSuccess}
-                onError={handleError}
-                />
-            
+                    experienceId={experience.experience_id}
+                    experienceName={experienceName}
+                    description={description}
+                    address={address}
+                    latitude={latitude}
+                    longitude={longitude}
+                    keywords={keywords}
+                    photo={photoURL}
+                    onSuccess={handleSuccess}
+                    onError={handleError}
+                    />
                   {/* Cancel button to exit edit mode */}
-                  
                   <div className="back-button-container">
-                    
                     <button onClick={handleCancelClick}>Cancel</button>
                   </div>
                   
@@ -159,12 +155,7 @@ export default function EditExperience() {
                       onChange={setKeywords} />
                   </div>
                 </div>
-              </div>
-            
-            
-            
-            
-            
+              </div>   
             </div>
             {/* Error Message Display */}
             {error && (
