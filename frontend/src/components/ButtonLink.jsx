@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import '../css/ButtonLink.css'; 
 
 // pass in buttonName and routeTo as props
-export default function Button({varient, buttonName, routeTo}) {
+export default function Button({varient, buttonName, routeTo=null}) {
     const navigate = useNavigate()
     const location = useLocation();
     const from = location.state?.from;

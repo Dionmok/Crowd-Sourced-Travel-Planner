@@ -1,14 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import DeleteTripButton from '../components/DeleteTripButton'; // Import DeleteTripButton
 import EditTripButton from '../components/EditTripButton';
 import '../css/TripTile.css';
 
 export default function TripTile ({ trip, onTripDeleted}){
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Redirects to individual trip
     const handleClick = () => {
-        navigate(`/individualTrip/${trip.trip_id}`, { state: { trip } });
+        navigate(`/individualTrip/${trip.trip_id}`, { state: { trip, from: location.pathname } });
     };
 
     return(
