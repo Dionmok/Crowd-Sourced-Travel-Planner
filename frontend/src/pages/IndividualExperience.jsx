@@ -23,6 +23,7 @@ export default function IndividualExperience() {
     const [photoURL, setPhotoURL] = useState(experience.photo || "testurl");
     const [rating, setRating] = useState("Loading...");
     const [userRating, setUserRating] = useState("");
+    const [timeCreated, setTimeCreated] = useState(experience.time_created);
 
     const [error, setError] = useState("");
  
@@ -181,6 +182,7 @@ export default function IndividualExperience() {
                           ))}
                       </div>
                   </div>
+                  <p>Created on: {timeCreated}</p>
                   <div className="add-to-trip-and-edit-container">
                     <AddExperienceToTripButton experience={experience} />
                     <div className="edit-buttons-container">
