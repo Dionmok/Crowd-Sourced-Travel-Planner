@@ -2,34 +2,14 @@
     display: flex;
     flex-direction: column;
 }
-.flex-box-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 30px;
-    
-}
 
-.left-side-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 20%;
-    align-items: center;
-}
-.left-side-container h1{
-    font-size: 1.1rem;
-    /* font-weight: bold; */
-    margin-top: 20px;
-    margin-bottom: 10px;
-    text-align: center;
-}
+
 .right-side-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 80%;
+    margin-left: 250px;
 }
 
 .experience-list {
@@ -48,10 +28,11 @@
 
 /* Add experience button to the bottom of the page*/
 .add-experience-button {
+    position: absolute;
+    bottom: 65px;          
+    left: 20px;
     display: flex;
-    justify-content: center;
-    padding: 550px;
-
+    padding: 20px;
 }
 
 .add-experience-button button{
