@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import DeleteTripButton from '../components/DeleteTripButton'; // Import DeleteTripButton
+import DeleteTripButton from '../components/DeleteTripButton';
 import EditTripButton from '../components/EditTripButton';
 import '../css/TripTile.css';
 
@@ -14,12 +14,11 @@ export default function TripTile ({ trip, onTripDeleted}){
 
     return(
         <div className='trip-tile'>
-            <div className='trip-details'>
-                <div onClick={handleClick} className="title">
-                    <h2 >{trip.trip_name}</h2>
-                </div>
+            {/* Trip Details */}
+            <div onClick={handleClick} className='trip-details'>
+                <h2 >{trip.trip_name}</h2>
             </div>
-            
+            {/* Buttons */}
             <div className='button-container'>
                 <div className='edit'>
                     <EditTripButton trip ={trip}/>

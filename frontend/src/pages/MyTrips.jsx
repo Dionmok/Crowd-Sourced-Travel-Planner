@@ -9,7 +9,7 @@ export default function MyTrips(){
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Tries and fetchs trips from API
+    // Tries and fetches trips from API
     const fetchTrips = async () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/trips`, {
@@ -38,25 +38,34 @@ export default function MyTrips(){
 
   return (
     <>
-    <NavBar current="trips"/>
-    <div className='add-trip-button'>
-      <ButtonLink varient ="button-add" buttonName="+ Trip" routeTo="/createTrip"/>
-    </div>
-    <div className='trips-container'>
-      <div className='trip-list'>
+      <NavBar current="trips"/>
+      {/* Page Header */}
+      <header className="trip-page-header">
+        <h1>My Trips</h1>
+        <ButtonLink
+          varient="button-add"
+          buttonName="Add Trip"
+          routeTo="/createTrip"
+        />
+      </header>
+      {/* Trips Section */}
+      <main className="trips-container">
         {loading ? (
-                <p>Loading trips...</p>
-        ): trips.length == 0 ? (
-          <p>There are no trips created.</p>
+          <p>Loading trips...</p>
+        ) : trips.length === 0 ? (
+          <p>
+            There are no trips created. <a href="/createTrip">Start planning now!</a>
+          </p>
         ) : (
-          <div>
-            {trips.map((trip) => (
-              <TripTile key={trip.trip_id} trip={trip} onTripDeleted={handleTripDeleted} />
-            ))}
-          </div>
+          trips.map((trip) => (
+            <TripTile
+              key={trip.trip_id}
+              trip={trip}
+              onTripDeleted={handleTripDeleted}
+            />
+          ))
         )}
-      </div>
-    </div>
+      </main>
     </>
   );
 }
