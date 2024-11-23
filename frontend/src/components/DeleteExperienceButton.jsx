@@ -1,13 +1,21 @@
 import {useState} from "react";
 import {FaTrash} from 'react-icons/fa';
+import { useNavigate, useLocation } from "react-router-dom";
 
-export default function DeleteExperienceButton({experienceId, onExperienceDeleted}) {
+export default function DeleteExperienceButton({experienceId, onExperienceDeleted, from}) {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const trip = location.state?.trip; // Get the trip object from the location state
+    const experience = location.state?.experience; // Get the experience object from the location state
+
     const handleDelete = async () => {
+        console.log("Debug - Navigating back to:", from);
         const confirmDelete = window.confirm("Are you sure you want to delete this experience?");
         if (!confirmDelete) {
+            navigate(from, {state: {trip, experience, from}}); 
             return;
         }
 
@@ -25,7 +33,7 @@ export default function DeleteExperienceButton({experienceId, onExperienceDelete
             throw new Error('Failed to delete the experience');
         }
         setSuccess(true);
-        onExperienceDeleted(experienceId);
+        onExperienceDeleted(experienceId); 
     } catch (err) {
         setError(err.message);
     }
