@@ -40,8 +40,6 @@ export default function MyExperiences() {
     <>
       <NavBar current="experiences"/>
       <div className="experiences-container">
-        <div className="flex-box-container"> 
-          <div className="left-side-container">
             <div className="add-experience-button">
               <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />
             </div>
@@ -61,8 +59,6 @@ export default function MyExperiences() {
               )}
             </div>
           </div>
-        </div>
-      </div>
     </>
   );
 }
