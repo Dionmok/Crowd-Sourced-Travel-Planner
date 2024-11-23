@@ -5,6 +5,9 @@
     background-color: #f9f9f9;
     transition: background-color 0.4s ease-in-out;
     position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100px;
 }
 
 .trip-tile:hover {
@@ -14,16 +17,19 @@
 
 .trip-tile h2 {
     font-size: 2.2rem;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    font-weight: bold;
+    text-align: center;
+}
+
+.trip-details {
+    flex: 1;
 }
 
 .button-container {
     display: flex;
     gap: 10px;
-    justify-content: flex-end;
+    position: absolute;
+    right: 15px;
 }
 
 .edit button {

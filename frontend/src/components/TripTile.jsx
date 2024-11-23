@@ -13,13 +13,13 @@ export default function TripTile ({ trip, onTripDeleted}){
     };
 
     return(
-        <div className='trip-tile'>
+        <div className='trip-tile' onClick={handleClick}>
             {/* Trip Details */}
-            <div onClick={handleClick} className='trip-details'>
+            <div className='trip-details'>
                 <h2 >{trip.trip_name}</h2>
             </div>
             {/* Buttons */}
-            <div className='button-container'>
+            <div className='button-container' onClick={e => e.stopPropagation()}>
                 <div className='edit'>
                     <EditTripButton trip ={trip}/>
                 </div>
