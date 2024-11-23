@@ -5,16 +5,7 @@
   
 .trip-page-header h1 {
     font-size: 2.5rem;
-    color: #2c3e50;
     margin-bottom: 10px;
-}
-  
-.trip-page-header .button-add {
-    margin-top: 10px;
-}
-  
-.trip-page-header .button-add:hover {
-    background-color: #ffa84b;
 }
   
 .trips-container {
@@ -27,4 +18,20 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.add-trip-button {
+    position: absolute;
+    bottom: 65px;
+    left: 20px;
+    display: flex;
+    padding: 20px;
+}
+
+.add-trip-button button {
+    height: 3em;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #FA812F;
+    color: black;
 }
