@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { parsePath, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import ImageUpload from "../components/ImageUpload";
-import ButtonLink from "../components/ButtonLink";
 import TextBox from "../components/TextBox";
 import Keywords from "../components/Keywords";
-import GeolocationInput from "../components/GeolocationInput";
 import ExpSaveChanges from "../components/ExpSaveChanges";
+import LocationAutocomplete from "../components/LocationAutocomplete";
 
 export default function EditExperience() {
     const location = useLocation(); // Get the location object
@@ -92,32 +91,7 @@ export default function EditExperience() {
             </div>
             <div className="location-container">
               <h1>Address</h1>
-              <TextBox 
-                name='address' 
-                id='address'
-                maxChars='100' 
-                varient="description-title" 
-                placeholder="Enter location here..." 
-                value={address} 
-                onChange={setAddress}
-                required/>
-              <h1>Geolocation</h1>
-              <div className='geolocation-input-container'>
-                <h1>Latitude</h1>
-                  <GeolocationInput 
-                    name='latitude' 
-                    id='latitude'
-                    placeholder="38.8951" 
-                    value={latitude} 
-                    onChange={setLatitude} />
-                <h1>Longitude</h1>
-                  <GeolocationInput 
-                  name='longitude' 
-                  id='longitude'
-                  placeholder="-77.0364"
-                  value={longitude} 
-                  onChange={setLongitude}/>
-              </div>
+              <LocationAutocomplete setAddress={setAddress} setLatitude={setLatitude} setLongitude={setLongitude} setError={setError} />
             </div>
             <div className="keywords-container">
               <h1>Keywords</h1>
