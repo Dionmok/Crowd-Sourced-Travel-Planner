@@ -25,7 +25,9 @@ export default function MyTrips(){
       } catch(error){
         console.error(error)
       } finally {
-        setLoading(false)
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       }
     };
 
@@ -38,25 +40,28 @@ export default function MyTrips(){
 
   return (
     <>
-    <NavBar current="trips"/>
-    <div className='add-trip-button'>
-      <ButtonLink varient ="button-add" buttonName="+ Trip" routeTo="/createTrip"/>
-    </div>
-    <div className='trips-container'>
-      <div className='trip-list'>
+      <NavBar current="trips"/>
+      <header className='trip-page-header'>
+        <h1>My Trips</h1>
+      </header>
+      <main className='trips-container'>
         {loading ? (
-                <p>Loading trips...</p>
-        ): trips.length == 0 ? (
+          <p>Loading trips...</p>
+        ) : trips.length === 0 ? (
           <p>There are no trips created.</p>
         ) : (
-          <div>
-            {trips.map((trip) => (
-              <TripTile key={trip.trip_id} trip={trip} onTripDeleted={handleTripDeleted} />
-            ))}
-          </div>
+          trips.map((trip) => (
+            <TripTile
+              key={trip.trip_id}
+              trip={trip}
+              onTripDeleted={handleTripDeleted}
+            />
+          ))
         )}
+      </main>
+      <div className="add-trip-button">
+        <ButtonLink varient="button-add" buttonName="+ Trip" routeTo="/createTrip" />
       </div>
-    </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import DeleteTripButton from '../components/DeleteTripButton'; // Import DeleteTripButton
+import DeleteTripButton from '../components/DeleteTripButton';
 import EditTripButton from '../components/EditTripButton';
 import '../css/TripTile.css';
 
@@ -13,14 +13,13 @@ export default function TripTile ({ trip, onTripDeleted}){
     };
 
     return(
-        <div className='trip-tile'>
+        <div className='trip-tile' onClick={handleClick}>
+            {/* Trip Details */}
             <div className='trip-details'>
-                <div onClick={handleClick} className="title">
-                    <h2 >{trip.trip_name}</h2>
-                </div>
+                <h2 >{trip.trip_name}</h2>
             </div>
-            
-            <div className='button-container'>
+            {/* Buttons */}
+            <div className='button-container' onClick={e => e.stopPropagation()}>
                 <div className='edit'>
                     <EditTripButton trip ={trip}/>
                 </div>
