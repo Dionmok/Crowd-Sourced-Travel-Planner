@@ -1,14 +1,15 @@
 
 .experience-container {
-  display: flex;             
-  flex-direction: column;       
-  justify-content: flex-start; 
-  align-items: center;  
-  gap: 20px;                 
-  padding: 30px;      
-  width: 100%;     
-  padding-left: 0;         
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px; /* Adjust padding for smaller screens */
+    margin: 0 auto; /* Center the container */
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
+
 
 .title {
     font-size: 1.5rem;
@@ -16,32 +17,26 @@
     margin-bottom: 10px;
     text-align: center;
 }
-.row-container { 
+.row-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between; 
-    width: 100%; 
-    gap: 20px; 
+    justify-content: space-between; /* Space between the two containers */
+    width: 100%;
+    gap: 20px;
+    box-sizing: border-box; /* Ensure padding/borders are included in the width */
+    overflow: hidden; /* Prevent overflow issues */
 }
 
-.left-container {
-    padding: 10px;
-    width: 50%;                  
-    flex-shrink: 0;              
-  }
-  
-.left-container img {
-    width: 100%;               
-    height: 100%;
-    object-fit: cover;         
-    align-self: left;
-    border-radius: 4%;
+.left-container, .right-container {
+    flex: 1 1 50%; /* Allow equal distribution and wrapping */
+    max-width: 50%; /* Prevent containers from growing beyond 50% */
+    box-sizing: border-box; /* Include padding and borders in width */
 }
   
-.right-container {
-    padding: 10px;
-    width: 80%;               
-    align-items: center;
+.left-container img {
+    max-width: 100%; /* Ensure image fits within the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure proper cropping for images */
 }
 
 .right-container h1{
@@ -71,10 +66,9 @@
   }
 
 .add-to-trip-and-edit-container{
-    margin-top: 100px;
+    margin-top: 20px;
     margin-bottom: 10px;
     font-size: 1.2rem;
-    display: flex;
     justify-content: flex-start; 
     gap: 200px;
 }
@@ -92,20 +86,13 @@
 }  
 
 .add-to-trip-and-edit-container button {
-    width: 80px; /* Set the width */
     height: 50px; 
     font-size: 1.2rem;
     text-align: center;
     border: 2px solid #d3d3d3;
-    background-color: #f4f4f4;
     padding: 10px;
     border-radius: 5px;
     color: #333;
-}
-
-.add-to-trip-and-edit-container button:hover {
-    background-color: #d3d3d3;
-    color: #f4f4f4;
 }
 
 .edit-buttons-container {
@@ -117,3 +104,17 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.delete button {
+    background-color: #f44336;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  .delete button:hover {
+    color: rgb(255, 255, 255);
+  }

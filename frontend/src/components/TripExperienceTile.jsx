@@ -1,8 +1,9 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import RemoveTripExperienceButton from '../components/RemoveTripExperienceButton';
+import AddExperienceToTripButton from '../components/AddExperienceToTripButton';
 import '../css/TripExperienceTile.css';
 
-export default function TripExperienceTile ({ experience, tripId, onRemove}){
+export default function TripExperienceTile ({ experience, tripId, onRemove, showDelete=true, showAddButton = true,}){
     const navigate = useNavigate();
     const location = useLocation();
     const trip = location.state?.trip;
@@ -13,12 +14,12 @@ export default function TripExperienceTile ({ experience, tripId, onRemove}){
     };
 
     return(
-        <div  className='trip-experience-tile'>
-            <div onClick={handleClick} className='image'>
+        <div className='trip-experience-tile' onClick={handleClick}>
+            <div className='image'>
                 <img src={experience.photo} alt="Experience" />
             </div>
             <div className='trip-experience-details'>
-                <div onClick={handleClick} className='title'>
+                <div className='title'>
                     <h2>{experience.experience_name}</h2>
                 </div>
                 <div className='trip-experience-rating'>
@@ -36,9 +37,14 @@ export default function TripExperienceTile ({ experience, tripId, onRemove}){
                 </div>
             </div>
 
-            <div className='button-edit-container'>
+            <div className='button-edit-container' onClick={(e) => e.stopPropagation()}>
+                {showAddButton && (
+                    <div className="add-to-trip">
+                        <AddExperienceToTripButton experienceId={experience.experience_id}/>
+                    </div>
+                )}
                 <div className='delete'>
-                    <RemoveTripExperienceButton tripId={tripId} experienceId={experience.experience_id} onExperienceRemoved={onRemove}/>
+                    {showDelete && <RemoveTripExperienceButton tripId={tripId} experienceId={experience.experience_id} onExperienceRemoved={onRemove}/>}
                 </div>
             </div>
         </div>

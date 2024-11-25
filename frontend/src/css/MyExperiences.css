@@ -1,32 +1,25 @@
-.experiences-container {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.right-side-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 80%;
-    margin-left: 250px;
-}
-
-.experience-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-}
-
-.no-experience-text{
-    font-size: 1.1rem;
-    margin-top: 20px;
-    font-style: italic;
+.experience-page-header {
     text-align: center;
+    margin: 20px auto;
+}
+  
+.experience-page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+  
+.experiences-container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9e8d1;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* Add experience button to the bottom of the page*/
 .add-experience-button {
     position: absolute;
     bottom: 65px;          
@@ -40,4 +33,5 @@
     font-size: 1em;
     font-weight: bold;
     background-color: #FA812F;
+    color: black;
 }

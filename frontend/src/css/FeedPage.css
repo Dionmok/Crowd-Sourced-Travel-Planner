@@ -1,5 +1,13 @@
-.experiences-container {
-    display: flex;
-    padding: 30px;
-    margin-right: 30px;
+.feed-experiences-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f9e8d1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.feed-experiences-container p {
+    font-size: 1.2rem;
+    color: #555;
 }

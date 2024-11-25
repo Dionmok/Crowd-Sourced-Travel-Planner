@@ -1,16 +1,14 @@
 .experience-tile {
     display: flex; 
-    align-items: flex-start; 
-    height: 150px;
-    margin-bottom: 20px;
+    align-items: center;
     border: 1px solid #b28a5b;
     padding: 10px;
-    border-radius: 5px;
-    background-color: #fcf7f1;
-    display: flex;
-    padding-right:25px;
+    border-radius: 20px;
+    background-color: #f9f9f9;
     width: 100%;
-   
+    box-sizing: border-box;
+    margin: 0;
+    overflow: hidden;
 }
 
 .experience-tile:hover {
@@ -18,27 +16,10 @@
     cursor: pointer;
 }
 
-
-.experience-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1; 
-    padding-right: 20px;
-}
-
-.experience-details .title {
-    text-align: left;
-    font-size: 26px;
-    font-weight: normal; 
-    margin-top: 5px;
-}
-
-
 .image {
     width: 200px; 
-    height: 150px; 
-    margin-right: 25px; 
+    height: 100%;
+    margin-right: 15px;
     border-radius: 5px;
     overflow: hidden;
     flex-shrink: 0; 
@@ -50,50 +31,53 @@
     object-fit: cover; 
 }
 
-.rating{
-    margin-top: 9px;
-    font-size: 1.2em;
+.experience-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;    
+    gap: 8px;    
 }
 
-.address {
+.experience-details .title {
+    text-align: left; 
+    font-size: 26px;
+    margin-bottom: 0; 
+    font-weight: bold; 
+}
+
+.rating, .address, .description {
     font-size: 1.2em;
     margin-top: 5px;
 }
 
-.description {
-    font-size: 1.0em;
-    margin-top: 5px;
-}
 .button-edit-container {
     display: flex;
     flex-direction: column; 
-    gap:15px;
+    justify-content: flex-start;
 }
 
+.button-edit-container .add-to-trip {
+    margin-bottom: 10px;
+    padding-right: 10px;
+    white-space: nowrap;
+}
 
-.button-edit-container button{
+.edit-delete-container {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.button-edit-container button,
+.edit-delete-container button {
     cursor: pointer;
-    height: 6m;
+    height: 2.5em; 
     border: none;
     text-align: center;
     border-radius: 5px;
     font-size: 1em;
     padding: 8px 12px;
     font-weight: bold;
-}
-
-.button-edit-container .delete button {
-    background-color: #FA4032; 
-}
-
-.button-edit-container .delete button:hover {
-    background-color: #e1231f; 
-}
-
-.button-edit-container .edit button {
-    background-color: #e7cfb0; 
-}
-
-.button-edit-container .edit button:hover {
-    background-color: #e19c41; 
 }

@@ -2,11 +2,12 @@
     display: flex; 
     align-items: center; 
     height: 150px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
     background-color: #f9f9f9;
+    border-radius: 20px;
     padding-right:25px;
 }
 
@@ -30,49 +31,7 @@
     margin: 0;
 }
 
-
-.image {
-    width: 200px; 
-    height: 150px; 
-    margin-right: 25px; 
-    border-radius: 5px;
-    overflow: hidden;
-    flex-shrink: 0; 
-}
-
-.image img {
-    width: 100%; 
-    height: 100%;
-    object-fit: cover; 
-}
-
 .trip-experience-rating{
     margin-top: 7px;
     font-size: 1.2em;
-}
-
-.button-edit-container {
-    display: flex;
-    flex-direction: column; 
-    gap:15px;
-}
-
-
-.button-edit-container button{
-    cursor: pointer;
-    height: 6m;
-    border: none;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 1em;
-    padding: 8px 12px;
-    font-weight: bold;
-}
-
-.button-edit-container .delete button {
-    background-color: #FA4032; 
-}
-
-.button-edit-container .delete button:hover {
-    background-color: #e1231f; 
 }
