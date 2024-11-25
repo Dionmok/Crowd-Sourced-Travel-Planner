@@ -20,6 +20,11 @@
     gap: 20px;
 }
 
+.experiences-y-container{
+    max-height: 710px;
+    overflow-y: auto; 
+}
+
 .add-experience-button {
     position: absolute;
     bottom: 65px;          

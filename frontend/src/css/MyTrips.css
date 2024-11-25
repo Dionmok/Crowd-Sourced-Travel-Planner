@@ -18,6 +18,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-height: 670px;
+    overflow-y: auto; 
 }
 
 .add-trip-button {
