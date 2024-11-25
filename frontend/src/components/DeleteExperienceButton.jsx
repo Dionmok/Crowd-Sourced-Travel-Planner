@@ -33,7 +33,7 @@ export default function DeleteExperienceButton({experienceId, onExperienceDelete
             throw new Error('Failed to delete the experience');
         }
         setSuccess(true);
-        onExperienceDeleted(experienceId);
+        onExperienceDeleted(experienceId); 
     } catch (err) {
         setError(err.message);
     }
