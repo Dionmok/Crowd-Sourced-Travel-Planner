@@ -15,7 +15,7 @@ export default function AddExperienceToTripButton({ experienceId }) {
       setLoading(true); // Only show loading for logged-in users
       const fetchTrips = async () => {
         try {
-          const response = await fetch(`http://127.0.0.1:5000/trips`, {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/trips`, {
             headers: {
               Authorization: localStorage.getItem("token"),
             },
@@ -40,7 +40,7 @@ export default function AddExperienceToTripButton({ experienceId }) {
     e.preventDefault();
     if (triptoAdd.trim()) {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/add_to_trip`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/add_to_trip`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function AddExperienceToTripButton({ experienceId }) {
               onChange={(e) => setTriptoAdd(e.target.value)}
               className="add-to-trip-select"
             >
-              <option value="">Select Experience</option>
+              <option value="">Select Trip</option>
               {existingTrips.map((trip, index) => (
                 <option key={index} value={trip.trip_id}>
                   {trip.trip_name}

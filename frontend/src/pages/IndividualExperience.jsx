@@ -30,7 +30,7 @@ export default function IndividualExperience() {
     useEffect(() => {
         const fetchKeywords = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:5000/experience_keywords/${experience.experience_id}`, {
+              const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_keywords/${experience.experience_id}`, {
                   headers: {
                     Authorization: localStorage.getItem("token")
                   }
@@ -184,7 +184,7 @@ export default function IndividualExperience() {
                   <p>Created on: {timeCreated}</p>
                   <div className="add-to-trip-and-edit-container">
                     <AddExperienceToTripButton experienceId={experience.experience_id} />
-                    <div className="edit-buttons-container">
+                    {/*<div className="edit-buttons-container">
                     {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
                       .sub && (
                       <>
@@ -196,7 +196,7 @@ export default function IndividualExperience() {
                       </div>
                       </>
                     )}
-                  </div>
+                  </div> */}
                   </div>
                   
                 </div>

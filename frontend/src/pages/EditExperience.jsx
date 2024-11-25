@@ -29,7 +29,7 @@ export default function EditExperience() {
     useEffect(() => {
         const fetchKeywords = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:5000/experience_keywords/${experience.experience_id}`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_keywords/${experience.experience_id}`);
                 if (response.ok) {
                     const data = await response.json();
                     console.log(data);
@@ -48,7 +48,7 @@ export default function EditExperience() {
     const handleSuccess = (message) => {
         setSuccess(message);
         setError(null);
-        navigate(`/individualExperience/${experience.experience_id}`, { state: { experience, from, trip } });
+        navigate("/myExperiences")
       };
     
     const handleError = (message) => {
@@ -57,7 +57,7 @@ export default function EditExperience() {
     };
 
     const handleCancelClick = () => {
-      navigate(`/individualExperience/${experience.experience_id}`, { state: { experience, from, trip } });
+      navigate("/myExperiences")
     }
     
     return (

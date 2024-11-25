@@ -11,7 +11,7 @@ export default function MyExperiences() {
   useEffect(() => {
     const fetchExperiences = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/saved_experiences`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/saved_experiences`, {
           headers: {
             Authorization: localStorage.getItem("token")
           }
