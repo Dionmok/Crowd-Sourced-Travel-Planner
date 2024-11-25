@@ -14,12 +14,12 @@ export default function TripExperienceTile ({ experience, tripId, onRemove, show
     };
 
     return(
-        <div  className='trip-experience-tile'>
-            <div onClick={handleClick} className='image'>
+        <div className='trip-experience-tile' onClick={handleClick}>
+            <div className='image'>
                 <img src={experience.photo} alt="Experience" />
             </div>
             <div className='trip-experience-details'>
-                <div onClick={handleClick} className='title'>
+                <div className='title'>
                     <h2>{experience.experience_name}</h2>
                 </div>
                 <div className='trip-experience-rating'>
@@ -37,7 +37,7 @@ export default function TripExperienceTile ({ experience, tripId, onRemove, show
                 </div>
             </div>
 
-            <div className='button-edit-container'>
+            <div className='button-edit-container' onClick={(e) => e.stopPropagation()}>
                 {showAddButton && (
                     <div className="add-to-trip">
                         <AddExperienceToTripButton experienceId={experience.experience_id}/>

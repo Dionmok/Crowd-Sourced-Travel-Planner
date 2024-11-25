@@ -1,39 +1,44 @@
 import { useState, useEffect } from "react";
-import '../css/AddToExperienceButton.css'; 
+import { useNavigate } from "react-router-dom";
+import "../css/AddToExperienceButton.css"; 
 
 export default function AddExperienceToTripButton({ experienceId }) {
-  const [triptoAdd, setTriptoAdd] = useState(""); // state to store the selected trip
-  const [existingTrips, setExistingTrips] = useState([]); // state to store the existing trips
-  const [loading, setLoading] = useState(true);
+  const [triptoAdd, setTriptoAdd] = useState("");
+  const [existingTrips, setExistingTrips] = useState([]);
+  const [loading, setLoading] = useState(false); // Default to not loading for logged-out users
+
+  const isLoggedIn = !!localStorage.getItem("token");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Tries and fetchs trips from API
-    const fetchTrips = async () => {
-      try {
-        const response = await fetch(`http://127.0.0.1:5000/trips`, {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Failed to fetch trips");
+    if (isLoggedIn) {
+      setLoading(true); // Only show loading for logged-in users
+      const fetchTrips = async () => {
+        try {
+          const response = await fetch(`http://127.0.0.1:5000/trips`, {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          });
+          if (!response.ok) {
+            throw new Error("Failed to fetch trips");
+          }
+          const data = await response.json();
+          setExistingTrips(data);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setTimeout(() => setLoading(false), 500); // Add a timeout to prevent flash
         }
-        const data = await response.json();
-        setExistingTrips(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+      };
 
-    fetchTrips();
-  }, []);
+      fetchTrips();
+    }
+  }, [isLoggedIn]);
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    // TODO: Implement correct handling of empty trip selection and selection of trip already containing the experience
-    if (triptoAdd.trim() && !existingTrips.includes(triptoAdd)) {
+    if (triptoAdd.trim()) {
       try {
         const response = await fetch(`http://127.0.0.1:5000/add_to_trip`, {
           method: "POST",
@@ -46,31 +51,61 @@ export default function AddExperienceToTripButton({ experienceId }) {
             trip_id: triptoAdd,
           }),
         });
+        if (response.ok) {
+          window.alert("Added to trip successfully!");
+        }
       } catch (error) {
         console.error(error);
       }
-      window.alert("Added to trip successfully!");
-      console.log("Added to trip successfully");
     }
   };
+
   return (
     <>
-      <div className="experience-selection-container">
-        <select
-          value={triptoAdd}
-          onChange={(e) => setTriptoAdd(e.target.value)}
+      {isLoggedIn ? (
+        loading ? (
+          <div className="loading-state">
+            <p>Loading trips...</p>
+          </div>
+        ) : existingTrips.length > 0 ? (
+          <div className="add-to-trip-container">
+            <select
+              value={triptoAdd}
+              onChange={(e) => setTriptoAdd(e.target.value)}
+              className="add-to-trip-select"
+            >
+              <option value="">Select Experience</option>
+              {existingTrips.map((trip, index) => (
+                <option key={index} value={trip.trip_id}>
+                  {trip.trip_name}
+                </option>
+              ))}
+            </select>
+
+            <button
+              onClick={handleAdd}
+              disabled={!triptoAdd.trim()}
+              className={`add-to-trip-button ${!triptoAdd.trim() ? "disabled" : ""}`}
+            >
+              Add to trip
+            </button>
+          </div>
+        ) : (
+          <button
+            className="no-trips-button"
+            onClick={() => navigate("/createTrip")}
+          >
+            No Trips Available. Create One!
+          </button>
+        )
+      ) : (
+        <button
+          className="login-button"
+          onClick={() => navigate("/login")}
         >
-          <option value="">Add Experience to Trip</option>
-          {existingTrips.map((trip, index) => (
-            <option key={index} value={trip.trip_id}>
-              {trip.trip_name}
-            </option>
-          ))}
-        </select>
-
-        <button onClick={handleAdd}>Add</button>
-
-      </div>
+          Login to Begin Planning
+        </button>
+      )}
     </>
   );
 }

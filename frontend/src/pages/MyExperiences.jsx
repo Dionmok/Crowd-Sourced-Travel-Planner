@@ -26,7 +26,9 @@ export default function MyExperiences() {
         console.error(error)
       }
       finally {
-        setLoading(false)
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       }
     }
     fetchExperiences();
@@ -39,26 +41,27 @@ export default function MyExperiences() {
   return (
     <>
       <NavBar current="experiences"/>
-      <div className="experiences-container">
-            <div className="add-experience-button">
-              <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />
-            </div>
-          </div>
-          <div className="right-side-container">
-            <div className='experience-list'>
-              { loading ? (
-                    <p>Loading experiences...</p>
-              ): experiences.length == 0 ? (
-                <p className="no-experience-text">There are no experiences created.</p>
-              ) : (
-                <div>
-                  {experiences.map((experience) => (
-                    <ExperienceTile key={experience.experience_id} experience={experience} onExperienceDeleted={handleExperienceDeleted} />
-                  ))}
-                </div >
-              )}
-            </div>
-          </div>
+      <header className='experience-page-header'>
+        <h1>My Experiences</h1>
+      </header>
+      <main className="experiences-container">
+        {loading ? (
+          <p>Loading experiences...</p>
+        ) : experiences.length === 0 ? (
+          <p>There are no experiences created.</p>
+        ) : (
+          experiences.map((experience) => (
+            <ExperienceTile key={experience.experience_id} experience={experience} onExperienceDeleted={handleExperienceDeleted} />
+          ))
+        )}
+      </main>
+      <div className="action-buttons-container">
+        <div className="add-experience-button">
+          <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />
+        </div>
+        <div className="edit-trash-buttons">
+        </div>
+      </div>
     </>
   );
 }

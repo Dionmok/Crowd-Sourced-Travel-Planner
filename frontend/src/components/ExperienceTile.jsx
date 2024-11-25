@@ -13,47 +13,42 @@ export default function ExperienceTile ({ experience, onExperienceDeleted }){
         navigate(`/individualExperience/${experience.experience_id}`, { state: { experience, from: location.pathname } });
     };
 
-    return(
-        <div  className="experience-tile">
-            <div onClick={handleClick} className='image'>
-                <img src={experience.photo} alt="Experience" />
-            </div>
-            <div className="experience-details">
-                <div onClick={handleClick} className='title'>
-                    <h2>{experience.experience_name}</h2>
-                </div>
-                <div className='rating'>
-                    <p>Rating: {experience.rating}</p>
-                </div>
-                {/* TODO: Add keywordss  */}
-                {/* <div className='keywords'>
-                    <p>Keywords: {experience.keywords.join(', ')}</p>
-                </div> */}
-                <div className='address'>
-                    <p>Address: {experience.address}</p>
-                </div>
-                <div className='description'>
-                    <p>Description: {experience.description}</p>
-                </div>
-                {/* TODO: Add USERNAME of user that created the Experience */}
-                <div className='username'>
-                    {/* <p>Posted by: {experience.user_id}</p> */}
-                </div>
-            </div>
-
-            <div className='button-edit-container'>
-                <div className='add-to-trip'>
-                    <AddExperienceToTripButton experienceId={experience.experience_id} />
-                </div>
-                <div className='edit'>
-                    <EditExperienceButton experience={experience} from={location.pathname}/>
-                </div>
-                <div className='delete'>
-                    <DeleteExperienceButton experienceId={experience.experience_id} onExperienceDeleted={onExperienceDeleted} />
-                </div>
-            </div>
-        
-            
+  return (
+    <div onClick={handleClick} className="experience-tile">
+      <div className='image'>
+        <img src={experience.photo} alt="Experience" />
+      </div>
+      <div className="experience-details">
+        <div className='title'>
+          <h2>{experience.experience_name}</h2>
         </div>
-    );
-};
+        <div className='rating'>
+          <p>Rating: {experience.rating}</p>
+        </div>
+        <div className='address'>
+          <p>Address: {experience.address}</p>
+        </div>
+        <div className='description'>
+          <p>Description: {experience.description}</p>
+        </div>
+      </div>
+
+      <div className='button-edit-container' onClick={(e) => e.stopPropagation()}>
+        <div className='add-to-trip'>
+          <AddExperienceToTripButton experienceId={experience.experience_id} />
+        </div>
+        <div className='edit-delete-container'>
+          <div className='edit'>
+            <EditExperienceButton experience={experience} from={location.pathname} />
+          </div>
+          <div className='delete'>
+            <DeleteExperienceButton
+              experienceId={experience.experience_id}
+              onExperienceDeleted={onExperienceDeleted}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

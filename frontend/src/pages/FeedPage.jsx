@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function FeedPage({ userId }) {
   const [experiences, setExperiences] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -51,24 +51,24 @@ export default function FeedPage({ userId }) {
   }, [location.search]);
 
   return (
-    <div>
+    <>
       <NavBar current="feed"/>
       <SearchBar onSearch={(query) => navigate(`/feed?keywords=${query.keywords}`)} />
-
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-
-      <div className="experiences-container">
-        {experiences.length > 0 ? (
+      <main className="feed-experiences-container">
+        {loading ? (
+          <p>Loading experiences...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : experiences.length === 0 ? (
+          <p>No experiences found matching your search criteria.</p>
+        ) : (
           experiences.map((experience) => (
             <div key={experience.experience_id}>
               <TripExperienceTile experience={experience} showDelete={false}/>
             </div>
           ))
-        ) : (
-          <p>No experiences found matching your search criteria.</p>
         )}
-      </div>
-    </div>
+      </main>
+    </>
   );
 }
