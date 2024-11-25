@@ -188,7 +188,7 @@ export default function IndividualExperience() {
                     {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
                       .sub && <EditExperienceButton experience={experience} from={from} />}
                     {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
-                      .sub && <DeleteExperienceButton experience={experience} />}
+                      .sub && <DeleteExperienceButton experienceId={experience.experience_id} from={from} />}
                   </div>
                   </div>
                   
