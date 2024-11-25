@@ -1,6 +1,83 @@
-.experience-selection-container {
-    display:flex;
-    flex-direction: row;
-    align-items: center; 
-    gap: 10px; 
+.add-to-trip-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+  
+  .add-to-trip-select {
+    padding: 8px;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+  
+  .add-to-trip-button {
+    cursor: pointer;
+    background-color: #4caf50;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.add-to-trip-button:hover {
+    color: white;
+}
+  
+  .add-to-trip-button.disabled {
+    color: black;
+    background-color: #ffffff;
+    cursor: not-allowed;
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+  
+  .add-to-trip-button:not(.disabled):hover {
+    background-color: #45a049;
+}
+  
+.login-button {
+    background-color: #4caf50;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+  
+  .login-button:hover {
+    color: white;
+    background-color: #45a049;
+}
+
+/* Button when no trips are available */
+.no-trips-button {
+    cursor: pointer;
+    background-color: #ff7369; /* Red background */
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .no-trips-button:hover {
+    color: white;
+    background-color: #d32f2f; /* Darker red when hovered */
+  }
+
+  .loading-state {
+    text-align: center;
+    color: #555;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
