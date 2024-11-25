@@ -9,7 +9,7 @@ export default function Keywords({value=[], onChange}){
     useEffect(() => {
         const fetchKeywords = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:5000/get_keywords`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/get_keywords`);
                 if (response.ok) {
                     const data = await response.json();
                     setExistingKeywords(data.map(keyword => keyword.keyword)); // Assume the keyword is in keyword field

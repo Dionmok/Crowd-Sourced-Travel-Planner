@@ -30,7 +30,7 @@ export default function IndividualExperience() {
     useEffect(() => {
         const fetchKeywords = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:5000/experience_keywords/${experience.experience_id}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/experience_keywords/${experience.experience_id}`, {
                   headers: {
                     Authorization: localStorage.getItem("token")
                   }

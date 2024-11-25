@@ -16,7 +16,7 @@ export default function ExpSaveChanges({ experienceId, experienceName, descripti
     const handleSave = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch(`http://127.0.0.1:5000/edit_experience` , {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/edit_experience` , {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
