@@ -54,6 +54,7 @@ export default function FeedPage({ userId }) {
     <>
       <NavBar current="feed"/>
       <SearchBar onSearch={(query) => navigate(`/feed?keywords=${query.keywords}`)} />
+      <div className='feed-container'>
       <main className="feed-experiences-container">
         {loading ? (
           <p>Loading experiences...</p>
@@ -69,6 +70,7 @@ export default function FeedPage({ userId }) {
           ))
         )}
       </main>
+      </div>
     </>
   );
 }
