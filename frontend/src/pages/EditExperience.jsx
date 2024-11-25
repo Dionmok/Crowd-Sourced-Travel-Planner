@@ -48,7 +48,7 @@ export default function EditExperience() {
     const handleSuccess = (message) => {
         setSuccess(message);
         setError(null);
-        navigate(`/individualExperience/${experience.experience_id}`, { state: { experience, from, trip } });
+        navigate("/myExperiences")
       };
     
     const handleError = (message) => {
@@ -57,7 +57,7 @@ export default function EditExperience() {
     };
 
     const handleCancelClick = () => {
-      navigate(`/individualExperience/${experience.experience_id}`, { state: { experience, from, trip } });
+      navigate("/myExperiences")
     }
     
     return (

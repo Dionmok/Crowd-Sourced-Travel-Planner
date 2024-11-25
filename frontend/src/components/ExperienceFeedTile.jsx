@@ -1,8 +1,8 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import RemoveTripExperienceButton from '../components/RemoveTripExperienceButton';
+import AddExperienceToTripButton from '../components/AddExperienceToTripButton';
 import '../css/TripExperienceTile.css';
 
-export default function TripExperienceTile ({ experience, tripId, onRemove}){
+export default function TripExperienceTile ({ experience, tripId, onRemove, showDelete=true, showAddButton = true,}){
     const navigate = useNavigate();
     const location = useLocation();
     const trip = location.state?.trip;
@@ -37,8 +37,8 @@ export default function TripExperienceTile ({ experience, tripId, onRemove}){
             </div>
 
             <div className='button-edit-container'>
-                <div className='delete'>
-                    <RemoveTripExperienceButton tripId={tripId} experienceId={experience.experience_id} onExperienceRemoved={onRemove}/>
+                <div className="add-to-trip">
+                    <AddExperienceToTripButton experienceId={experience.experience_id}/>
                 </div>
             </div>
         </div>

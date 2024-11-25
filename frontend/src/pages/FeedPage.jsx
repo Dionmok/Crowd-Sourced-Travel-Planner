@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
-import TripExperienceTile from '../components/TripExperienceTile';
+import ExperienceFeedTile from '../components/ExperienceFeedTile';
 import '../css/FeedPage.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -62,7 +62,7 @@ export default function FeedPage({ userId }) {
         {experiences.length > 0 ? (
           experiences.map((experience) => (
             <div key={experience.experience_id}>
-              <TripExperienceTile experience={experience} showDelete={false}/>
+              <ExperienceFeedTile experience={experience} showDelete={false}/>
             </div>
           ))
         ) : (
