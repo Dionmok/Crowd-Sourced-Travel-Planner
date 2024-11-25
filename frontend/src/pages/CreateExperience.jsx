@@ -34,7 +34,7 @@ export default function CreateExperience() {
 
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/save_experience`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/save_experience`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

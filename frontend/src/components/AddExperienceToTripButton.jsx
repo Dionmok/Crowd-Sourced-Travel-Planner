@@ -10,7 +10,7 @@ export default function AddExperienceToTripButton({ experienceId }) {
     // Tries and fetchs trips from API
     const fetchTrips = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/trips`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/trips`, {
           headers: {
             Authorization: localStorage.getItem("token"),
           },
@@ -35,7 +35,7 @@ export default function AddExperienceToTripButton({ experienceId }) {
     // TODO: Implement correct handling of empty trip selection and selection of trip already containing the experience
     if (triptoAdd.trim() && !existingTrips.includes(triptoAdd)) {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/add_to_trip`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/add_to_trip`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

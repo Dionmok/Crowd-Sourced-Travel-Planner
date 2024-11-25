@@ -27,7 +27,7 @@ export default function FeedPage({ userId }) {
 
     const fetchExperiences = async () => {
       try {
-        let url = 'http://127.0.0.1:5000/experiences';
+        let url = `${import.meta.env.VITE_API_URL}/experiences`;
         const queryParams = new URLSearchParams();
         if (locationParam) queryParams.append('location', locationParam);
         if (keywords) queryParams.append('keywords', keywords);
