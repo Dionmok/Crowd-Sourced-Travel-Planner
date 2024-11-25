@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import ButtonLink from "../components/ButtonLink";
 import ImageUpload from "../components/ImageUpload";
 import TextBox from "../components/TextBox";
 import Keywords from "../components/Keywords";
 import ExpSaveChanges from "../components/ExpSaveChanges";
 import LocationAutocomplete from "../components/LocationAutocomplete";
+import '../css/CreateExperience.css';
 
 export default function EditExperience() {
     const location = useLocation(); // Get the location object
@@ -63,51 +65,60 @@ export default function EditExperience() {
     return (
         <>
           <NavBar />
-          <h1>Edit Experience page</h1>
           <form id='updateExperience'>
-            <div className="title-container">
-              <h1>Title</h1>
-              <TextBox 
-                name='experienceName' 
-                id='experienceName'
-                maxChars='60' 
-                varient="description-title" 
-                placeholder="e.g., Davis Farmers Market..." 
-                value={experienceName}
-                onChange={setExperienceName}
-                required/>
+            <h1 className='create-experience-name-title'>Experience Title</h1>
+              <div className='create-experience-title-container'>
+                <TextBox 
+                  name='experienceName' 
+                  id='experienceName'
+                  maxChars='60' 
+                  varient="description-title" 
+                  placeholder="e.g., Davis Farmers Market..." 
+                  value={experienceName}
+                  onChange={setExperienceName}
+                  required/>
             </div>
-            <div className="description-container">
-              <h1>Description</h1>
-              <TextBox 
-                name='description'
-                id='description' 
-                maxChars='200' 
-                varient="description-default" 
-                placeholder="Enter experience description here..." 
-                value={description} 
-                onChange={setDescription}
-                required />
+            <br />
+            <div className='create-description-container'>
+              <h1 className='create-experience-description-title'>Experience Description</h1>
+                <TextBox 
+                  name='description'
+                  id='description' 
+                  maxChars='200' 
+                  varient="description-Create" 
+                  placeholder="Enter experience description here..." 
+                  value={description} 
+                  onChange={setDescription}
+                  required />
             </div>
-            <div className="location-container">
-              <h1>Address</h1>
+            <br />
+            <h1 className='create-experience-address-title'>Address</h1>
+            <div className="create-location-container">
               <LocationAutocomplete setAddress={setAddress} setLatitude={setLatitude} setLongitude={setLongitude} setError={setError} />
             </div>
-            <div className="keywords-container">
-              <h1>Keywords</h1>
+            <br />
+            <div className="create-keywords-container">
+              <h1 className='create-experience-keywords-title'>Keywords</h1>
+            </div>
+            <br />
+            <div className="create-keywords-added-container">
               <Keywords 
                 name='keywords'
                 value={keywords}
                 onChange={setKeywords} />
             </div>
             <div className="image-container">
-              <h1>Image</h1>
-              <ImageUpload 
-                name='image'
-                id='imageUpload'
-                value={photoURL}
-                onChange={setPhotoURL} />
+              <h1 className='create-experience-image-title' >Image</h1>
+              <div className="image-container-image">
+                <ImageUpload 
+                  name='image'
+                  id='imageUpload'
+                  value={photoURL}
+                  onChange={setPhotoURL} />
+              </div>
             </div>
+            <br />
+            <div className='save-cancel-button-experience-container'>
             <ExpSaveChanges 
                 experienceId={experience.experience_id}
                 experienceName={experienceName}
@@ -121,11 +132,12 @@ export default function EditExperience() {
                 onError={handleError}
                 />
             {/* Cancel button to exit edit mode */}
-            <button onClick={handleCancelClick}>Cancel</button>
+            <ButtonLink varient="button-back-experience" buttonName="Cancel" routeTo="/myExperiences" />
+            </div>
             
             {/* Error Message Display */}
             {error && (
-              <div>
+              <div className='error-message'>
                 {error}
               </div>
             )}

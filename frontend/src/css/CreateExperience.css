@@ -1,0 +1,151 @@
+.create-experience-image-title,
+.create-experience-name-title,
+.create-experience-description-title,
+.create-experience-address-title,
+.create-experience-keywords-title{
+    padding-top: 30px;
+    flex-grow: 1;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 3em;
+    padding-right: 16px;
+    transition: background-color 0.3s;
+}
+
+.startdate-container{
+    height: 110px;
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+
+  .create-keywords-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.create-keywords-added-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.keyword-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.keyword-input {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.keyword-input input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 70%;
+    margin-left: 130px;
+    font-size: 1.2em;
+}
+
+.keyword-input button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.keyword-input button:hover {
+    background-color: #45a049;
+}
+
+.keywords-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
+.keywords-list div {
+    display: flex;
+    align-items: center;
+    background-color:  rgb(255,227,175);
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+}
+
+.keywords-list div button {
+        background-color: #f44336;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; 
+}
+
+.keywords-list div button:hover {
+    background-color: #ff3333;
+}
+
+.image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.save-cancel-button-experience-container{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+}
+
+.error-message{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff3333;
+    font-size: 2em;
+}
+
+.image-container-image{
+    padding-top: 10px;
+}
+
+.location-autocomplete-container{
+    width: 800px;
+
+}
+
+.create-location-container{
+    height: 50px;
+    display: flex;
+    justify-content: center
+}
