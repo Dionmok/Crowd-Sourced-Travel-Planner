@@ -134,10 +134,10 @@
 }
 
 .keywords-list h2 {
-    background-color: #eaf4fc;
     padding: 5px 10px;
-    border-radius: 3px;
-    font-size: 1.1rem;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.8rem;
 }
 
 .right-container p {
@@ -172,4 +172,35 @@ select {
 select:hover {
     border-color: #ccc;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.right-button-container select {
+    width: 240px;
+    height: 50px;
+    font-size: 1.2rem;
+    border: 2px solid #d3d3d3;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.left-container button {
+    width: 240px;
+    height: 50px;
+    font-size: 1.2rem;
+    border: 2px solid #d3d3d3;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.right-button-container button {
+    width: 240px;
+    height: 50px;
+    font-size: 1.2rem;
+    border: 2px solid #d3d3d3;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
 }

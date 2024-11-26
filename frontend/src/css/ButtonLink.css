@@ -47,7 +47,7 @@
 }
 
 .button-back:hover {
-  background-color: #8e8383;
+  color: white;
   transition: background-color 0.1s linear;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .button-delete:hover {
-  background-color: #ea3a26;
+  color: white;
   transition: background-color 0.1s linear;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .button-cancel:hover {
-  background-color: rgb(221, 5, 5);
+  color: white;
   transition: background-color 0.1s linear;
 }
 
@@ -100,6 +100,6 @@
 }
 
 .button-back-experience:hover {
-  background-color: rgb(221, 5, 5);
+  color: white;
   transition: background-color 0.1s linear;
 }
