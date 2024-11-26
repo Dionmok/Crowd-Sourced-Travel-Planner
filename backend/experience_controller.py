@@ -77,7 +77,6 @@ def save_experience():
 
         # if link between experience and keyword does not exist, insert it
         if not existing_keyword.data:
-            print("inserting keyword")
             keyword_inserts.append({
                 'experience_id': experince_id,
                 'keyword_id': keyword_id
@@ -97,14 +96,11 @@ def get_experience_keywords(experience_id):
 
     if response.data:
         response_data = response.data
-        print(response_data)
         # Gets the keyword ids for experience-keywords
         keyword_ids = []
         keyword_values = []
         for item in response_data:
-            print(item)
             keyword_id = item['keyword_id']
-            print(keyword_id)
             keyword_value = supabase.table('Keywords').select('keyword').eq('keyword_id', item['keyword_id']).execute()
             keyword_ids.append(item['keyword_id'])
             keyword_values.append(keyword_value.data[0]['keyword'])
@@ -171,16 +167,12 @@ def edit_experience():
     # update keywords for the experience
     if update_response.data: 
         existing_keywords = get_experience_keywords_ids(experience_id)
-        print("Existing Keywords", existing_keywords)
         
         # insert a new keyword on Keywords table or retrive existing one, get keyword id 
         updated_keywords = handle_keywords(keywords)
 
         keywords_to_add = set(updated_keywords) - set(existing_keywords) # add keywords that are not in the existing list
         keywords_to_remove = set(existing_keywords) - set(updated_keywords) # remove keywords that are not in the updated list
-
-        print("Keywords to add", keywords_to_add)
-        print("Keywords to remove", keywords_to_remove)
         
         if keywords_to_add:
             keyword_inserts = []
@@ -189,12 +181,10 @@ def edit_experience():
                     'experience_id': experience_id,
                     'keyword_id': keyword_id
                 })
-            print("Inserting into Experience_Keywords", keyword_inserts)
             supabase.table('Experience_Keywords').insert(keyword_inserts).execute()
         
         if keywords_to_remove:
             for keyword_id in keywords_to_remove:
-                print("Removing keyword", keyword_id)
                 supabase.table('Experience_Keywords').delete().eq('experience_id', experience_id).eq('keyword_id', keyword_id).execute()
 
         return jsonify({"message": "Experience updated successfully"}), 200
