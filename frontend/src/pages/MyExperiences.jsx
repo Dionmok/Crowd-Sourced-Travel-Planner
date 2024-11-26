@@ -44,6 +44,7 @@ export default function MyExperiences() {
       <header className='experience-page-header'>
         <h1>My Experiences</h1>
       </header>
+      <div className='experiences-y-container'>
       <main className="experiences-container">
         {loading ? (
           <p>Loading experiences...</p>
@@ -55,6 +56,7 @@ export default function MyExperiences() {
           ))
         )}
       </main>
+      </div>
       <div className="action-buttons-container">
         <div className="add-experience-button">
           <ButtonLink varient="button-add" buttonName="+ Experience" routeTo="/createExperience" />

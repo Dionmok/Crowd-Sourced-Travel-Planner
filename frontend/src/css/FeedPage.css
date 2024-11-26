@@ -11,3 +11,8 @@
     font-size: 1.2rem;
     color: #555;
 }
+
+.feed-container{
+    max-height: 710px;
+    overflow-y: auto; 
+}

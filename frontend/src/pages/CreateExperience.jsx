@@ -6,6 +6,7 @@ import Keywords from "../components/Keywords";
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import LocationAutocomplete from "../components/LocationAutocomplete";
+import '../css/CreateExperience.css';
 
 export default function CreateExperience() {
   const [error, setError] = useState("");
@@ -68,57 +69,67 @@ export default function CreateExperience() {
   return (
     <>
       <NavBar />
-      <h1>Create Experience page</h1>
       <form onSubmit={handleSubmit} id='createExperience'>
-        <div className="title-container">
-          <h1>Title</h1>
-          <TextBox 
-            name='experienceName' 
-            id='experienceName'
-            maxChars='60' 
-            varient="description-title" 
-            placeholder="e.g., Davis Farmers Market..." 
-            value={experienceName}
-            onChange={setExperienceName}
-            required/>
-        </div>
-        <div className="description-container">
-          <h1>Description</h1>
+          <h1 className='create-experience-name-title'>Experience Title</h1>
+          <div className='create-experience-title-container'>
+            <TextBox 
+              name='experienceName' 
+              id='experienceName'
+              maxChars='60' 
+              varient="description-title" 
+              placeholder="e.g., Davis Farmers Market..." 
+              value={experienceName}
+              onChange={setExperienceName}
+              required/>
+          </div>
+        <br />
+        <div className='create-description-container'>
+          <h1 className='create-experience-description-title'>Experience Description</h1>
           <TextBox 
             name='description'
             id='description' 
             maxChars='200' 
-            varient="description-default" 
+            varient="description-Create" 
             placeholder="Enter experience description here..." 
             value={description} 
             onChange={setDescription}
             required />
         </div>
-        <div className="location-container">
-          <h1>Address</h1>
+        <br />
+          <h1 className='create-experience-address-title'>Address</h1>
+          <div className="create-location-container">
           <LocationAutocomplete setAddress={setAddress} setLatitude={setLatitude} setLongitude={setLongitude} setError={setError} />
         </div>
-        <div className="keywords-container">
-          <h1>Keywords</h1>
-          <Keywords 
-            name='keywords'
-            value={keywords}
-            onChange={setKeywords} />
+        <br />
+        <div className="create-keywords-container">
+          <h1 className='create-experience-keywords-title'>Keywords</h1>
         </div>
+        <br />
+        <div className="create-keywords-added-container">
+            <Keywords 
+              name='keywords'
+              value={keywords}
+              onChange={setKeywords} />
+          </div>
         <div className="image-container">
-          <h1>Image</h1>
-          <ImageUpload 
-            name='image'
-            id='imageUpload'
-            value={photoURL}
-            onChange={setPhotoURL} />
+          <h1 className='create-experience-image-title' >Image</h1>
+          <div className="image-container-image">
+            <ImageUpload 
+              name='image'
+              id='imageUpload'
+              value={photoURL}
+              onChange={setPhotoURL} />
+            </div>
         </div>
+        <br />
+        <div className='save-cancel-button-experience-container'>
         <button type="submit" className="button-add">Submit</button>
-        <ButtonLink varient="button-back" buttonName="Cancel" routeTo="/myExperiences" />
-        
+        <ButtonLink varient="button-back-experience" buttonName="Cancel" routeTo="/myExperiences" />
+
+      </div>
         {/* Error Message Display */}
         {error && (
-          <div>
+          <div className='error-message'>
             {error}
           </div>
         )}

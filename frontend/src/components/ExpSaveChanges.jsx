@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../css/TripButtons.css';
 
 export default function ExpSaveChanges({ experienceId, experienceName, description, address, latitude, longitude, keywords, photo, onSuccess, onError }){
     const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +50,7 @@ export default function ExpSaveChanges({ experienceId, experienceName, descripti
     };
     return (
         <div>
-          <button onClick={handleSave} disabled={isLoading || isDisabled}>
+          <button onClick={handleSave} disabled={isLoading || isDisabled} className='save-changes'>
             {isLoading ? 'Saving...' : 'Save Changes'}
           </button>
         </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import {FaTrash} from 'react-icons/fa';
 
 export default function Keywords({value=[], onChange}){
     const [keyword, setKeyword] = useState("");
@@ -69,7 +70,7 @@ export default function Keywords({value=[], onChange}){
                     {value.map((keyword, index) => (
                         <div key={index}>
                             {keyword}
-                            <button type="button" onClick={() => handleDelete(index)}>Delete</button>
+                            <button type="button" onClick={() => handleDelete(index)}><FaTrash /></button>
                         </div>
                     ))}
                 </div>
