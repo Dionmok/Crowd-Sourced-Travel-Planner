@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
-import EditExperienceButton from "../components/EditExperienceButton";
-import DeleteExperienceButton from "../components/DeleteExperienceButton";
 import AddExperienceToTripButton from "../components/AddExperienceToTripButton";
 import '../css/IndividualExperience.css';
 
@@ -134,8 +132,14 @@ export default function IndividualExperience() {
               <div className="row-container">
                 {/* left side  */}
                 <div className="left-container">
-                  <img src={photoURL} alt="Experience Image" />
-                  <div className="rating-container">
+                  <img src={photoURL} alt="Experience Image" />           
+                  <ButtonLink varient="button-back" buttonName="Back" />
+                </div>
+                {/* right side  */}
+                <div className="right-container">
+                <div className="details-row">
+                <div className="details-column">
+                <div className="rating-container">
                     <h1>Rating: {rating}</h1>
                     {localStorage.getItem("token") &&
                     <div>
@@ -151,24 +155,25 @@ export default function IndividualExperience() {
                     </div>
                     }
                   </div>
-                  
-                  <ButtonLink varient="button-back" buttonName="Back" />
-                </div>
-                {/* right side  */}
-                <div className="right-container">
-                  <div className=".description-container">
+                  <div className="description-container">
                     <h1>Description: </h1>
                     <h2> {description} </h2>
                   </div>
-                  <div className="location-container">
+                  <div className="address-container">
                     <h1>Address:</h1>
-                      <h2> {address} </h2>
+                    <h2> {address} </h2>
+                  </div>
+                    <div className="geolocation-container">
                     <h1>Geolocation: </h1>
                     <div className='geolocation-input-container'>
-                      <h1>Latitude</h1>
-                          <h2> {latitude} </h2>
-                      <h1>Longitude</h1>
-                          <h2> {longitude} </h2>
+                      <div className="geo-item">
+                          <h2>Latitude</h2>
+                          <p>{latitude}</p>
+                      </div>
+                      <div className="geo-item">
+                          <h2>Longitude</h2>
+                          <p>{longitude}</p>
+                      </div>
                     </div>
                   </div>
                   <div className="keywords-container">
@@ -181,24 +186,25 @@ export default function IndividualExperience() {
                           ))}
                       </div>
                   </div>
-                  <p>Created on: {timeCreated}</p>
-                  <div className="add-to-trip-and-edit-container">
-                    <AddExperienceToTripButton experienceId={experience.experience_id} />
-                    {/*<div className="edit-buttons-container">
-                    {localStorage.getItem("token") && experience.user_id === JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
-                      .sub && (
-                      <>
-                      <div className="edit">
-                        <EditExperienceButton experience={experience} from={from} />
-                      </div>
-                      <div className="delete">
-                        <DeleteExperienceButton experience={experience} />
-                      </div>
-                      </>
-                    )}
-                  </div> */}
+                 <div className="created-on-container">
+                 <h1>Created on: {timeCreated}</h1>
+                </div>
+                </div>
+                   <div className="map-container">
+                <iframe
+                   title="location-map"
+                   src={`https://www.google.com/maps?q=${latitude},${longitude}&output=embed`}
+                   width="100%"
+                   height="100%"
+                   style={{ border: 0 }}
+                   allowFullScreen=""
+                   loading="lazy"
+                ></iframe>
+                   </div>
                   </div>
-                  
+                  <div className="right-button-container">
+                    <AddExperienceToTripButton experienceId={experience.experience_id} />
+                  </div>
                 </div>
               </div>
           </div>
