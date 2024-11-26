@@ -137,6 +137,8 @@ export default function IndividualExperience() {
                 </div>
                 {/* right side  */}
                 <div className="right-container">
+                <div className="details-row">
+                <div className="details-column">
                 <div className="rating-container">
                     <h1>Rating: {rating}</h1>
                     {localStorage.getItem("token") &&
@@ -184,7 +186,22 @@ export default function IndividualExperience() {
                           ))}
                       </div>
                   </div>
-                  <p>Created on: {timeCreated}</p>
+                 <div className="created-on-container">
+                 <h1>Created on: {timeCreated}</h1>
+                </div>
+                </div>
+                   <div className="map-container">
+                <iframe
+                   title="location-map"
+                   src={`https://www.google.com/maps?q=${latitude},${longitude}&output=embed`}
+                   width="100%"
+                   height="100%"
+                   style={{ border: 0 }}
+                   allowFullScreen=""
+                   loading="lazy"
+                ></iframe>
+                   </div>
+                  </div>
                   <div className="right-button-container">
                     <AddExperienceToTripButton experienceId={experience.experience_id} />
                   </div>

@@ -33,15 +33,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-    width: 100%;
     gap: 20px;
+    width: 100%;
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
-.left-container {
+.left-container,
+.right-container {
     flex: 1;
-    max-width: 40%;
-    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -49,6 +49,7 @@
     background-color: #f9f9f9;
     border: 1px solid #e0e0e0;
     padding: 10px;
+    min-width: 300px;
 }
 
 .left-container img {
@@ -67,16 +68,12 @@
     margin-top: 10px;
 }
 
+.left-container {
+    max-width: 40%;
+}
+
 .right-container {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 20px;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    padding: 20px;
+    max-width: 60%;
 }
 
 .right-container .title {
@@ -92,6 +89,7 @@
 .geolocation-container,
 .location-container,
 .address-container,
+.created-on-container,
 .keywords-container {
     background-color: #ffffff;
     padding: 15px;
@@ -121,7 +119,7 @@
 }
 
 .geo-item h2 {
-    font-size: 1rem;
+    font-size: 1.1em;
     color: #333;
     margin-bottom: 5px;
 }
@@ -203,4 +201,38 @@ select:hover {
     padding: 10px;
     border-radius: 5px;
     text-align: center;
+}
+
+.details-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+.details-column {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.map-container {
+    flex: 3;
+    display: flex;
+    height: auto;
+    align-self: stretch;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
